@@ -1,0 +1,7 @@
+maicol07-sso:
+  admin:
+    settings:
+      title: "Impostazioni SSO"
+      signup_url: "URL registrazione"
+      login_url: "URL accesso"
+      logout_url: "URL disconnessione"
