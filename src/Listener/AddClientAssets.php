@@ -1,6 +1,6 @@
 <?php
 
-namespace Wuethrich44\SSO\Listener;
+namespace Maicol07\SSO\Listener;
 
 use DirectoryIterator;
 use Flarum\Event\ConfigureLocales;
@@ -21,7 +21,7 @@ class AddClientAssets
             $event->addAssets([
                 __DIR__ . '/../../js/forum/dist/extension.js',
             ]);
-            $event->addBootstrapper('wuethrich44/sso/main');
+            $event->addBootstrapper('maicol07/sso/main');
         }
 
 
@@ -29,7 +29,7 @@ class AddClientAssets
             $event->addAssets([
                 __DIR__ . '/../../js/admin/dist/extension.js'
             ]);
-            $event->addBootstrapper('wuethrich44/sso/main');
+            $event->addBootstrapper('maicol07/sso/main');
         }
     }
 

@@ -1,6 +1,6 @@
 {
-  "name": "wuethrich44/flarum-ext-sso",
-  "description": "Single Sign On for Flarum",
+  "name": "maicol07/flarum-ext-sso",
+  "description": "SSO for Flarum",
   "type": "flarum-extension",
   "keywords": [
     "authentication"
@@ -10,23 +10,27 @@
     {
       "name": "Fabian Wüthrich",
       "email": "fabian.wuethrich@outlook.com"
+    },
+    {
+      "name": "Maicol Battistini",
+      "email": "maicolbattistini@live.it"
     }
   ],
   "support": {
-    "issues": "https://github.com/wuethrich44/flarum-ext-sso/issues",
-    "source": "https://github.com/wuethrich44/flarum-ext-sso"
+    "issues": "https://github.com/maicol07/flarum-ext-sso/issues",
+    "source": "https://github.com/maicol07/flarum-ext-sso"
   },
   "require": {
     "flarum/core": "^0.1.0-beta.8.1"
   },
   "autoload": {
     "psr-4": {
-      "Wuethrich44\\SSO\\": "src/"
+      "Maicol07\\SSO\\": "src/"
     }
   },
   "extra": {
     "flarum-extension": {
-      "title": "Single Sign On",
+      "title": "SSO",
       "icon": {
         "name": "shield"
       }

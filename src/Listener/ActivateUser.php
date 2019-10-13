@@ -1,6 +1,6 @@
 <?php
 
-namespace Wuethrich44\SSO\Listener;
+namespace Maicol07\SSO\Listener;
 
 use Flarum\User\Event\Registered;
 use Illuminate\Contracts\Events\Dispatcher;

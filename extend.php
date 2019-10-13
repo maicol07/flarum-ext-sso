@@ -2,7 +2,7 @@
 
 use Flarum\Extend;
 use Illuminate\Contracts\Events\Dispatcher;
-use Wuethrich44\SSO\Listener;
+use Maicol07\SSO\Listener;
 
 return [
     (new Extend\Frontend('forum'))

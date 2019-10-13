@@ -20,7 +20,7 @@ of your main website. A dummy main website is provided in the `sample-website/` 
 
 5. Install and activate the extension. Fill in redirect urls for login, signup and logout.
   ```
-  composer require wuethrich44/flarum-ext-sso
+  composer require maicol07/flarum-ext-sso
   ```
 6. Now you should able to log in with your existing users.
 
@@ -39,7 +39,7 @@ forum. In order to install the plugin execute the following steps:
 
 5. Install and activate the Flarum extension.
   ```
-  composer require wuethrich44/flarum-ext-sso
+  composer require maicol07/flarum-ext-sso
   ```
 
 6. Fill in the correct urls according to your wordpress instance:

@@ -1,6 +1,6 @@
 <?php
 
-namespace Wuethrich44\SSO\Listener;
+namespace Maicol07\SSO\Listener;
 
 use Flarum\User\Event\LoggedOut;
 use Flarum\Settings\SettingsRepositoryInterface;
@@ -22,7 +22,7 @@ class AddLogoutRedirect
 
     public function addLogoutRedirect()
     {
-        $url = $this->settings->get('wuethrich44-sso.logout_url');
+        $url = $this->settings->get('maicol07-sso.logout_url');
 
         header('Location: ' . $url);
         die();

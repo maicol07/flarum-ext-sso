@@ -4,7 +4,7 @@ import HeaderSecondary from "flarum/components/HeaderSecondary";
 import SettingsPage from "flarum/components/SettingsPage";
 import LogInModal from "flarum/components/LogInModal";
 
-app.initializers.add('wuethrich44-sso', function () {
+app.initializers.add('maicol07-sso', function () {
     override(LogInModal.prototype, 'init', redirectWhenLoginModalIsOpened);
 
     extend(HeaderSecondary.prototype, 'items', replaceLoginButton);
@@ -14,7 +14,7 @@ app.initializers.add('wuethrich44-sso', function () {
     extend(SettingsPage.prototype, 'settingsItems', checkRemoveAccountSection);
 
     function redirectWhenLoginModalIsOpened() {
-        window.location.href = app.forum.data.attributes['wuethrich44-sso.login_url'];
+        window.location.href = app.forum.data.attributes['maicol07-sso.login_url'];
         throw new Error('Stop execution');
     }
 
@@ -23,7 +23,7 @@ app.initializers.add('wuethrich44-sso', function () {
             return;
         }
 
-        let loginUrl = app.forum.data.attributes['wuethrich44-sso.login_url'];
+        let loginUrl = app.forum.data.attributes['maicol07-sso.login_url'];
 
         items.replace('logIn',
             <a href={loginUrl} className="Button Button--link">
@@ -37,7 +37,7 @@ app.initializers.add('wuethrich44-sso', function () {
             return;
         }
 
-        let signupUrl = app.forum.data.attributes['wuethrich44-sso.signup_url'];
+        let signupUrl = app.forum.data.attributes['maicol07-sso.signup_url'];
 
         items.replace('signUp',
             <a href={signupUrl} className="Button Button--link">

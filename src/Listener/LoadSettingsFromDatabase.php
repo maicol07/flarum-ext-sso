@@ -1,6 +1,6 @@
 <?php
 
-namespace Wuethrich44\SSO\Listener;
+namespace Maicol07\SSO\Listener;
 
 
 use Flarum\Api\Event\Serializing;
@@ -25,9 +25,9 @@ class LoadSettingsFromDatabase
     public function prepareApiAttributes(Serializing $event)
     {
         if ($event->isSerializer(ForumSerializer::class)) {
-            $event->attributes['wuethrich44-sso.signup_url'] = $this->settings->get('wuethrich44-sso.signup_url');
-            $event->attributes['wuethrich44-sso.login_url'] = $this->settings->get('wuethrich44-sso.login_url');
-            $event->attributes['wuethrich44-sso.logout_url'] = $this->settings->get('wuethrich44-sso.logout_url');
+            $event->attributes['maicol07-sso.signup_url'] = $this->settings->get('maicol07-sso.signup_url');
+            $event->attributes['maicol07-sso.login_url'] = $this->settings->get('maicol07-sso.login_url');
+            $event->attributes['maicol07-sso.logout_url'] = $this->settings->get('maicol07-sso.logout_url');
         }
     }
 }
