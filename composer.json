@@ -21,7 +21,7 @@
     "source": "https://github.com/maicol07/flarum-ext-sso"
   },
   "require": {
-    "flarum/core": "^0.1.0-beta.8.1",
+    "flarum/core": "^0.1.0-beta.10",
     "ext-json": "*"
   },
   "autoload": {
@@ -35,6 +35,9 @@
       "icon": {
         "name": "shield"
       }
+    },
+    "flagrow": {
+      "discuss": "https://discuss.flarum.org/d/5052-single-sign-on/"
     }
   }
 }
