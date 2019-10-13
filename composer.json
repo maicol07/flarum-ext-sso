@@ -21,7 +21,8 @@
     "source": "https://github.com/maicol07/flarum-ext-sso"
   },
   "require": {
-    "flarum/core": "^0.1.0-beta.8.1"
+    "flarum/core": "^0.1.0-beta.8.1",
+    "ext-json": "*"
   },
   "autoload": {
     "psr-4": {
