@@ -8,12 +8,12 @@
   "license": "MIT",
   "authors": [
     {
-      "name": "Fabian Wüthrich",
-      "email": "fabian.wuethrich@outlook.com"
-    },
-    {
       "name": "Maicol Battistini",
       "email": "maicolbattistini@live.it"
+    },
+    {
+      "name": "Fabian Wüthrich",
+      "email": "fabian.wuethrich@outlook.com"
     }
   ],
   "support": {

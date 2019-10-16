@@ -5,8 +5,6 @@ This extension equips Flarum with Single Sign On (shortly SSO). The workflow is 
 The extension is useful if you run Flarum on a subdomain but you want to use the login mechanism 
 of your main website. A dummy main website is provided in the `sample-website/` folder.
 
-__**NOTE: The sample website example is currently outdated. Please refer to class methods comments until I update it**__
-
 ## Installation
 
 1. Create a random token (40 characters, you can use [this tool](https://onlinerandomtools.com/generate-random-string) to make one) and put it into the `api_keys` table of your Flarum database.

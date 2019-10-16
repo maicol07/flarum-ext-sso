@@ -5,7 +5,7 @@ Plugin Name: Flarum Single Sign On
 
 require_once __DIR__ . '/Forum.php';
 
-$flarum = new Forum();
+$flarum = new Flarum();
 
 function flarum_sso_login_redirect($redirect_to, $request, $user)
 {

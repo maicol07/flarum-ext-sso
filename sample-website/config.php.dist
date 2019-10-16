@@ -1,5 +1,5 @@
 <?php
-return [
+return (object) [
     // URL to your Flarum forum
     'flarum_url' => 'http://flarum.example.com',
     // Domain of your main site (without http://)

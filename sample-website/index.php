@@ -18,8 +18,8 @@ $password = empty($_POST['password']) ? '' : $_POST['password'];
 
 if (isset($users[$username]) && $users[$username]['password'] === $password) {
     $email = $users[$username]['email'];
-    $forum = new Forum();
-    $forum->login($username, $email);
+    $forum = new Flarum();
+    $forum->login($username, $email, $users[$username]['password']);
     $forum->redirectToForum();
 } elseif (!empty($username) || !empty($password)) {
     echo 'Login failed';

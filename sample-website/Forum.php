@@ -25,7 +25,8 @@ class Flarum
 
     /**
      * Logs the user in Flarum. Generally, you should use this method when an user successfully log into
-     * your SSO system (or main website)
+     * your SSO system (or main website). If user is already signed up in Flarum database (not signed up with this
+     * extension) you need to pass plain user password as third parameter (for example Flarum admin)
      *
      * @param string $username
      * @param string $email
