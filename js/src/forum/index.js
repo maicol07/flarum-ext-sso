@@ -6,38 +6,48 @@ import LogInModal from "flarum/components/LogInModal";
 
 
 app.initializers.add('maicol07-sso', function () {
-	if (!app.forum.data.attributes['maicol07-sso.login_url']) {
-		return
-	}
 	override(LogInModal.prototype, 'init', redirectWhenLoginModalIsOpened);
 
 	// Remove login button if checkbox is selected
-	if (app.forum.data.attributes['maicol07-sso.remove_login_btn']) {
-		extend(HeaderSecondary.prototype, "items", items => {
+	extend(HeaderSecondary.prototype, "items", items => {
+		if (!checkSettings()) {
+			return
+		}
+		if (app.forum.data.attributes['maicol07-sso.disable_login_btn'] === "1") {
 			items.remove("logIn");
-		});
-	} else {
-		extend(HeaderSecondary.prototype, 'items', replaceLoginButton);
-	}
+		} else {
+			replaceLoginButton(items)
+		}
+	});
 
 	// Remove signup button if checkbox is selected
-	if (app.forum.data.attributes['maicol07-sso.remove_signup_btn']) {
-		extend(HeaderSecondary.prototype, "items", items => {
+	extend(HeaderSecondary.prototype, "items", (items) => {
+		if (!checkSettings()) {
+			return
+		}
+		if (app.forum.data.attributes['maicol07-sso.disable_signup_btn'] === "1") {
 			items.remove("signUp");
-		});
-	} else {
-		extend(HeaderSecondary.prototype, 'items', replaceSignupButton);
-	}
+		} else {
+			replaceSignupButton(items)
+		}
+	});
 
 	extend(SettingsPage.prototype, 'accountItems', removeProfileActions);
 	extend(SettingsPage.prototype, 'settingsItems', checkRemoveAccountSection);
 
 	function redirectWhenLoginModalIsOpened() {
+		if (!checkSettings()) {
+			return
+		}
 		window.location.href = app.forum.data.attributes['maicol07-sso.login_url'];
 		throw new Error('Stop execution');
 	}
 
 	function replaceLoginButton(items) {
+		if (!checkSettings()) {
+			return
+		}
+
 		if (!items.has('logIn')) {
 			return;
 		}
@@ -52,6 +62,10 @@ app.initializers.add('maicol07-sso', function () {
 	}
 
 	function replaceSignupButton(items) {
+		if (!checkSettings()) {
+			return
+		}
+
 		if (!items.has('signUp')) {
 			return;
 		}
@@ -66,14 +80,31 @@ app.initializers.add('maicol07-sso', function () {
 	}
 
 	function removeProfileActions(items) {
+		if (!checkSettings()) {
+			return
+		}
+
 		items.remove('changeEmail');
 		items.remove('changePassword');
 	}
 
 	function checkRemoveAccountSection(items) {
+		if (!checkSettings()) {
+			return
+		}
+
 		if (items.has('account')
 			&& items.get('account').props.children.length === 0) {
 			items.remove('account');
 		}
+	}
+
+	/**
+	 * Checks whether login URL is set
+	 *
+	 * @returns {*}
+	 */
+	function checkSettings() {
+		return Boolean(app.forum.data.attributes['maicol07-sso.login_url']);
 	}
 });

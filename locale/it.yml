@@ -5,5 +5,5 @@ maicol07-sso:
       signup_url: "URL registrazione"
       login_url: "URL accesso"
       logout_url: "URL disconnessione"
-      disable_login_button: "Disattiva il pulsante Accedi"
+      disable_login_btn: "Disattiva il pulsante Accedi"
       disable_signup_btn: "Disattiva il pulsante Registrati"

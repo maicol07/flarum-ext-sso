@@ -25,9 +25,16 @@ class LoadSettingsFromDatabase
     public function prepareApiAttributes(Serializing $event)
     {
         if ($event->isSerializer(ForumSerializer::class)) {
-            $event->attributes['maicol07-sso.signup_url'] = $this->settings->get('maicol07-sso.signup_url');
-            $event->attributes['maicol07-sso.login_url'] = $this->settings->get('maicol07-sso.login_url');
-            $event->attributes['maicol07-sso.logout_url'] = $this->settings->get('maicol07-sso.logout_url');
+        	$settings = [
+        		'signup_url',
+				'login_url',
+				'logout_url',
+				'disable_login_btn',
+				'disable_signup_btn'
+			];
+        	foreach($settings as $setting) {
+				$event->attributes['maicol07-sso.' . $setting] = $this->settings->get('maicol07-sso.' . $setting);
+			}
         }
     }
 }
