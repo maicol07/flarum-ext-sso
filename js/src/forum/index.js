@@ -4,57 +4,76 @@ import HeaderSecondary from "flarum/components/HeaderSecondary";
 import SettingsPage from "flarum/components/SettingsPage";
 import LogInModal from "flarum/components/LogInModal";
 
+
 app.initializers.add('maicol07-sso', function () {
-    override(LogInModal.prototype, 'init', redirectWhenLoginModalIsOpened);
+	if (!app.forum.data.attributes['maicol07-sso.login_url']) {
+		return
+	}
+	override(LogInModal.prototype, 'init', redirectWhenLoginModalIsOpened);
 
-    extend(HeaderSecondary.prototype, 'items', replaceLoginButton);
-    extend(HeaderSecondary.prototype, 'items', replaceSignupButton);
+	// Remove login button if checkbox is selected
+	if (app.forum.data.attributes['maicol07-sso.remove_login_btn']) {
+		extend(HeaderSecondary.prototype, "items", items => {
+			items.remove("logIn");
+		});
+	} else {
+		extend(HeaderSecondary.prototype, 'items', replaceLoginButton);
+	}
 
-    extend(SettingsPage.prototype, 'accountItems', removeProfileActions);
-    extend(SettingsPage.prototype, 'settingsItems', checkRemoveAccountSection);
+	// Remove signup button if checkbox is selected
+	if (app.forum.data.attributes['maicol07-sso.remove_signup_btn']) {
+		extend(HeaderSecondary.prototype, "items", items => {
+			items.remove("signUp");
+		});
+	} else {
+		extend(HeaderSecondary.prototype, 'items', replaceSignupButton);
+	}
 
-    function redirectWhenLoginModalIsOpened() {
-        window.location.href = app.forum.data.attributes['maicol07-sso.login_url'];
-        throw new Error('Stop execution');
-    }
+	extend(SettingsPage.prototype, 'accountItems', removeProfileActions);
+	extend(SettingsPage.prototype, 'settingsItems', checkRemoveAccountSection);
 
-    function replaceLoginButton(items) {
-        if (!items.has('logIn')) {
-            return;
-        }
+	function redirectWhenLoginModalIsOpened() {
+		window.location.href = app.forum.data.attributes['maicol07-sso.login_url'];
+		throw new Error('Stop execution');
+	}
 
-        let loginUrl = app.forum.data.attributes['maicol07-sso.login_url'];
+	function replaceLoginButton(items) {
+		if (!items.has('logIn')) {
+			return;
+		}
 
-        items.replace('logIn',
-            <a href={loginUrl} className="Button Button--link">
-                {app.translator.trans('core.forum.header.log_in_link')}
-            </a>
-        );
-    }
+		let loginUrl = app.forum.data.attributes['maicol07-sso.login_url'];
 
-    function replaceSignupButton(items) {
-        if (!items.has('signUp')) {
-            return;
-        }
+		items.replace('logIn',
+			<a href={loginUrl} className="Button Button--link">
+				{app.translator.trans('core.forum.header.log_in_link')}
+			</a>
+		);
+	}
 
-        let signupUrl = app.forum.data.attributes['maicol07-sso.signup_url'];
+	function replaceSignupButton(items) {
+		if (!items.has('signUp')) {
+			return;
+		}
 
-        items.replace('signUp',
-            <a href={signupUrl} className="Button Button--link">
-                {app.translator.trans('core.forum.header.sign_up_link')}
-            </a>
-        );
-    }
+		let signupUrl = app.forum.data.attributes['maicol07-sso.signup_url'];
 
-    function removeProfileActions(items) {
-        items.remove('changeEmail');
-        items.remove('changePassword');
-    }
+		items.replace('signUp',
+			<a href={signupUrl} className="Button Button--link">
+				{app.translator.trans('core.forum.header.sign_up_link')}
+			</a>
+		);
+	}
 
-    function checkRemoveAccountSection(items) {
-        if (items.has('account')
-            && items.get('account').props.children.length === 0) {
-            items.remove('account');
-        }
-    }
+	function removeProfileActions(items) {
+		items.remove('changeEmail');
+		items.remove('changePassword');
+	}
+
+	function checkRemoveAccountSection(items) {
+		if (items.has('account')
+			&& items.get('account').props.children.length === 0) {
+			items.remove('account');
+		}
+	}
 });

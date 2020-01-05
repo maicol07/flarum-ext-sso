@@ -5,3 +5,5 @@ maicol07-sso:
       signup_url: "Signup URL"
       login_url: "Login URL"
       logout_url: "Logout URL"
+      disable_login_btn: "Disable login button"
+      disable_signup_btn: "Disable signup button"

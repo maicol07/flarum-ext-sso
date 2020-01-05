@@ -1,43 +1,44 @@
 {
-  "name": "maicol07/flarum-ext-sso",
-  "description": "SSO for Flarum",
-  "type": "flarum-extension",
-  "keywords": [
-    "authentication"
-  ],
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Maicol Battistini",
-      "email": "maicolbattistini@live.it"
-    },
-    {
-      "name": "Fabian Wüthrich",
-      "email": "fabian.wuethrich@outlook.com"
-    }
-  ],
-  "support": {
-    "issues": "https://github.com/maicol07/flarum-ext-sso/issues",
-    "source": "https://github.com/maicol07/flarum-ext-sso"
-  },
-  "require": {
-    "flarum/core": ">=0.1.0-beta.10 <0.1.0-beta.12",
-    "ext-json": "*"
-  },
-  "autoload": {
-    "psr-4": {
-      "Maicol07\\SSO\\": "src/"
-    }
-  },
-  "extra": {
-    "flarum-extension": {
-      "title": "SSO",
-      "icon": {
-        "name": "shield"
-      }
-    },
-    "flagrow": {
-      "discuss": "https://discuss.flarum.org/d/5052-single-sign-on/"
-    }
-  }
+	"name": "maicol07/flarum-ext-sso",
+	"description": "SSO for Flarum",
+	"version": "1.4.0",
+	"type": "flarum-extension",
+	"keywords": [
+		"authentication"
+	],
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Maicol Battistini",
+			"email": "maicolbattistini@live.it"
+		},
+		{
+			"name": "Fabian Wüthrich",
+			"email": "fabian.wuethrich@outlook.com"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/maicol07/flarum-ext-sso/issues",
+		"source": "https://github.com/maicol07/flarum-ext-sso"
+	},
+	"require": {
+		"flarum/core": ">=0.1.0-beta.10 <0.1.0-beta.12",
+		"ext-json": "*"
+	},
+	"autoload": {
+		"psr-4": {
+			"Maicol07\\SSO\\": "src/"
+		}
+	},
+	"extra": {
+		"flarum-extension": {
+			"title": "SSO",
+			"icon": {
+				"name": "fas fa-sign-in-alt"
+			}
+		},
+		"flagrow": {
+			"discuss": "https://discuss.flarum.org/d/5052-single-sign-on/"
+		}
+	}
 }

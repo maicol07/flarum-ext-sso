@@ -22,7 +22,15 @@ export default class SSOSettingsModal extends SettingsModal {
             <div className="Form-group">
                 <label>{app.translator.trans('maicol07-sso.admin.settings.logout_url')}</label>
                 <input className="FormControl" bidi={this.setting('maicol07-sso.logout_url')}/>
-            </div>
+            </div>,
+			<div className="Form-group">
+				<label>{app.translator.trans('maicol07-sso.admin.settings.disable_login_btn')}</label>
+				<input type="checkbox" className="FormControl" bidi={this.setting('maicol07-sso.disable_login_btn')}/>
+			</div>,
+			<div className="Form-group">
+				<label>{app.translator.trans('maicol07-sso.admin.settings.disable_signup_btn')}</label>
+				<input type="checkbox" className="FormControl" bidi={this.setting('maicol07-sso.disable_signup_btn')}/>
+			</div>
         ];
     }
 }
