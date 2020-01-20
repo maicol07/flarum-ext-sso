@@ -1,7 +1,6 @@
 {
 	"name": "maicol07/flarum-ext-sso",
 	"description": "SSO for Flarum",
-	"version": "1.4.0",
 	"type": "flarum-extension",
 	"keywords": [
 		"authentication"
