@@ -23,7 +23,7 @@
 	},
 	"require": {
 		"flarum/core": ">=0.1.0-beta.10 <0.1.0-beta.12",
-		"fof/components": "^0.1.0",
+		"fof/components": ">=0.1.0",
 		"ext-json": "*"
 	},
 	"autoload": {

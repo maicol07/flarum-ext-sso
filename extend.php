@@ -5,6 +5,8 @@ use Illuminate\Contracts\Events\Dispatcher;
 use Maicol07\SSO\Listener;
 
 return [
+	new AddFofComponents(),
+
     (new Extend\Frontend('forum'))
         ->js(__DIR__ . '/js/dist/forum.js'),
 
