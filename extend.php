@@ -3,6 +3,7 @@
 use Flarum\Extend;
 use Illuminate\Contracts\Events\Dispatcher;
 use Maicol07\SSO\Listener;
+use FoF\Components\Extend\AddFofComponents;
 
 return [
 	new AddFofComponents(),
