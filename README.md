@@ -5,17 +5,5 @@ This extension equips Flarum with Single Sign On (shortly SSO). The workflow is 
 The extension is useful if you run Flarum on a subdomain but you want to use the login mechanism 
 of your main website. A dummy main website is provided in the `sample-website/` folder.
 
-## Installation
-
-Install via command below or via Bazaar and activate the extension.
-  ```
-  composer require maicol07/flarum-ext-sso
-  ```
-  
-## Configuration
-Fill in redirect urls for login, signup and logout.
-
-For WordPress you need to use these urls:
-- **Login url**: `http://example.com/wp-login.php?redirect_to=forum` (The `redirect_to=forum` part is important as it will redirect your users back to the forum)
-- **Logout url**: `http://example.com/wp-login.php?action=logout`
-- **Signup url**: Depending on which plugin you use.
+## Documentation
+Check the [docs](https://docs.maicol07.it/flarum_sso/introduction) to know more about the extension, how to install it and to use it.
