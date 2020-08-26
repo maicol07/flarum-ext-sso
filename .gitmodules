@@ -1,3 +1,0 @@
-[submodule "sample-website"]
-	path = sample-website
-	url = https://github.com/maicol07/flarum-sso-plugin
