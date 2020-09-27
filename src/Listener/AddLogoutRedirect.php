@@ -15,12 +15,12 @@ class AddLogoutRedirect
         $this->settings = $settings;
     }
 
-    public function subscribe(Dispatcher $events)
+    public function subscribe(Dispatcher $events): void
     {
         $events->listen(LoggedOut::class, [$this, 'addLogoutRedirect']);
     }
 
-    public function addLogoutRedirect()
+    public function addLogoutRedirect(): void
     {
         $url = $this->settings->get('maicol07-sso.logout_url');
 
