@@ -2,8 +2,8 @@
 
 namespace Maicol07\SSO\Listener;
 
-use Flarum\User\Event\LoggedOut;
 use Flarum\Settings\SettingsRepositoryInterface;
+use Flarum\User\Event\LoggedOut;
 use Illuminate\Contracts\Events\Dispatcher;
 
 class AddLogoutRedirect
