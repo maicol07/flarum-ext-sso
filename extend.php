@@ -1,24 +1,31 @@
 <?php
 
 use Flarum\Extend;
+use FoF\Components\Extend\AddFofComponents;
 use Illuminate\Contracts\Events\Dispatcher;
 use Maicol07\SSO\Listener;
-use FoF\Components\Extend\AddFofComponents;
+use Maicol07\SSO\Middleware\ForumFrontend;
+
+$routes = app('flarum.forum.routes');
 
 return [
-	new AddFofComponents(),
+    // FoF Components
+    new AddFofComponents(),
 
-    (new Extend\Frontend('forum'))
-        ->js(__DIR__ . '/js/dist/forum.js'),
+    // Frontend extenders (JS)
+    (new Extend\Frontend('forum'))->js(__DIR__ . '/js/dist/forum.js'),
+    (new Extend\Frontend('admin'))->js(__DIR__ . '/js/dist/admin.js'),
 
-    (new Extend\Frontend('admin'))
-        ->js(__DIR__ . '/js/dist/admin.js'),
+    // Locales
+    new Extend\Locales(__DIR__ . '/locale'),
 
+    // Events
     function (Dispatcher $events) {
         $events->subscribe(Listener\AddLogoutRedirect::class);
         $events->subscribe(Listener\ActivateUser::class);
         $events->subscribe(Listener\LoadSettingsFromDatabase::class);
     },
 
-    new Extend\Locales(__DIR__ . '/locale'),
+    // Middleware
+    (new Extend\Middleware('forum'))->add(ForumFrontend::class)
 ];

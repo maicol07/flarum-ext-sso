@@ -22,6 +22,11 @@ class AddLogoutRedirect
 
     public function addLogoutRedirect(): void
     {
+        if ($_GET['noSSORedirect'] === 'true') {
+            $url = app('flarum.config')['url'];
+            header("Location: $url" . $_GET['path']);
+            return;
+        }
         $url = $this->settings->get('maicol07-sso.logout_url');
 
         header('Location: ' . $url);
