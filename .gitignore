@@ -13,6 +13,9 @@ node_modules
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+.idea/**/webServers.xml
+.idea/**/sshConfigs.xml
+.idea/**/deployment.xml
 
 # Generated files
 .idea/**/contentModel.xml
@@ -21,6 +24,7 @@ node_modules
 .idea/**/dataSources/
 .idea/**/dataSources.ids
 .idea/**/dataSources.local.xml
+.idea/**/dataSources.xml
 .idea/**/sqlDataSources.xml
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
