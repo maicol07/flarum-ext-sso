@@ -1,0 +1,27 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "commonjs": true
+    },
+    "extends": [
+        "airbnb-base",
+        "plugin:mithril/recommended"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "rules": {
+        "no-unused-vars": "off",
+        "import/no-unresolved": "off",
+        "no-shadow": "off",
+        "import/export": "off",
+        "no-undef": "off",
+        "no-use-before-define": "off"
+    }
+}
