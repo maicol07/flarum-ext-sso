@@ -1,9 +1,12 @@
 maicol07-sso:
   admin:
     settings:
-      title: "SSO Settings"
-      signup_url: "Signup URL"
-      login_url: "Login URL"
-      logout_url: "Logout URL"
-      disable_login_btn: "Disable login button"
-      disable_signup_btn: "Disable signup button"
+        title: "SSO Settings"
+        signup_url: "Signup URL"
+        login_url: "Login URL"
+        logout_url: "Logout URL"
+        disable_login_btn: "Disable login button"
+        disable_signup_btn: "Disable signup button"
+        # JWT Settings
+        jwt_iss: Issuer Domain
+        jwt_signer_key: Signer key

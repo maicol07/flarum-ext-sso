@@ -29,7 +29,9 @@ class LoadSettingsFromDatabase
                 'login_url',
                 'logout_url',
                 'disable_login_btn',
-                'disable_signup_btn'
+                'disable_signup_btn',
+                'jwt_iss',
+                'jwt_signer_key'
             ];
             foreach ($settings as $setting) {
                 $event->attributes['maicol07-sso.' . $setting] = $this->settings->get('maicol07-sso.' . $setting);

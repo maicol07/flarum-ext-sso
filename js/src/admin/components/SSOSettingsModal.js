@@ -23,6 +23,12 @@ export default () => {
         <BooleanItem key="maicol07-sso.disable_signup_btn">
           {app.translator.trans('maicol07-sso.admin.settings.disable_signup_btn')}
         </BooleanItem>,
+        <StringItem key="maicol07-sso.jwt_iss">
+          {app.translator.trans('maicol07-sso.admin.settings.jwt_iss')}
+        </StringItem>,
+        <StringItem key="maicol07-sso.jwt_signer_key">
+          {app.translator.trans('maicol07-sso.admin.settings.jwt_signer_key')}
+        </StringItem>,
       ],
     }),
   );
