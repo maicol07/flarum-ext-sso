@@ -13,6 +13,7 @@ use Flarum\User\Exception\PermissionDeniedException;
 use Flarum\User\User;
 use Flarum\User\UserRepository;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Laminas\Diactoros\Response\JsonResponse;
 use Lcobucci\JWT\Parser;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
@@ -67,8 +68,7 @@ class JwtSSOController implements RequestHandlerInterface
         UserRepository $users,
         Application $app,
         SettingsRepositoryInterface $settings
-    )
-    {
+    ) {
         $this->api = $api;
         $this->authenticator = $authenticator;
         $this->rememberer = $rememberer;
@@ -88,8 +88,8 @@ class JwtSSOController implements RequestHandlerInterface
      */
     public function handle(Request $request): ResponseInterface
     {
-        $queryParams = $request->getQueryParams();
-        $token = (new Parser())->parse((string)$queryParams['token']);
+        $headers = $request->getHeader('Authorization');
+        $token = (new Parser())->parse(Str::after(preg_grep('/^Bearer\s\w+$/', $headers)[0], 'Bearer '));
         if (!$token->verify(new Sha256(), new Key($this->signer_key))) {
             throw new PermissionDeniedException('Signature key does not correspond to the one on the token!');
         }
