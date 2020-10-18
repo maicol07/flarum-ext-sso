@@ -22,7 +22,7 @@ class AddLogoutRedirect
 
     public function addLogoutRedirect(): void
     {
-        if ($_GET['noSSORedirect'] === 'true') {
+        if (isset($_GET['redirect']) and $_GET['redirect'] === 'false') {
             $url = app('flarum.config')['url'];
             header("Location: $url" . $_GET['path']);
             return;
