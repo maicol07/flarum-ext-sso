@@ -18,7 +18,7 @@ class ForumFrontend implements MiddlewareInterface
         $path = $request->getUri()->getPath();
 
         if (!isset($_COOKIE['flarum_remember']) and !$actor->isGuest() and $path !== $logout_url) {
-            return new RedirectResponse("$logout_url?token=$token&noSSORedirect=true&path=$path");
+            return new RedirectResponse("$logout_url?token=$token&redirect=false&path=$path");
         }
 
         return $handler->handle($request);
