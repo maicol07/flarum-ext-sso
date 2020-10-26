@@ -5,7 +5,6 @@ namespace Maicol07\SSO;
 use Exception;
 use Flarum\Api\Client;
 use Flarum\Api\Controller\CreateUserController;
-use Flarum\Foundation\Application;
 use Flarum\Http\AccessToken;
 use Flarum\Http\Rememberer;
 use Flarum\Http\SessionAuthenticator;
@@ -40,12 +39,6 @@ class JWTSSOController implements RequestHandlerInterface
     protected $rememberer;
 
     /** @var string */
-    protected $path;
-
-    /** @var string */
-    protected $public_path;
-
-    /** @var string */
     protected $site_url;
 
     /** @var string */
@@ -59,7 +52,6 @@ class JWTSSOController implements RequestHandlerInterface
      * @param SessionAuthenticator $authenticator
      * @param Rememberer $rememberer
      * @param UserRepository $users
-     * @param Application $app
      * @param SettingsRepositoryInterface $settings
      */
     public function __construct(
@@ -67,15 +59,12 @@ class JWTSSOController implements RequestHandlerInterface
         SessionAuthenticator $authenticator,
         Rememberer $rememberer,
         UserRepository $users,
-        Application $app,
         SettingsRepositoryInterface $settings
     ) {
         $this->api = $api;
         $this->authenticator = $authenticator;
         $this->rememberer = $rememberer;
         $this->users = $users;
-        $this->path = $app->storagePath();
-        $this->public_path = $app->publicPath();
         $conf = app('flarum.config');
         $this->site_url = $conf['url'];
         $this->iss = $settings->get('maicol07-sso.jwt_iss');
