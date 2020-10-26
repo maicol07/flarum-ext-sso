@@ -90,7 +90,7 @@ app.initializers.add('maicol07-sso', () => {
       return;
     }
 
-    if (items.has('account') && items.get('account').props.children.length === 0) {
+    if (items.has('account') && items.get('account').children.length === 0) {
       items.remove('account');
     }
   }
