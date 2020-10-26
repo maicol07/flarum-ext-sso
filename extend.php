@@ -5,7 +5,7 @@ use FoF\Components\Extend\AddFofComponents;
 use Illuminate\Contracts\Events\Dispatcher;
 use Maicol07\SSO\JWTSSOController;
 use Maicol07\SSO\Listener;
-use Maicol07\SSO\Middleware\ForumFrontend;
+use Maicol07\SSO\Middleware\LogoutMiddleware;
 
 $routes = app('flarum.forum.routes');
 
@@ -28,7 +28,7 @@ return [
     },
 
     // Middleware
-    (new Extend\Middleware('forum'))->add(ForumFrontend::class),
+    (new Extend\Middleware('forum'))->add(LogoutMiddleware::class),
 
     // Routes
     (new Extend\Routes('api'))->get('/sso/jwt', 'maicol07.jwt-auth', JWTSSOController::class)
