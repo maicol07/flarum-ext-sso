@@ -32,7 +32,9 @@
     },
     "autoload": {
         "psr-4": {
-            "Maicol07\\SSO\\": "src/"
+            "Maicol07\\SSO\\": "src/",
+            "Maicol07\\SSO\\Listener\\": "src/Listener",
+            "Maicol07\\SSO\\Middleware\\": "src/Middleware"
         }
     },
     "extra": {

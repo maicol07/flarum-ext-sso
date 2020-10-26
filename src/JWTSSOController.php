@@ -25,7 +25,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface;
 use RuntimeException;
 
-class JwtSSOController implements RequestHandlerInterface
+class JWTSSOController implements RequestHandlerInterface
 {
     /** @var UserRepository */
     protected $users;

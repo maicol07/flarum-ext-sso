@@ -3,7 +3,7 @@
 use Flarum\Extend;
 use FoF\Components\Extend\AddFofComponents;
 use Illuminate\Contracts\Events\Dispatcher;
-use Maicol07\SSO\JwtSSOController;
+use Maicol07\SSO\JWTSSOController;
 use Maicol07\SSO\Listener;
 use Maicol07\SSO\Middleware\ForumFrontend;
 
@@ -31,5 +31,5 @@ return [
     (new Extend\Middleware('forum'))->add(ForumFrontend::class),
 
     // Routes
-    (new Extend\Routes('api'))->get('/sso/jwt', 'maicol07.jwt-auth', JwtSSOController::class)
+    (new Extend\Routes('api'))->get('/sso/jwt', 'maicol07.jwt-auth', JWTSSOController::class)
 ];
