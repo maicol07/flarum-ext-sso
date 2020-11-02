@@ -3,7 +3,14 @@
     "description": "SSO for Flarum",
     "type": "flarum-extension",
     "keywords": [
-        "authentication"
+        "flarum",
+        "sso",
+        "auth",
+        "authentication",
+        "jwt",
+        "php",
+        "wp",
+        "wordpress"
     ],
     "license": "MIT",
     "authors": [
@@ -17,9 +24,20 @@
         }
     ],
     "support": {
-        "issues": "https://github.com/maicol07/flarum-ext-sso/issues",
-        "source": "https://github.com/maicol07/flarum-ext-sso"
+        "issues": "https://tracker.maicol07.it/projects/0b8fae6e-4c8e-4b34-8fff-9bac316e4edc",
+        "source": "https://github.com/maicol07/flarum-ext-sso",
+        "docs": "https://docs.maicol07.it/en/flarum-sso/ext"
     },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/maicol07"
+        },
+        {
+            "type": "paypal",
+            "url": "https://paypal.me/maicol072001/10eur"
+        }
+    ],
     "require": {
         "php": ">=7.2",
         "ext-json": "*",
@@ -45,7 +63,7 @@
             }
         },
         "flagrow": {
-            "discuss": "https://discuss.flarum.org/d/5052-single-sign-on/"
+            "discuss": "https://discuss.flarum.org/d/21666-php-and-wordpress-single-sign-on-sso"
         }
     }
 }
