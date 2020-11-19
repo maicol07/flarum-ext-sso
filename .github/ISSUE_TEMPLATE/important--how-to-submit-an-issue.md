@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-In order to organize better the developer work, issues should be created in the developer bug tracker. Here is the link: https://bugs.maicol07.it
+In order to organize better the developer work, issues should be created in the developer bug tracker. Here is the link: https://tracker.maicol07.it
 Please, create an issue there and not here on Github. This is the only way to get sure your request will be remembered and solved!
 
 Every issue created here on Github will be marked as invalid, as you should use the official bug tracker!!
