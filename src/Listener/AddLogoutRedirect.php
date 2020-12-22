@@ -27,7 +27,7 @@ class AddLogoutRedirect
             header("Location: $url" . $_GET['path']);
             return;
         }
-        $url = $this->settings->get('maicol07-sso.logout_url');
+        $url = $this->settings->get('maicol07.sso.logout_url');
 
         header('Location: ' . $url);
         die();

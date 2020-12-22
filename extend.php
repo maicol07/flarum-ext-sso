@@ -31,5 +31,11 @@ return [
     (new Extend\Middleware('forum'))->add(LogoutMiddleware::class),
 
     // Routes
-    (new Extend\Routes('api'))->get('/sso/jwt', 'maicol07.jwt-auth', JWTSSOController::class)
+    (new Extend\Routes('api'))->get('/sso/jwt', 'maicol07.jwt-auth', JWTSSOController::class),
+
+    // Settings
+    (new Extend\Settings())
+        ->serializeToForum('maicol07.sso.signup_url', 'maicol07.sso.signup_url')
+        ->serializeToForum('maicol07.sso.login_url', 'maicol07.sso.login_url')
+        ->serializeToForum('maicol07.sso.logout_url', 'maicol07.sso.logout_url')
 ];

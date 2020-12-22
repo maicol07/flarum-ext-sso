@@ -1,12 +1,12 @@
-maicol07-sso:
-  admin:
-    settings:
-        title: "Impostazioni SSO"
-        signup_url: "URL registrazione"
-        login_url: "URL accesso"
-        logout_url: "URL disconnessione"
-        disable_login_btn: "Disattiva il pulsante Accedi"
-        disable_signup_btn: "Disattiva il pulsante Registrati"
-        # JWT Settings
-        jwt_iss: URL dell'emittente
+maicol07.sso:
+    admin:
+        settings:
+            title: "Impostazioni SSO"
+            signup_url: "URL registrazione"
+            login_url: "URL accesso"
+            logout_url: "URL disconnessione"
+            disable_login_btn: "Disattiva il pulsante Accedi"
+            disable_signup_btn: "Disattiva il pulsante Registrati"
+            # JWT Settings
+            jwt_iss: URL dell'emittente
         jwt_signer_key: Chiave del firmatario
