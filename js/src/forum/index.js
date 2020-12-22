@@ -5,7 +5,7 @@ import SettingsPage from 'flarum/components/SettingsPage';
 import LogInModal from 'flarum/components/LogInModal';
 
 app.initializers.add('maicol07-sso', () => {
-  override(LogInModal.prototype, 'init', redirectWhenLoginModalIsOpened);
+  override(LogInModal.prototype, 'oninit', redirectWhenLoginModalIsOpened);
 
   // Remove login button if checkbox is selected
   extend(HeaderSecondary.prototype, 'items', (items) => {
