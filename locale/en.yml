@@ -7,6 +7,8 @@ maicol07.sso:
             logout_url: "Logout URL"
             disable_login_btn: "Disable login button"
             disable_signup_btn: "Disable signup button"
+
             # JWT Settings
+            jwt_section_subtitle: JWT Addon settings
             jwt_iss: Issuer Domain
-        jwt_signer_key: Signer key
+            jwt_signer_key: Signer key

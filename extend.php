@@ -1,7 +1,6 @@
 <?php
 
 use Flarum\Extend;
-use FoF\Components\Extend\AddFofComponents;
 use Illuminate\Contracts\Events\Dispatcher;
 use Maicol07\SSO\JWTSSOController;
 use Maicol07\SSO\Listener;
@@ -10,9 +9,6 @@ use Maicol07\SSO\Middleware\LogoutMiddleware;
 $routes = app('flarum.forum.routes');
 
 return [
-    // FoF Components
-    new AddFofComponents(),
-
     // Frontend extenders (JS)
     (new Extend\Frontend('forum'))->js(__DIR__ . '/js/dist/forum.js'),
     (new Extend\Frontend('admin'))->js(__DIR__ . '/js/dist/admin.js'),

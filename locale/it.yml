@@ -7,6 +7,8 @@ maicol07.sso:
             logout_url: "URL disconnessione"
             disable_login_btn: "Disattiva il pulsante Accedi"
             disable_signup_btn: "Disattiva il pulsante Registrati"
+
             # JWT Settings
+            jwt_section_subtitle: Impostazioni relative al componente aggiuntivo JWT
             jwt_iss: URL dell'emittente
-        jwt_signer_key: Chiave del firmatario
+            jwt_signer_key: Chiave del firmatario
