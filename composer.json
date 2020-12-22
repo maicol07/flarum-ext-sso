@@ -40,7 +40,7 @@
         "php": ">=7.2",
         "ext-json": "*",
         "flarum/core": ">=0.1.0-beta.15 <0.1.0-beta.16",
-        "lcobucci/jwt": "^3"
+        "lcobucci/jwt": "^4"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master"
