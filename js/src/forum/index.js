@@ -57,10 +57,21 @@ app.initializers.add('maicol07.sso', () => {
     // Remove change email and password buttons
     items.remove('changeEmail');
     items.remove('changePassword');
+
+    if (!checkSettings('manage_account_url')) {
+      return;
+    }
+    items.add(
+      'manageAccount',
+      <a class="Button" href={app.forum.attribute('maicol07.sso.manage_account_url')}
+         target={app.forum.attribute('maicol07.sso.manage_account_btn_open_in_new_tab') === '1' ? '_blank' : ''}>
+        {app.translator.trans('maicol07.sso.manage_account_btn')}
+      </a>,
+    );
   });
 
   extend(SettingsPage.prototype, 'settingsItems', (items) => {
-    if (!checkSettings('login_url')) {
+    if (checkSettings('manage_account_url')) {
       return;
     }
 
@@ -76,8 +87,6 @@ app.initializers.add('maicol07.sso', () => {
    * @returns Boolean
    */
   function checkSettings(slug) {
-    console.log(slug)
-    console.log(app.forum.attribute(`maicol07.sso.${slug}`));
     return Boolean(app.forum.attribute(`maicol07.sso.${slug}`));
   }
 });

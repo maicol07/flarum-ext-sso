@@ -19,6 +19,16 @@ app.initializers.add('maicol07.sso', (app) => {
       type: 'url',
     })
     .registerSetting({
+      setting: 'maicol07.sso.manage_account_url',
+      label: app.translator.trans('maicol07.sso.admin.settings.manage_account_url'),
+      type: 'url',
+    })
+    .registerSetting({
+      setting: 'maicol07.sso.manage_account_btn_open_in_new_tab',
+      label: app.translator.trans('maicol07.sso.admin.settings.manage_account_btn_open_in_new_tab'),
+      type: 'boolean',
+    })
+    .registerSetting({
       setting: 'maicol07.sso.disable_login_btn',
       label: app.translator.trans('maicol07.sso.admin.settings.disable_login_btn'),
       type: 'boolean',

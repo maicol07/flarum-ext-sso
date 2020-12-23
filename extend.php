@@ -34,4 +34,6 @@ return [
         ->serializeToForum('maicol07.sso.signup_url', 'maicol07.sso.signup_url')
         ->serializeToForum('maicol07.sso.login_url', 'maicol07.sso.login_url')
         ->serializeToForum('maicol07.sso.logout_url', 'maicol07.sso.logout_url')
+        ->serializeToForum('maicol07.sso.manage_account_url', 'maicol07.sso.manage_account_url')
+        ->serializeToForum('maicol07.sso.manage_account_btn_open_in_new_tab', 'maicol07.sso.manage_account_btn_open_in_new_tab')
 ];
