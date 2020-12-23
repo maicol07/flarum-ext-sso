@@ -37,11 +37,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-flarum_app__WEBPACK_IMPORTED_MODULE_1___default().initializers.add('maicol07.sso', function () {
+flarum_app__WEBPACK_IMPORTED_MODULE_1___default().initializers.add('maicol07-sso', function () {
   // Remove login button if checkbox is selected
   (0,flarum_extend__WEBPACK_IMPORTED_MODULE_0__.extend)((flarum_components_HeaderSecondary__WEBPACK_IMPORTED_MODULE_2___default().prototype), 'items', function (items) {
     if (checkSettings('login_url')) {
-      if (flarum_app__WEBPACK_IMPORTED_MODULE_1___default().forum.attribute('maicol07.sso.disable_login_btn') === '1') {
+      if (flarum_app__WEBPACK_IMPORTED_MODULE_1___default().forum.attribute('maicol07-sso.remove_login_btn') === '1') {
         items.remove('logIn');
       } else {
         // Remove login button
@@ -49,20 +49,20 @@ flarum_app__WEBPACK_IMPORTED_MODULE_1___default().initializers.add('maicol07.sso
           return;
         }
 
-        var loginUrl = flarum_app__WEBPACK_IMPORTED_MODULE_1___default().forum.attribute('maicol07.sso.login_url');
+        var loginUrl = flarum_app__WEBPACK_IMPORTED_MODULE_1___default().forum.attribute('maicol07-sso.login_url');
         items.replace('logIn', m("a", {
           href: loginUrl,
           className: "Button Button--link"
         }, flarum_app__WEBPACK_IMPORTED_MODULE_1___default().translator.trans('core.forum.header.log_in_link')));
         (0,flarum_extend__WEBPACK_IMPORTED_MODULE_0__.override)((flarum_components_LogInModal__WEBPACK_IMPORTED_MODULE_4___default().prototype), 'oninit', function () {
-          window.location.href = flarum_app__WEBPACK_IMPORTED_MODULE_1___default().forum.attribute('maicol07.sso.login_url');
+          window.location.href = flarum_app__WEBPACK_IMPORTED_MODULE_1___default().forum.attribute('maicol07-sso.login_url');
           throw new Error('Stop execution');
         });
       }
     }
 
     if (checkSettings('signup_url')) {
-      if (flarum_app__WEBPACK_IMPORTED_MODULE_1___default().forum.attribute('maicol07.sso.disable_signup_btn') === '1') {
+      if (flarum_app__WEBPACK_IMPORTED_MODULE_1___default().forum.attribute('maicol07-sso.remove_signup_btn') === '1') {
         items.remove('signUp');
       } else {
         // Replace signup button
@@ -70,7 +70,7 @@ flarum_app__WEBPACK_IMPORTED_MODULE_1___default().initializers.add('maicol07.sso
           return;
         }
 
-        var signupUrl = flarum_app__WEBPACK_IMPORTED_MODULE_1___default().forum.attribute('maicol07.sso.signup_url');
+        var signupUrl = flarum_app__WEBPACK_IMPORTED_MODULE_1___default().forum.attribute('maicol07-sso.signup_url');
         items.replace('signUp', m("a", {
           href: signupUrl,
           className: "Button Button--link"
@@ -93,9 +93,9 @@ flarum_app__WEBPACK_IMPORTED_MODULE_1___default().initializers.add('maicol07.sso
 
     items.add('manageAccount', m("a", {
       "class": "Button",
-      href: flarum_app__WEBPACK_IMPORTED_MODULE_1___default().forum.attribute('maicol07.sso.manage_account_url'),
-      target: flarum_app__WEBPACK_IMPORTED_MODULE_1___default().forum.attribute('maicol07.sso.manage_account_btn_open_in_new_tab') === '1' ? '_blank' : ''
-    }, flarum_app__WEBPACK_IMPORTED_MODULE_1___default().translator.trans('maicol07.sso.manage_account_btn')));
+      href: flarum_app__WEBPACK_IMPORTED_MODULE_1___default().forum.attribute('maicol07-sso.manage_account_url'),
+      target: flarum_app__WEBPACK_IMPORTED_MODULE_1___default().forum.attribute('maicol07-sso.manage_account_btn_open_in_new_tab') === '1' ? '_blank' : ''
+    }, flarum_app__WEBPACK_IMPORTED_MODULE_1___default().translator.trans('maicol07-sso.forum.manage_account_btn')));
   });
   (0,flarum_extend__WEBPACK_IMPORTED_MODULE_0__.extend)((flarum_components_SettingsPage__WEBPACK_IMPORTED_MODULE_3___default().prototype), 'settingsItems', function (items) {
     if (checkSettings('manage_account_url')) {
@@ -114,7 +114,7 @@ flarum_app__WEBPACK_IMPORTED_MODULE_1___default().initializers.add('maicol07.sso
    */
 
   function checkSettings(slug) {
-    return Boolean(flarum_app__WEBPACK_IMPORTED_MODULE_1___default().forum.attribute("maicol07.sso." + slug));
+    return Boolean(flarum_app__WEBPACK_IMPORTED_MODULE_1___default().forum.attribute("maicol07-sso." + slug));
   }
 });
 

@@ -67,8 +67,8 @@ class JWTSSOController implements RequestHandlerInterface
         $this->users = $users;
         $conf = app('flarum.config');
         $this->site_url = $conf['url'];
-        $this->iss = $settings->get('maicol07.sso.jwt_iss');
-        $this->signer_key = $settings->get('maicol07.sso.jwt_signer_key');
+        $this->iss = $settings->get('maicol07-sso.jwt_iss');
+        $this->signer_key = $settings->get('maicol07-sso.jwt_signer_key');
     }
 
     /**

@@ -12,15 +12,11 @@ class LoadSettingsFromDatabase
 
     public function __construct(SettingsRepositoryInterface $settings)
     {
-
-        $old_settings = array_filter($settings->all(), static function ($setting) {
-            return strpos($setting, 'maicol07-sso.') !== false;
-        }, ARRAY_FILTER_USE_KEY);
-        if (!empty($old_settings)) {
-            foreach ($old_settings as $setting_key => $setting) {
-                $settings->set(str_replace('maicol07.sso.', 'maicol07-sso.', $setting_key), $setting);
-                $settings->delete($setting_key);
-            }
+        if ($settings->get('maicol07-sso.disable_login_btn')) {
+            $settings->set('maicol07-sso.remove_login_btn', $settings->get('maicol07-sso.disable_login_btn'));
+            $settings->set('maicol07-sso.remove_signup_btn', 'maicol07-sso.disable_signup_btn');
+            $settings->delete('maicol07-sso.disable_login_btn');
+            $settings->delete('maicol07-sso.disable_signup_btn');
         }
         $this->settings = $settings;
     }

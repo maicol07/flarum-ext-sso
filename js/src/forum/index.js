@@ -4,11 +4,11 @@ import HeaderSecondary from 'flarum/components/HeaderSecondary';
 import SettingsPage from 'flarum/components/SettingsPage';
 import LogInModal from 'flarum/components/LogInModal';
 
-app.initializers.add('maicol07.sso', () => {
+app.initializers.add('maicol07-sso', () => {
   // Remove login button if checkbox is selected
   extend(HeaderSecondary.prototype, 'items', (items) => {
     if (checkSettings('login_url')) {
-      if (app.forum.attribute('maicol07.sso.disable_login_btn') === '1') {
+      if (app.forum.attribute('maicol07-sso.remove_login_btn') === '1') {
         items.remove('logIn');
       } else {
         // Remove login button
@@ -16,7 +16,7 @@ app.initializers.add('maicol07.sso', () => {
           return;
         }
 
-        const loginUrl = app.forum.attribute('maicol07.sso.login_url');
+        const loginUrl = app.forum.attribute('maicol07-sso.login_url');
 
         items.replace('logIn',
           <a href={loginUrl} className="Button Button--link">
@@ -24,14 +24,14 @@ app.initializers.add('maicol07.sso', () => {
           </a>);
 
         override(LogInModal.prototype, 'oninit', () => {
-          window.location.href = app.forum.attribute('maicol07.sso.login_url');
+          window.location.href = app.forum.attribute('maicol07-sso.login_url');
           throw new Error('Stop execution');
         });
       }
     }
 
     if (checkSettings('signup_url')) {
-      if (app.forum.attribute('maicol07.sso.disable_signup_btn') === '1') {
+      if (app.forum.attribute('maicol07-sso.remove_signup_btn') === '1') {
         items.remove('signUp');
       } else {
         // Replace signup button
@@ -39,7 +39,7 @@ app.initializers.add('maicol07.sso', () => {
           return;
         }
 
-        const signupUrl = app.forum.attribute('maicol07.sso.signup_url');
+        const signupUrl = app.forum.attribute('maicol07-sso.signup_url');
 
         items.replace('signUp',
           <a href={signupUrl} className="Button Button--link">
@@ -63,9 +63,9 @@ app.initializers.add('maicol07.sso', () => {
     }
     items.add(
       'manageAccount',
-      <a class="Button" href={app.forum.attribute('maicol07.sso.manage_account_url')}
-         target={app.forum.attribute('maicol07.sso.manage_account_btn_open_in_new_tab') === '1' ? '_blank' : ''}>
-        {app.translator.trans('maicol07.sso.manage_account_btn')}
+      <a class="Button" href={app.forum.attribute('maicol07-sso.manage_account_url')}
+         target={app.forum.attribute('maicol07-sso.manage_account_btn_open_in_new_tab') === '1' ? '_blank' : ''}>
+        {app.translator.trans('maicol07-sso.forum.manage_account_btn')}
       </a>,
     );
   });
@@ -87,6 +87,6 @@ app.initializers.add('maicol07.sso', () => {
    * @returns Boolean
    */
   function checkSettings(slug) {
-    return Boolean(app.forum.attribute(`maicol07.sso.${slug}`));
+    return Boolean(app.forum.attribute(`maicol07-sso.${slug}`));
   }
 });

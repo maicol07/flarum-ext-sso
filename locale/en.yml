@@ -1,12 +1,12 @@
-maicol07.sso:
+maicol07-sso:
     admin:
         settings:
             title: "SSO Settings"
             signup_url: "Signup URL"
             login_url: "Login URL"
             logout_url: "Logout URL"
-            disable_login_btn: "Disable login button"
-            disable_signup_btn: "Disable signup button"
+            remove_login_btn: "Remove login button"
+            remove_signup_btn: "Remove signup button"
             manage_account_url: "Manage account URL"
             manage_account_btn_open_in_new_tab: "Open account management in a new tab"
 
@@ -14,5 +14,5 @@ maicol07.sso:
             jwt_section_subtitle: JWT Addon settings
             jwt_iss: Issuer Domain
             jwt_signer_key: Signer key
-
-    manage_account_btn: "Manage account"
+    forum:
+        manage_account_btn: "Manage account"

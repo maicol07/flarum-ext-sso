@@ -25,44 +25,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var flarum_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! flarum/app */ "flarum/app");
 /* harmony import */ var flarum_app__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(flarum_app__WEBPACK_IMPORTED_MODULE_0__);
 
-flarum_app__WEBPACK_IMPORTED_MODULE_0___default().initializers.add('maicol07.sso', function (app) {
+flarum_app__WEBPACK_IMPORTED_MODULE_0___default().initializers.add('maicol07-sso', function (app) {
   app.extensionData["for"]('maicol07-sso').registerSetting({
-    setting: 'maicol07.sso.signup_url',
-    label: app.translator.trans('maicol07.sso.admin.settings.signup_url'),
+    setting: 'maicol07-sso.signup_url',
+    label: app.translator.trans('maicol07-sso.admin.settings.signup_url'),
     type: 'url'
   }).registerSetting({
-    setting: 'maicol07.sso.login_url',
-    label: app.translator.trans('maicol07.sso.admin.settings.login_url'),
+    setting: 'maicol07-sso.login_url',
+    label: app.translator.trans('maicol07-sso.admin.settings.login_url'),
     type: 'url'
   }).registerSetting({
-    setting: 'maicol07.sso.logout_url',
-    label: app.translator.trans('maicol07.sso.admin.settings.logout_url'),
+    setting: 'maicol07-sso.logout_url',
+    label: app.translator.trans('maicol07-sso.admin.settings.logout_url'),
     type: 'url'
   }).registerSetting({
-    setting: 'maicol07.sso.manage_account_url',
-    label: app.translator.trans('maicol07.sso.admin.settings.manage_account_url'),
+    setting: 'maicol07-sso.manage_account_url',
+    label: app.translator.trans('maicol07-sso.admin.settings.manage_account_url'),
     type: 'url'
   }).registerSetting({
-    setting: 'maicol07.sso.manage_account_btn_open_in_new_tab',
-    label: app.translator.trans('maicol07.sso.admin.settings.manage_account_btn_open_in_new_tab'),
+    setting: 'maicol07-sso.manage_account_btn_open_in_new_tab',
+    label: app.translator.trans('maicol07-sso.admin.settings.manage_account_btn_open_in_new_tab'),
     type: 'boolean'
   }).registerSetting({
-    setting: 'maicol07.sso.disable_login_btn',
-    label: app.translator.trans('maicol07.sso.admin.settings.disable_login_btn'),
+    setting: 'maicol07-sso.remove_login_btn',
+    label: app.translator.trans('maicol07-sso.admin.settings.remove_login_btn'),
     type: 'boolean'
   }).registerSetting({
-    setting: 'maicol07.sso.disable_signup_btn',
-    label: app.translator.trans('maicol07.sso.admin.settings.disable_signup_btn'),
+    setting: 'maicol07-sso.remove_signup_btn',
+    label: app.translator.trans('maicol07-sso.admin.settings.remove_signup_btn'),
     type: 'boolean'
   }).registerSetting(function () {
-    return m("div", null, m("hr", null), m("h3", null, " ", app.translator.trans('maicol07.sso.admin.settings.jwt_section_subtitle'), ":"));
+    return m("div", null, m("hr", null), m("h3", null, " ", app.translator.trans('maicol07-sso.admin.settings.jwt_section_subtitle'), ":"));
   }).registerSetting({
-    setting: 'maicol07.sso.jwt_iss',
-    label: app.translator.trans('maicol07.sso.admin.settings.jwt_iss'),
+    setting: 'maicol07-sso.jwt_iss',
+    label: app.translator.trans('maicol07-sso.admin.settings.jwt_iss'),
     type: 'text'
   }).registerSetting({
-    setting: 'maicol07.sso.jwt_signer_key',
-    label: app.translator.trans('maicol07.sso.admin.settings.jwt_signer_key'),
+    setting: 'maicol07-sso.jwt_signer_key',
+    label: app.translator.trans('maicol07-sso.admin.settings.jwt_signer_key'),
     type: 'text'
   });
 });
