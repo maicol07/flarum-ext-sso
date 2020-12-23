@@ -5,55 +5,47 @@ import SettingsPage from 'flarum/components/SettingsPage';
 import LogInModal from 'flarum/components/LogInModal';
 
 app.initializers.add('maicol07.sso', () => {
-  override(LogInModal.prototype, 'oninit', () => {
-    if (!checkSettings('login_url')) {
-      return;
-    }
-    window.location.href = app.forum.attribute('maicol07.sso.login_url');
-    throw new Error('Stop execution');
-  });
-
   // Remove login button if checkbox is selected
   extend(HeaderSecondary.prototype, 'items', (items) => {
-    if (!checkSettings('login_url')) {
-      return;
-    }
-    if (app.forum.attribute('maicol07.sso.disable_login_btn') === '1') {
-      items.remove('logIn');
-    } else {
-      // Remove login button
-      if (!items.has('logIn')) {
-        return;
+    if (checkSettings('login_url')) {
+      if (app.forum.attribute('maicol07.sso.disable_login_btn') === '1') {
+        items.remove('logIn');
+      } else {
+        // Remove login button
+        if (!items.has('logIn')) {
+          return;
+        }
+
+        const loginUrl = app.forum.attribute('maicol07.sso.login_url');
+
+        items.replace('logIn',
+          <a href={loginUrl} className="Button Button--link">
+            {app.translator.trans('core.forum.header.log_in_link')}
+          </a>);
+
+        override(LogInModal.prototype, 'oninit', () => {
+          window.location.href = app.forum.attribute('maicol07.sso.login_url');
+          throw new Error('Stop execution');
+        });
       }
-
-      const loginUrl = app.forum.attribute('maicol07.sso.login_url');
-
-      items.replace('logIn',
-        <a href={loginUrl} className="Button Button--link">
-          {app.translator.trans('core.forum.header.log_in_link')}
-        </a>);
     }
-  });
 
-  // Remove signup button if checkbox is selected
-  extend(HeaderSecondary.prototype, 'items', (items) => {
-    if (!checkSettings('signup_url')) {
-      return;
-    }
-    if (app.forum.attribute('maicol07.sso.disable_signup_btn') === '1') {
-      items.remove('signUp');
-    } else {
-      // Replace signup button
-      if (!items.has('signUp')) {
-        return;
+    if (checkSettings('signup_url')) {
+      if (app.forum.attribute('maicol07.sso.disable_signup_btn') === '1') {
+        items.remove('signUp');
+      } else {
+        // Replace signup button
+        if (!items.has('signUp')) {
+          return;
+        }
+
+        const signupUrl = app.forum.attribute('maicol07.sso.signup_url');
+
+        items.replace('signUp',
+          <a href={signupUrl} className="Button Button--link">
+            {app.translator.trans('core.forum.header.sign_up_link')}
+          </a>);
       }
-
-      const signupUrl = app.forum.attribute('maicol07.sso.signup_url');
-
-      items.replace('signUp',
-        <a href={signupUrl} className="Button Button--link">
-          {app.translator.trans('core.forum.header.sign_up_link')}
-        </a>);
     }
   });
 
