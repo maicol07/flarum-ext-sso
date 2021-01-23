@@ -14,5 +14,6 @@ maicol07-sso:
             jwt_section_subtitle: Impostazioni relative al componente aggiuntivo JWT
             jwt_iss: URL dell'emittente
             jwt_signer_key: Chiave del firmatario
+            jwt_signing_algorithm: Algoritmo firma
     forum:
         manage_account_btn: "Gestisci account"

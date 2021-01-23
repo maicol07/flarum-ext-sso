@@ -50,6 +50,16 @@ app.initializers.add('maicol07-sso', (app) => {
       type: 'text',
     })
     .registerSetting({
+      setting: 'maicol07-sso.jwt_signing_algorithm',
+      label: app.translator.trans('maicol07-sso.admin.settings.jwt_signing_algorithm'),
+      type: 'select',
+      options: {
+        Sha256: 'Sha256',
+        Sha384: 'Sha384',
+        Sha512: 'Sha512',
+      },
+    })
+    .registerSetting({
       setting: 'maicol07-sso.jwt_signer_key',
       label: app.translator.trans('maicol07-sso.admin.settings.jwt_signer_key'),
       type: 'text',
