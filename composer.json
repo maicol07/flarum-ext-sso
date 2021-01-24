@@ -54,7 +54,8 @@
     },
     "extra": {
         "flarum-extension": {
-            "title": "SSO",
+            "title": "SSO (Single Sign On)",
+            "category": "feature",
             "icon": {
                 "name": "fas fa-sign-in-alt"
             }
@@ -62,5 +63,8 @@
         "flagrow": {
             "discuss": "https://discuss.flarum.org/d/21666-php-and-wordpress-single-sign-on-sso"
         }
+    },
+    "replace": {
+        "wuethrich44/flarum-ext-sso": "*"
     }
 }
