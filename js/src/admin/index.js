@@ -58,6 +58,7 @@ app.initializers.add('maicol07-sso', (app) => {
         Sha384: 'Sha384',
         Sha512: 'Sha512',
       },
+      default: 'Sha256',
     })
     .registerSetting({
       setting: 'maicol07-sso.jwt_signer_key',
