@@ -2,6 +2,7 @@
 
 namespace Maicol07\SSO;
 
+use DateTimeZone;
 use Exception;
 use Flarum\Api\Client;
 use Flarum\Api\Controller\CreateUserController;
@@ -15,10 +16,14 @@ use Flarum\User\UserRepository;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Laminas\Diactoros\Response\JsonResponse;
-use Lcobucci\JWT\Parser;
-use Lcobucci\JWT\Signer\Hmac\Sha256;
-use Lcobucci\JWT\Signer\Key;
-use Lcobucci\JWT\ValidationData;
+use Lcobucci\Clock\SystemClock;
+use Lcobucci\JWT\Configuration;
+use Lcobucci\JWT\Signer\Key\InMemory;
+use Lcobucci\JWT\Validation\Constraint\IssuedBy;
+use Lcobucci\JWT\Validation\Constraint\PermittedFor;
+use Lcobucci\JWT\Validation\Constraint\SignedWith;
+use Lcobucci\JWT\Validation\Constraint\ValidAt;
+use Lcobucci\JWT\Validation\RequiredConstraintsViolated;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -45,6 +50,9 @@ class JWTSSOController implements RequestHandlerInterface
     protected $iss;
 
     /** @var string */
+    private $signing_algorithm;
+
+    /** @var string */
     private $signer_key;
 
     /**
@@ -68,6 +76,7 @@ class JWTSSOController implements RequestHandlerInterface
         $conf = app('flarum.config');
         $this->site_url = $conf['url'];
         $this->iss = $settings->get('maicol07-sso.jwt_iss');
+        $this->signing_algorithm = $settings->get('maicol07-sso.jwt_signing_algorithm');
         $this->signer_key = $settings->get('maicol07-sso.jwt_signer_key');
     }
 
@@ -93,31 +102,36 @@ class JWTSSOController implements RequestHandlerInterface
         }
 
         $jwt = Str::after($header[0], 'Bearer ');
-        $token = (new Parser())->parse($jwt);
+        $signing_algorithm = '\Lcobucci\JWT\Signer\Hmac\\' . $this->signing_algorithm;
+        $config = Configuration::forSymmetricSigner(
+            new $signing_algorithm(),
+            InMemory::base64Encoded($this->signer_key)
+        );
+        $token = $config->parser()->parse($jwt);
 
-        // Validate token
-        if (!$token->verify(new Sha256(), new Key($this->signer_key))) {
+        // Check if token is signed correctly
+        if (!$config->validator()->validate($token, new SignedWith($config->signer(), $config->signingKey()))) {
             throw new PermissionDeniedException('Signature key does not correspond to the one on the token!');
         }
-        // Signup
-        $jti = $token->getClaim('jti');
 
-        $data = new ValidationData(); // It will use the current time to validate (iat, nbf and exp)
-        $data->setIssuer($this->iss);
-        $data->setAudience($this->site_url);
-        $data->setId($jti);
+        $clock = new SystemClock(new DateTimeZone(date_default_timezone_get()));
 
-        if (!$token->validate($data)) {
-            if ($token->isExpired()) {
-                $message = 'Token expired.';
-            }
+        // Set validators
+        $config->setValidationConstraints(
+            new IssuedBy($this->iss),
+            new PermittedFor($this->site_url),
+            new ValidAt($clock)
+        );
 
-            throw new PermissionDeniedException($message ?? 'Invalid token.');
+        try {
+            $config->validator()->assert($token, ...$config->validationConstraints());
+        } catch (RequiredConstraintsViolated $e) {
+            throw new PermissionDeniedException(implode(',', $e->violations()));
         }
 
         // ↓↓ Added for IDE autocompletion
         /** @var \Maicol07\SSO\User $jwt_user */
-        $jwt_user = $token->getClaim('user');
+        $jwt_user = $token->claims()->get('user');
 
         // remove any sizing params
         $avatar = $jwt_user->attributes->avatarUrl;

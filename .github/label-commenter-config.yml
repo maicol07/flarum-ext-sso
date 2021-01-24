@@ -1,0 +1,14 @@
+labels:
+  - name: invalid
+    labeled:
+      issue:
+        body: |
+          Please write your issue on the official issue tracker: https://tracker.maicol07.it .
+          You will get no reply here.
+        action: close
+    unlabeled:
+      issue:
+        body: |
+          Please write your issue on the official issue tracker: https://tracker.maicol07.it .
+          You will get no reply here.
+        action: close

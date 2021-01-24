@@ -1,12 +1,19 @@
 maicol07-sso:
-  admin:
-    settings:
-        title: "Impostazioni SSO"
-        signup_url: "URL registrazione"
-        login_url: "URL accesso"
-        logout_url: "URL disconnessione"
-        disable_login_btn: "Disattiva il pulsante Accedi"
-        disable_signup_btn: "Disattiva il pulsante Registrati"
-        # JWT Settings
-        jwt_iss: URL dell'emittente
-        jwt_signer_key: Chiave del firmatario
+    admin:
+        settings:
+            title: "Impostazioni SSO"
+            signup_url: "URL registrazione"
+            login_url: "URL accesso"
+            logout_url: "URL disconnessione"
+            remove_login_btn: "Rimuovi il pulsante Accedi"
+            remove_signup_btn: "Rimuovi il pulsante Registrati"
+            manage_account_url: "URL gestione account"
+            manage_account_btn_open_in_new_tab: "Apri la pagina di gestione dell'account in una nuova scheda"
+
+            # JWT Settings
+            jwt_section_subtitle: Impostazioni relative al componente aggiuntivo JWT
+            jwt_iss: URL dell'emittente
+            jwt_signer_key: Chiave del firmatario
+            jwt_signing_algorithm: Algoritmo firma
+    forum:
+        manage_account_btn: "Gestisci account"
