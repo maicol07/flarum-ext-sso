@@ -1,5 +1,4 @@
 node_modules
 js/node_modules
-js/dist
 /vendor/
 /.php_cs.cache
