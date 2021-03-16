@@ -4,6 +4,9 @@
         "es6": true,
         "commonjs": true
     },
+    "plugins": [
+        "@babel"
+    ],
     "extends": [
         "airbnb-base",
         "plugin:mithril/recommended"
@@ -13,16 +16,20 @@
         "SharedArrayBuffer": "readonly"
     },
     "parserOptions": {
-        "ecmaVersion": 2018,
+        "ecmaVersion": 2020,
         "sourceType": "module"
     },
     "rules": {
-        "no-unused-vars": "off",
-        "import/no-unresolved": "off",
-        "no-shadow": "off",
-        "import/export": "off",
-        "no-undef": "off",
-        "no-use-before-define": "off",
-        "mithril/jsx-key": "off"
+        "@babel/new-cap": "error",
+        "@babel/no-invalid-this": "off",
+        "@babel/no-unused-expressions": "error",
+        "@babel/semi": "error",
+        "object-curly-spacing": "off",
+        "eol-last": "off",
+        "func-names": "off",
+        "comma-dangle": [
+            "error",
+            "only-multiline"
+        ]
     }
 }

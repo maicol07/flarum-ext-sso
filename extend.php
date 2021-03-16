@@ -6,7 +6,7 @@ use Maicol07\SSO\JWTSSOController;
 use Maicol07\SSO\Listener;
 use Maicol07\SSO\Middleware\LogoutMiddleware;
 
-$routes = app('flarum.forum.routes');
+$routes = resolve('flarum.forum.routes');
 
 return [
     // Frontend extenders (JS)

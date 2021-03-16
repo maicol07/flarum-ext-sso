@@ -1,10 +1,20 @@
-import {extend, override} from 'flarum/extend';
-import app from 'flarum/app';
-import HeaderSecondary from 'flarum/components/HeaderSecondary';
-import SettingsPage from 'flarum/components/SettingsPage';
-import LogInModal from 'flarum/components/LogInModal';
+/* eslint-disable import/no-unresolved */
+import {extend, override} from 'flarum/common/extend';
+import app from 'flarum/common/app';
+import HeaderSecondary from 'flarum/forum/components/HeaderSecondary';
+import SettingsPage from 'flarum/forum/components/SettingsPage';
+import LogInModal from 'flarum/forum/components/LogInModal';
 
 app.initializers.add('maicol07-sso', () => {
+  /**
+   * Checks whether login URL is set
+   *
+   * @returns Boolean
+   */
+  function checkSettings(slug) {
+    return Boolean(app.forum.attribute(`maicol07-sso.${slug}`));
+  }
+
   // Remove login button if checkbox is selected
   extend(HeaderSecondary.prototype, 'items', (items) => {
     if (checkSettings('login_url')) {
@@ -80,13 +90,4 @@ app.initializers.add('maicol07-sso', () => {
       items.remove('account');
     }
   });
-
-  /**
-   * Checks whether login URL is set
-   *
-   * @returns Boolean
-   */
-  function checkSettings(slug) {
-    return Boolean(app.forum.attribute(`maicol07-sso.${slug}`));
-  }
 });

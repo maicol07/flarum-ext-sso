@@ -2,6 +2,7 @@
 
 namespace Maicol07\SSO\Middleware;
 
+use Illuminate\Support\Facades\Cookie;
 use Laminas\Diactoros\Response\RedirectResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -13,7 +14,7 @@ class LogoutMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $actor = $request->getAttribute('actor');
-        $logout_url = app('flarum.forum.routes')->getPath('logout');
+        $logout_url = resolve('flarum.forum.routes')->getPath('logout');
         $token = $request->getAttribute('session')->token();
         $path = $request->getUri()->getPath();
 
