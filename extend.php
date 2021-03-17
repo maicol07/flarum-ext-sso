@@ -1,9 +1,12 @@
 <?php
 
 use Flarum\Extend;
-use Illuminate\Contracts\Events\Dispatcher;
+use Flarum\User\Event\LoggedOut;
+use Flarum\User\Event\Registered;
 use Maicol07\SSO\JWTSSOController;
-use Maicol07\SSO\Listener;
+use Maicol07\SSO\Listener\ActivateUser;
+use Maicol07\SSO\Listener\AddLogoutRedirect;
+use Maicol07\SSO\Listener\LoadSettingsFromDatabase;
 use Maicol07\SSO\Middleware\LogoutMiddleware;
 
 $routes = resolve('flarum.forum.routes');
@@ -17,11 +20,10 @@ return [
     new Extend\Locales(__DIR__ . '/locale'),
 
     // Events
-    function (Dispatcher $events) {
-        $events->subscribe(Listener\AddLogoutRedirect::class);
-        $events->subscribe(Listener\ActivateUser::class);
-        $events->subscribe(Listener\LoadSettingsFromDatabase::class);
-    },
+    (new Extend\Event())
+        ->listen(Registered::class, [ActivateUser::class, 'activateUser'])
+        ->listen(LoggedOut::class, [AddLogoutRedirect::class, 'addLogoutRedirect'])
+        ->subscribe(LoadSettingsFromDatabase::class),
 
     // Middleware
     (new Extend\Middleware('forum'))->add(LogoutMiddleware::class),

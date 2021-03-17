@@ -11,14 +11,14 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class LogoutMiddleware implements MiddlewareInterface
 {
-    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    final public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $actor = $request->getAttribute('actor');
         $logout_url = resolve('flarum.forum.routes')->getPath('logout');
         $token = $request->getAttribute('session')->token();
         $path = $request->getUri()->getPath();
 
-        if (!isset($_COOKIE['flarum_remember']) and !$actor->isGuest() and $path !== $logout_url) {
+        if (empty(Cookie::get('flarum_remember')) and !$actor->isGuest() and $path !== $logout_url) {
             return new RedirectResponse("$logout_url?token=$token&redirect=false&path=$path");
         }
 

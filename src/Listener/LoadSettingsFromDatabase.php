@@ -8,7 +8,7 @@ use Illuminate\Contracts\Events\Dispatcher;
 class LoadSettingsFromDatabase
 {
     /** @var SettingsRepositoryInterface */
-    protected $settings;
+    //private $settings;
 
     public function __construct(SettingsRepositoryInterface $settings)
     {
@@ -18,10 +18,10 @@ class LoadSettingsFromDatabase
             $settings->delete('maicol07-sso.disable_login_btn');
             $settings->delete('maicol07-sso.disable_signup_btn');
         }
-        $this->settings = $settings;
+        //$this->settings = $settings;
     }
 
-    public function subscribe(Dispatcher $events): void
+    final public function subscribe(Dispatcher $events): void
     {
 
     }
