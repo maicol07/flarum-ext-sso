@@ -7,6 +7,7 @@ use Maicol07\SSO\JWTSSOController;
 use Maicol07\SSO\Listener\ActivateUser;
 use Maicol07\SSO\Listener\AddLogoutRedirect;
 use Maicol07\SSO\Listener\LoadSettingsFromDatabase;
+use Maicol07\SSO\Middleware\LoginMiddleware;
 use Maicol07\SSO\Middleware\LogoutMiddleware;
 
 $routes = resolve('flarum.forum.routes');
@@ -26,7 +27,9 @@ return [
         ->subscribe(LoadSettingsFromDatabase::class),
 
     // Middleware
-    (new Extend\Middleware('forum'))->add(LogoutMiddleware::class),
+    (new Extend\Middleware('forum'))
+        ->add(LoginMiddleware::class)
+        ->add(LogoutMiddleware::class),
 
     // Routes
     (new Extend\Routes('api'))->get('/sso/jwt', 'maicol07.jwt-auth', JWTSSOController::class),
