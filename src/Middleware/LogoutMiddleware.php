@@ -2,7 +2,7 @@
 
 namespace Maicol07\SSO\Middleware;
 
-use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Arr;
 use Laminas\Diactoros\Response\RedirectResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -17,8 +17,9 @@ class LogoutMiddleware implements MiddlewareInterface
         $logout_url = resolve('flarum.forum.routes')->getPath('logout');
         $token = $request->getAttribute('session')->token();
         $path = $request->getUri()->getPath();
+        $cookies = $request->getCookieParams();
 
-        if (empty(Cookie::get('flarum_remember')) and !$actor->isGuest() and $path !== $logout_url) {
+        if (Arr::exists($cookies, 'flarum_logout') and !$actor->isGuest() and $path !== $logout_url) {
             return new RedirectResponse("$logout_url?token=$token&redirect=false&path=$path");
         }
 
