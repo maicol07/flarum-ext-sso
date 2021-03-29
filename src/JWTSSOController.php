@@ -6,23 +6,30 @@ use DateTimeZone;
 use Exception;
 use Flarum\Api\Client;
 use Flarum\Api\Controller\CreateUserController;
-use Flarum\Http\AccessToken;
+use Flarum\Http\RememberAccessToken;
 use Flarum\Http\Rememberer;
+use Flarum\Http\SessionAccessToken;
 use Flarum\Http\SessionAuthenticator;
 use Flarum\Settings\SettingsRepositoryInterface;
 use Flarum\User\Exception\PermissionDeniedException;
 use Flarum\User\User;
 use Flarum\User\UserRepository;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
+use JsonException;
 use Laminas\Diactoros\Response\JsonResponse;
 use Lcobucci\Clock\SystemClock;
 use Lcobucci\JWT\Configuration;
+use Lcobucci\JWT\Signer\Hmac\Sha256;
+use Lcobucci\JWT\Signer\Hmac\Sha384;
+use Lcobucci\JWT\Signer\Hmac\Sha512;
 use Lcobucci\JWT\Signer\Key\InMemory;
 use Lcobucci\JWT\Validation\Constraint\IssuedBy;
+use Lcobucci\JWT\Validation\Constraint\LooseValidAt;
 use Lcobucci\JWT\Validation\Constraint\PermittedFor;
 use Lcobucci\JWT\Validation\Constraint\SignedWith;
-use Lcobucci\JWT\Validation\Constraint\ValidAt;
 use Lcobucci\JWT\Validation\RequiredConstraintsViolated;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -32,22 +39,16 @@ use RuntimeException;
 class JWTSSOController implements RequestHandlerInterface
 {
     /** @var UserRepository */
-    protected $users;
+    private $users;
 
     /** @var Client */
-    protected $api;
-
-    /** @var SessionAuthenticator */
-    protected $authenticator;
-
-    /** @var Rememberer */
-    protected $rememberer;
+    private $api;
 
     /** @var string */
-    protected $site_url;
+    private $site_url;
 
     /** @var string */
-    protected $iss;
+    private $iss;
 
     /** @var string */
     private $signing_algorithm;
@@ -64,17 +65,12 @@ class JWTSSOController implements RequestHandlerInterface
      */
     public function __construct(
         Client $api,
-        SessionAuthenticator $authenticator,
-        Rememberer $rememberer,
         UserRepository $users,
         SettingsRepositoryInterface $settings
     ) {
         $this->api = $api;
-        $this->authenticator = $authenticator;
-        $this->rememberer = $rememberer;
         $this->users = $users;
-        $conf = resolve('flarum.config');
-        $this->site_url = $conf['url'];
+        $this->site_url = resolve('flarum.config')['url'];
         $this->iss = $settings->get('maicol07-sso.jwt_iss');
         $this->signing_algorithm = $settings->get('maicol07-sso.jwt_signing_algorithm') ?? 'Sha256';
         $this->signer_key = $settings->get('maicol07-sso.jwt_signer_key');
@@ -83,9 +79,12 @@ class JWTSSOController implements RequestHandlerInterface
     /**
      * @param Request $request
      * @return ResponseInterface
+     *
      * @throws PermissionDeniedException
+     *
+     * @noinspection RegExpRedundantEscape
      */
-    public function handle(Request $request): ResponseInterface
+    final public function handle(Request $request): ResponseInterface
     {
         // Get token
         $headers = $request->getHeader('Authorization');
@@ -94,7 +93,6 @@ class JWTSSOController implements RequestHandlerInterface
             throw new InvalidArgumentException("No Authorization header was set");
         }
 
-        /** @noinspection RegExpRedundantEscape */
         $header = preg_grep('/^Bearer\s[A-Za-z0-9\-_\=]+\.[A-Za-z0-9\-_\=]+\.?[A-Za-z0-9\-_.+\/\=]*$/', explode(', ', $headers[0]));
         if (empty($header)) {
             http_response_code(400);
@@ -102,15 +100,26 @@ class JWTSSOController implements RequestHandlerInterface
         }
 
         $jwt = Str::after($header[0], 'Bearer ');
-        $signing_algorithm = '\Lcobucci\JWT\Signer\Hmac\\' . $this->signing_algorithm;
+        $signing_algorithm = null;
+        switch ($this->signing_algorithm) {
+            case 'Sha256':
+                $signing_algorithm = new Sha256();
+                break;
+            case 'Sha384':
+                $signing_algorithm = new Sha384();
+                break;
+            case 'Sha512':
+                $signing_algorithm = new Sha512();
+                break;
+        }
         $config = Configuration::forSymmetricSigner(
-            new $signing_algorithm(),
-            InMemory::base64Encoded($this->signer_key)
+            $signing_algorithm,
+            InMemory::base64Encoded(base64_encode($this->signer_key))
         );
-        $token = $config->parser()->parse($jwt);
+        $jwt = $config->parser()->parse($jwt);
 
         // Check if token is signed correctly
-        if (!$config->validator()->validate($token, new SignedWith($config->signer(), $config->signingKey()))) {
+        if (!$config->validator()->validate($jwt, new SignedWith($config->signer(), $config->signingKey()))) {
             throw new PermissionDeniedException('Signature key does not correspond to the one on the token!');
         }
 
@@ -120,40 +129,38 @@ class JWTSSOController implements RequestHandlerInterface
         $config->setValidationConstraints(
             new IssuedBy($this->iss),
             new PermittedFor($this->site_url),
-            new ValidAt($clock)
+            new LooseValidAt($clock)
         );
 
         try {
-            $config->validator()->assert($token, ...$config->validationConstraints());
+            $config->validator()->assert($jwt, ...$config->validationConstraints());
         } catch (RequiredConstraintsViolated $e) {
             throw new PermissionDeniedException(implode(',', $e->violations()));
         }
 
-        // ↓↓ Added for IDE autocompletion
-        /** @var \Maicol07\SSO\User $jwt_user */
-        $jwt_user = $token->claims()->get('user');
+        $jwt_user = $jwt->claims()->get('user');
 
         // remove any sizing params
-        $avatar = $jwt_user->attributes->avatarUrl;
+        $avatar = Arr::get($jwt_user, 'attributes.avatarUrl');
         $param = '?sz=';
         if (strpos($avatar, $param)) {
             $avatar = substr($avatar, 0, strpos($avatar, $param));
         }
 
-        $user = $this->users->findByIdentification($jwt_user->attributes->email ?? $jwt_user->attributes->username);
+        try {
+            $user = $this->users->findOrFail(Arr::get($jwt_user, 'id'));
+        } catch (ModelNotFoundException $e) {
+            $email = Arr::get($jwt_user, 'attributes.email');
+            $username = Arr::get($jwt_user, 'attributes.username');
+            $user = $this->users->findByIdentification($email ?? $username);
+        }
 
-        if ($user !== null) {
-            $token = $this->login($user, $avatar, $request);
-        } else {
-            /** @noinspection PhpUndefinedFieldInspection */
-            $jwt_user->attributes->isEmailConfirmed = true;
+        if ($user === null) {
+            Arr::get($jwt_user, 'attributes')['isEmailConfirmed'] = true;
 
             $actor = $this->users->findOrFail(1);
             $body = [
-                'data' => [
-                    'attributes' => (array)$jwt_user->attributes,
-                    'relationships' => (array)$jwt_user->relationships
-                ]
+                'data' => Arr::except($jwt_user, 'id')
             ];
 
             try {
@@ -162,41 +169,32 @@ class JWTSSOController implements RequestHandlerInterface
                 throw new RuntimeException("Error during signup.");
             }
 
-            $body = json_decode($response->getBody(), false);
-            if (empty($body->data)) {
+            try {
+                $body = json_decode($response->getBody(), false, 512, JSON_THROW_ON_ERROR);
+            } catch (JsonException $e) {
                 throw new RuntimeException("Signup failed.");
             }
             $id = $body->data->id;
             $user = $this->users->findOrFail($id);
             $user->activate();
-            $user->save();
-
-            $token = $this->login($user, $avatar, $request);
         }
-
-        return new JsonResponse([
-            'token' => $token->token,
-            'userId' => $user->id
-        ]);
-    }
-
-    private function login(User $user, ?string $avatar, Request $request, ?ResponseInterface $response = null): AccessToken
-    {
-        // Login
-        $id = $user->id;
 
         $user->changeAvatarPath($avatar);
         $user->save();
 
-        $session = $request->getAttribute('session');
-        $this->authenticator->logIn($session, $id);
-        $token = AccessToken::generate($user->id);
+        $token = $this->getToken($user, $jwt->claims()->get('remember'));
+
+        return new JsonResponse([
+            'token' => $token,
+            'userId' => $user->id
+        ]);
+    }
+
+    private function getToken(User $user, bool $remember = false): string
+    {
+        $token = $remember ? RememberAccessToken::generate($user->id) : SessionAccessToken::generate($user->id);
         $token->save();
 
-        if ($response !== null) {
-            $this->rememberer->rememberUser($response, $id);
-        }
-
-        return $token;
+        return $token->token;
     }
 }
