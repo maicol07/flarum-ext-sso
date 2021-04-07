@@ -3,10 +3,12 @@
 use Flarum\Extend;
 use Flarum\User\Event\LoggedOut;
 use Flarum\User\Event\Registered;
+use Flarum\User\Event\Saving;
 use Maicol07\SSO\JWTSSOController;
 use Maicol07\SSO\Listener\ActivateUser;
 use Maicol07\SSO\Listener\AddLogoutRedirect;
 use Maicol07\SSO\Listener\LoadSettingsFromDatabase;
+use Maicol07\SSO\Listener\UpdateUserAvatar;
 use Maicol07\SSO\Middleware\LoginMiddleware;
 use Maicol07\SSO\Middleware\LogoutMiddleware;
 
@@ -24,6 +26,7 @@ return [
     (new Extend\Event())
         ->listen(Registered::class, [ActivateUser::class, 'activateUser'])
         ->listen(LoggedOut::class, [AddLogoutRedirect::class, 'addLogoutRedirect'])
+        ->listen(Saving::class, [UpdateUserAvatar::class, 'updateAvatarUrl'])
         ->subscribe(LoadSettingsFromDatabase::class),
 
     // Middleware
