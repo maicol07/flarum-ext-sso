@@ -24,7 +24,6 @@
 {{ range .CommitGroups -}}
 
 ### {{ .Title }}
-
 {{ range .Commits -}}
 
 - [`{{ .Hash.Short }}`]({{ $.Info.RepositoryURL }}/commit/{{ .Hash.Long }}) {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{
@@ -33,7 +32,6 @@
 {{- if .RevertCommits -}}
 
 ### Reverts
-
 {{ range .RevertCommits -}}
 
 - [`{{ .Hash.Short }}`]({{ $.Info.RepositoryURL }}/commit/{{ .Hash.Long }}) {{ .Revert.Header }} {{ if .Body }} {{ .Body
@@ -42,7 +40,6 @@
 {{- if .MergeCommits -}}
 
 ### Pull Requests
-
 {{ range .MergeCommits -}}
 
 - [`{{ .Hash.Short }}`]({{ $.Info.RepositoryURL }}/commit/{{ .Hash.Long }}) {{ .Header }} {{ if .Body }} {{ .Body |
