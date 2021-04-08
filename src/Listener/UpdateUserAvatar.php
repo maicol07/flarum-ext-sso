@@ -12,10 +12,10 @@ class UpdateUserAvatar
     final public function updateAvatarUrl(Saving $event): void
     {
         $user = $event->user;
-        $attributes = Arr::get($event->data, 'attributes', []);
+        $avatar_url = Arr::get($event->data, 'attributes.avatarUrl');
 
-        if (Arr::exists($attributes, 'avatarUrl')) {
-            $image = (new ImageManager())->make(Arr::get($attributes, 'avatarUrl'));
+        if (!empty($avatar_url)) {
+            $image = (new ImageManager())->make($avatar_url);
             resolve(AvatarUploader::class)->upload($user, $image);
         }
     }
