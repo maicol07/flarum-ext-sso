@@ -12,11 +12,27 @@ options:
     #     - perf
     #     - refactor
     commit_groups:
-    # title_maps:
-    #   feat: Features
-    #   fix: Bug Fixes
-    #   perf: Performance Improvements
-    #   refactor: Code Refactoring
+        sort_by: Custom
+        title_order:
+            - feat
+            - update
+            - perf
+            - fix
+            - refactor
+            - style
+            - build
+            - chore
+        title_maps:
+            feat: ✨ Features
+            fix: 🐛 Bug Fixes
+            fixed: 🐛 Bug Fixes
+            perf: ⚡ Performance Improvements
+            refactor: ♻ Code Refactoring
+            revert: ⏪ Reverted
+            update: 🔄 Updates
+            build: 👷 Building scripts changes
+            chore: Other changes
+            style: 🎨 Code styling
     header:
         pattern: "^(\\w*)(?:\\(([\\w\\$\\.\\-\\*\\s]*)\\))?\\:\\s(.*)$"
         pattern_maps:
@@ -26,3 +42,4 @@ options:
     notes:
         keywords:
             - BREAKING CHANGE
+            - 💥

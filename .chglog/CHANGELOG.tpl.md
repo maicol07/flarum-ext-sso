@@ -21,7 +21,7 @@
 <a name="{{ .Tag.Name }}"></a>
 ## {{ if .Tag.Previous }}[{{ .Tag.Name }}]({{ $.Info.RepositoryURL }}/compare/{{ .Tag.Previous.Name }}...{{ .Tag.Name }}){{ else }}{{ .Tag.Name }}{{ end }}
 
-> {{ datetime "2006-01-02" .Tag.Date }}
+> Released on {{ datetime "January 02, 2006" .Tag.Date }}
 
 {{ range .CommitGroups -}}
 ### {{ .Title }}
@@ -34,7 +34,7 @@
 {{ end -}}
 
 {{- if .RevertCommits -}}
-### Reverts
+### ⏪ Reverts
 
 {{ range .RevertCommits -}}
 - [`{{ .Hash.Short }}`]({{ $.Info.RepositoryURL }}/commit/{{ .Hash.Long }}) {{ .Revert.Header }}
@@ -45,7 +45,7 @@
 {{ end -}}
 
 {{- if .MergeCommits -}}
-### Pull Requests
+### 🔀 Pull Requests
 
 {{ range .MergeCommits -}}
 - [`{{ .Hash.Short }}`]({{ $.Info.RepositoryURL }}/commit/{{ .Hash.Long }}) {{ .Header }}
