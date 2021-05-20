@@ -39,7 +39,7 @@
     "require": {
         "php": ">=7.3",
         "ext-json": "*",
-        "flarum/core": ">=0.1.0-beta.16 <=1.x.x-dev",
+        "flarum/core": "^1",
         "lcobucci/jwt": "^4"
     },
     "require-dev": {

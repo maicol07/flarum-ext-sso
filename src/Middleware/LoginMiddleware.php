@@ -2,6 +2,7 @@
 
 namespace Maicol07\SSO\Middleware;
 
+use Flarum\Http\RequestUtil;
 use Flarum\Http\SessionAccessToken;
 use Flarum\Http\SessionAuthenticator;
 use Illuminate\Support\Arr;
@@ -15,7 +16,7 @@ class LoginMiddleware implements MiddlewareInterface
 {
     final public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $actor = $request->getAttribute('actor');
+        $actor = RequestUtil::getActor($request);
         $session = $request->getAttribute('session');
         $cookies = $request->getCookieParams();
         $token = SessionAccessToken::findValid(Arr::get($cookies, 'flarum_token'));
