@@ -10,7 +10,7 @@
 {{ range .Commits -}}
 - [`{{ .Hash.Short }}`]({{ $.Info.RepositoryURL }}/commit/{{ .Hash.Long }}) {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{ .Subject }}
 {{ if .Body }}
-    {{ .Body | replace "\n" "\n\t" }}
+{{ indent .Body 4 }}
 {{ end -}}
 {{ end }}
 {{ end -}}
@@ -28,7 +28,7 @@
 {{ range .Commits -}}
 - [`{{ .Hash.Short }}`]({{ $.Info.RepositoryURL }}/commit/{{ .Hash.Long }}) {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{ .Subject }}
 {{ if .Body }}
-    {{ .Body | replace "\n" "\n\t" }}
+{{ indent .Body 4 }}
 {{ end -}}
 {{ end }}
 {{ end -}}
@@ -39,7 +39,7 @@
 {{ range .RevertCommits -}}
 - [`{{ .Hash.Short }}`]({{ $.Info.RepositoryURL }}/commit/{{ .Hash.Long }}) {{ .Revert.Header }}
 {{ if .Body }}
-    {{ .Body | replace "\n" "\n\t" }}
+{{ indent .Body 4 }}
 {{ end -}}
 {{ end }}
 {{ end -}}
@@ -50,7 +50,7 @@
 {{ range .MergeCommits -}}
 - [`{{ .Hash.Short }}`]({{ $.Info.RepositoryURL }}/commit/{{ .Hash.Long }}) {{ .Header }}
 {{ if .Body }}
-    {{ .Body | replace "\n" "\n\t" }}
+{{ indent .Body 4 }}
 {{ end -}}
 {{ end }}
 {{ end -}}

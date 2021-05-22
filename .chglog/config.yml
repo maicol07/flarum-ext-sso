@@ -18,9 +18,12 @@ options:
             - update
             - perf
             - fix
+            - fixed
+            - revert
             - refactor
             - style
             - build
+            - ci
             - chore
         title_maps:
             feat: ✨ Features
@@ -33,6 +36,7 @@ options:
             build: 👷 Building scripts changes
             chore: Other changes
             style: 🎨 Code styling
+            ci: 👷 CI changes
     header:
         pattern: "^(\\w*)(?:\\(([\\w\\$\\.\\-\\*\\s]*)\\))?\\:\\s(.*)$"
         pattern_maps:
