@@ -1,33 +1,42 @@
 # CHANGELOG
 
+<a name="1.10"></a>
+
+## [1.10](https://github.com/maicol07/flarum-ext-sso/compare/1.9...1.10)
+
+> Released on May 22, 2021
+
+### ✨ Features
+
+- [`5e58a02`](https://github.com/maicol07/flarum-ext-sso/commit/5e58a02a9c7d0d06433c730c8e13ec3672b8e5f3) ✨
+  Compatibility with Flarum 1.0
+- [`eda72a0`](https://github.com/maicol07/flarum-ext-sso/commit/eda72a07455daf67a29c3b5b821db9ecff9f3e6c) ✨ Initial
+  compatibility with Flarum 1.0
+- [`5485b84`](https://github.com/maicol07/flarum-ext-sso/commit/5485b84fd2cdccb1ac5e892bf82e036d82d5cf39) ✨ Initial
+  compatibility with Flarum 1.0
+
+### 👷 CI changes
+
+- [`e326ffb`](https://github.com/maicol07/flarum-ext-sso/commit/e326ffb0a279b26854a05f2bd170f4a37ad2671d) **build:** 👷
+  Added CHANGELOG action
+
+### Other changes
+
+- [`64827c9`](https://github.com/maicol07/flarum-ext-sso/commit/64827c9443ef172ca026c40d54dcfe9a173144be) **deps:** 📌
+  Pinned jwt library to ^4 due to PHP requirement
+
+### ⏪ Reverts
+
+- [`977b1fe`](https://github.com/maicol07/flarum-ext-sso/commit/977b1fe3196ac11f155f1d47b87df941087a05ce) chore(deps):
+  📌 Pinned jwt library to ^4 due to PHP requirement
+
+  This reverts commit 64827c94. PHP requirement is >= 7.3. PHP 7.3 is not supported by JWT v4
+
 <a name="1.9"></a>
 
 ## [1.9](https://github.com/maicol07/flarum-ext-sso/compare/1.8.1...1.9)
 
-> Released on April 08, 2021
-
-### 👷 Building scripts changes
-
-- [`da6515b`](https://github.com/maicol07/flarum-ext-sso/commit/da6515bdc70ebce4eacc7ebcaf7bcec1fa70fbd0) 💚 Fixed
-  changelog generation
-- [`563336b`](https://github.com/maicol07/flarum-ext-sso/commit/563336ba2b8980efee4a60c19dc28540b4bb46b4) 👷 Added
-  CHANGELOG
-- [`5ec3529`](https://github.com/maicol07/flarum-ext-sso/commit/5ec3529006686d44caae8a2b84bb0ca53d45a328) 📦 Missing
-  bundled JS
-
-### Other changes
-
-- [`e0df539`](https://github.com/maicol07/flarum-ext-sso/commit/e0df5393aed028d510bb0fbacc0696b6f17e8b87) Updated
-  composer.json metadata
-- [`9ea9834`](https://github.com/maicol07/flarum-ext-sso/commit/9ea9834602a5497e109c6dc4e24cdd6799099eaa) **release:**
-  🔖 1.9 final changelog
-
-### 🐛 Bug Fixes
-
-- [`830def6`](https://github.com/maicol07/flarum-ext-sso/commit/830def6f9e6da958cc3bc82e3e3ebfee742c7ff7) 🐛 Exception
-  when updating user and `avatarUrl` is `null`
-- [`978e1de`](https://github.com/maicol07/flarum-ext-sso/commit/978e1de28786a2219ec1c6f4b1396d41d31530ea) 🐛 Fixed issue
-  with the Laravel Cookie helper
+> Released on April 09, 2021
 
 ### ✨ Features
 
@@ -51,6 +60,31 @@
 
 - [`3cf884f`](https://github.com/maicol07/flarum-ext-sso/commit/3cf884fe7a8b060cba274f46612287415aa1f4c8) ⚡ Improved
   subscribers and listeners handling
+
+### 🐛 Bug Fixes
+
+- [`830def6`](https://github.com/maicol07/flarum-ext-sso/commit/830def6f9e6da958cc3bc82e3e3ebfee742c7ff7) 🐛 Exception
+  when updating user and `avatarUrl` is `null`
+- [`978e1de`](https://github.com/maicol07/flarum-ext-sso/commit/978e1de28786a2219ec1c6f4b1396d41d31530ea) 🐛 Fixed issue
+  with the Laravel Cookie helper
+
+### 👷 Building scripts changes
+
+- [`da6515b`](https://github.com/maicol07/flarum-ext-sso/commit/da6515bdc70ebce4eacc7ebcaf7bcec1fa70fbd0) 💚 Fixed
+  changelog generation
+- [`563336b`](https://github.com/maicol07/flarum-ext-sso/commit/563336ba2b8980efee4a60c19dc28540b4bb46b4) 👷 Added
+  CHANGELOG
+- [`5ec3529`](https://github.com/maicol07/flarum-ext-sso/commit/5ec3529006686d44caae8a2b84bb0ca53d45a328) 📦 Missing
+  bundled JS
+- [`9745f9f`](https://github.com/maicol07/flarum-ext-sso/commit/9745f9f88bef061ab2dbbecb348942f99d1a87ca) **changelog:**
+  👷 Improved changelog
+
+### Other changes
+
+- [`e0df539`](https://github.com/maicol07/flarum-ext-sso/commit/e0df5393aed028d510bb0fbacc0696b6f17e8b87) Updated
+  composer.json metadata
+- [`9ea9834`](https://github.com/maicol07/flarum-ext-sso/commit/9ea9834602a5497e109c6dc4e24cdd6799099eaa) **release:**
+  🔖 1.9 final changelog
 
 <a name="1.8.1"></a>
 
@@ -87,13 +121,6 @@
 
 > Released on December 23, 2020
 
-### ⏪ Reverted
-
-- [`9afa943`](https://github.com/maicol07/flarum-ext-sso/commit/9afa943971329f6c9111931475f0129d91b0632d) ⏪ Reverted
-  slugs
-
-    - Changed slugs for disable login and signup button to remove
-
 ### ✨ Features
 
 - [`8303d8d`](https://github.com/maicol07/flarum-ext-sso/commit/8303d8d51fc0a034718f42c5aa93bdeec29e21f2) 🎉 Added
@@ -113,6 +140,13 @@
   compiled files for the previous fix
 - [`62f0ea5`](https://github.com/maicol07/flarum-ext-sso/commit/62f0ea585dc06e4c9b4c65c84f42ac4b56007590) Extending
   oninit hook and fixing modal redirection
+
+### ⏪ Reverted
+
+- [`9afa943`](https://github.com/maicol07/flarum-ext-sso/commit/9afa943971329f6c9111931475f0129d91b0632d) ⏪ Reverted
+  slugs
+
+    - Changed slugs for disable login and signup button to remove
 
 ### 👷 Building scripts changes
 
@@ -139,6 +173,51 @@
 
 > Released on November 02, 2020
 
+### ✨ Features
+
+- [`a72ee71`](https://github.com/maicol07/flarum-ext-sso/commit/a72ee7138b0cdfc16389b0c5d1519fbda2e381ff) ✨ JWT
+  Validation and login (#FSSOE-15)
+
+    - Currently supports validation, login and signup Tracker feature: https://tracker.maicol07.it/issue/FSSOE-15
+
+### 🐛 Bug Fixes
+
+- [`da8d2d3`](https://github.com/maicol07/flarum-ext-sso/commit/da8d2d310b55ac1d5eb0f2ff201bb37f63f4ecce) Namespaces not
+  added to composer.json
+- [`2962c40`](https://github.com/maicol07/flarum-ext-sso/commit/2962c40cc8be81ab6dcd888e37bbb9fb03e93740) change query
+  param
+
+  Due to changes in previous commit
+- [`3653ad4`](https://github.com/maicol07/flarum-ext-sso/commit/3653ad425af2daf2d95861e9ed9d2c30b6c35b19) Exception when
+  logging out from Flarum
+- [`8f1738d`](https://github.com/maicol07/flarum-ext-sso/commit/8f1738d0a1b5791bafc297f9051e4707b716c7ae) Exceptions
+- [`1ea3d15`](https://github.com/maicol07/flarum-ext-sso/commit/1ea3d15456e643f893cda609df2e6195f8352143) 🐛 Fix
+  logout (#FSSOE-1)
+
+### ♻ Code Refactoring
+
+- [`1e67cdc`](https://github.com/maicol07/flarum-ext-sso/commit/1e67cdc6b205408182603f4ec4831d98fb4e2533) ♻️ Refactor
+  code
+- [`15b4c7b`](https://github.com/maicol07/flarum-ext-sso/commit/15b4c7bb4d1a57b926c147393eef427ae8233824) ♻️ ESLint
+  Refactor
+- [`53a83e0`](https://github.com/maicol07/flarum-ext-sso/commit/53a83e0e34994522ca613c6d3b7ade6cb4806925) ♻️ 🎨
+  Refactored code
+
+    - Following PHP CS Fixer
+    - Fixed not using spaces
+- [`4bf937a`](https://github.com/maicol07/flarum-ext-sso/commit/4bf937a5c1d30239664ca750102eca5f3ab74e15) ♻️ 🎨
+  Refactored code
+
+    - Following PHP CS Fixer
+    - PHP 7.2 requirement added
+- [`09a810f`](https://github.com/maicol07/flarum-ext-sso/commit/09a810f6ce403907929a2c826b7e20f86ca22d1a) :fire: Removed
+  links to the sample-website folder
+
+### 🎨 Code styling
+
+- [`1693bba`](https://github.com/maicol07/flarum-ext-sso/commit/1693bba998db2e3b78f55cb58b3a21fcb81ddbb9) **code:**
+  Added Mithril JSX Key eslint rule
+
 ### Other changes
 
 - [`5d6859b`](https://github.com/maicol07/flarum-ext-sso/commit/5d6859bb45595e3f31b1241f35981a6d583a626a) Fixed links to
@@ -164,51 +243,6 @@
 - [`f5d9bcb`](https://github.com/maicol07/flarum-ext-sso/commit/f5d9bcb9db0e61a5241fa20f73afa8d87fe9863b) 🙈 Updated
   .gitignore
 
-### 🎨 Code styling
-
-- [`1693bba`](https://github.com/maicol07/flarum-ext-sso/commit/1693bba998db2e3b78f55cb58b3a21fcb81ddbb9) **code:**
-  Added Mithril JSX Key eslint rule
-
-### 🐛 Bug Fixes
-
-- [`da8d2d3`](https://github.com/maicol07/flarum-ext-sso/commit/da8d2d310b55ac1d5eb0f2ff201bb37f63f4ecce) Namespaces not
-  added to composer.json
-- [`2962c40`](https://github.com/maicol07/flarum-ext-sso/commit/2962c40cc8be81ab6dcd888e37bbb9fb03e93740) change query
-  param
-
-  Due to changes in previous commit
-- [`3653ad4`](https://github.com/maicol07/flarum-ext-sso/commit/3653ad425af2daf2d95861e9ed9d2c30b6c35b19) Exception when
-  logging out from Flarum
-- [`8f1738d`](https://github.com/maicol07/flarum-ext-sso/commit/8f1738d0a1b5791bafc297f9051e4707b716c7ae) Exceptions
-- [`1ea3d15`](https://github.com/maicol07/flarum-ext-sso/commit/1ea3d15456e643f893cda609df2e6195f8352143) 🐛 Fix
-  logout (#FSSOE-1)
-
-### ✨ Features
-
-- [`a72ee71`](https://github.com/maicol07/flarum-ext-sso/commit/a72ee7138b0cdfc16389b0c5d1519fbda2e381ff) ✨ JWT
-  Validation and login (#FSSOE-15)
-
-    - Currently supports validation, login and signup Tracker feature: https://tracker.maicol07.it/issue/FSSOE-15
-
-### ♻ Code Refactoring
-
-- [`1e67cdc`](https://github.com/maicol07/flarum-ext-sso/commit/1e67cdc6b205408182603f4ec4831d98fb4e2533) ♻️ Refactor
-  code
-- [`15b4c7b`](https://github.com/maicol07/flarum-ext-sso/commit/15b4c7bb4d1a57b926c147393eef427ae8233824) ♻️ ESLint
-  Refactor
-- [`53a83e0`](https://github.com/maicol07/flarum-ext-sso/commit/53a83e0e34994522ca613c6d3b7ade6cb4806925) ♻️ 🎨
-  Refactored code
-
-    - Following PHP CS Fixer
-    - Fixed not using spaces
-- [`4bf937a`](https://github.com/maicol07/flarum-ext-sso/commit/4bf937a5c1d30239664ca750102eca5f3ab74e15) ♻️ 🎨
-  Refactored code
-
-    - Following PHP CS Fixer
-    - PHP 7.2 requirement added
-- [`09a810f`](https://github.com/maicol07/flarum-ext-sso/commit/09a810f6ce403907929a2c826b7e20f86ca22d1a) :fire: Removed
-  links to the sample-website folder
-
 ### 🔀 Pull Requests
 
 - [`e0412f5`](https://github.com/maicol07/flarum-ext-sso/commit/e0412f5653bfbfabc2e8659bf1cd69792f5a1dea) Merge pull
@@ -220,23 +254,22 @@
 
 > Released on May 13, 2020
 
-### ♻ Code Refactoring
+### ✨ Features
 
-- [`f7d2547`](https://github.com/maicol07/flarum-ext-sso/commit/f7d25475ef6c19eed7f1678e3ebb2725804762d9) :recycle:
-  Deleted unused file
+- [`5a2b8e8`](https://github.com/maicol07/flarum-ext-sso/commit/5a2b8e89f2adc8dcba28c8fa278443e1d20ebdf2) Disable
+  setting groups to admins
+- [`925b83d`](https://github.com/maicol07/flarum-ext-sso/commit/925b83d04bf4d895364872ecbaf331ce72dcb0ef) Password reset
 
-### Other changes
+  Includes general code style reformat and some fixes for the pro login feature
+- [`9b26adb`](https://github.com/maicol07/flarum-ext-sso/commit/9b26adbba831f6f86ccba6102eb04f645368c055) Groups setting
+  on signup, update user
 
-- [`29dfe1f`](https://github.com/maicol07/flarum-ext-sso/commit/29dfe1f0e5a232d5726db79227ced7e5102d2d37) :pushpin:
-  Updated Flarum version
-- [`278802c`](https://github.com/maicol07/flarum-ext-sso/commit/278802cbebc10043eff758716cbcdcb857ba285a) Silenced error
-  on login form
-- [`9cf664d`](https://github.com/maicol07/flarum-ext-sso/commit/9cf664d0ad1315544f64b05f7abd64655ac981fc) Slug rename
+  Includes a general code style refactor and some fixes for the setGroup features
 
-  Plugin slug has been renamed to sso-flarum. Naming conventions from now on:
-    - Files: prefix-flarum-sso-suffix.ext
-    - Options names, ids or function names: prefix_flarum_sso_plugin_suffix
-    - Slugs, text domain and other slug-related strings: sso-flarum with eventually a prefix, suffix or extension
+### ⚡ Performance Improvements
+
+- [`72492b4`](https://github.com/maicol07/flarum-ext-sso/commit/72492b4b1627b1344292ada4bf24e13c065ed1fd) Optimized
+  login times
 
 ### 🐛 Bug Fixes
 
@@ -257,33 +290,39 @@
 - [`1949cc3`](https://github.com/maicol07/flarum-ext-sso/commit/1949cc3b9e4320c2d95b3cd122390800c63b2831) Fixed
   not_authenticated error
 
-### ✨ Features
+### ♻ Code Refactoring
 
-- [`5a2b8e8`](https://github.com/maicol07/flarum-ext-sso/commit/5a2b8e89f2adc8dcba28c8fa278443e1d20ebdf2) Disable
-  setting groups to admins
-- [`925b83d`](https://github.com/maicol07/flarum-ext-sso/commit/925b83d04bf4d895364872ecbaf331ce72dcb0ef) Password reset
-
-  Includes general code style reformat and some fixes for the pro login feature
-- [`9b26adb`](https://github.com/maicol07/flarum-ext-sso/commit/9b26adbba831f6f86ccba6102eb04f645368c055) Groups setting
-  on signup, update user
-
-  Includes a general code style refactor and some fixes for the setGroup features
+- [`f7d2547`](https://github.com/maicol07/flarum-ext-sso/commit/f7d25475ef6c19eed7f1678e3ebb2725804762d9) :recycle:
+  Deleted unused file
 
 ### 🎨 Code styling
 
 - [`83cbd1e`](https://github.com/maicol07/flarum-ext-sso/commit/83cbd1e7b23e562a88cba0a4958d2c0928cd39f1) Rearranged
   code
 
-### ⚡ Performance Improvements
+### Other changes
 
-- [`72492b4`](https://github.com/maicol07/flarum-ext-sso/commit/72492b4b1627b1344292ada4bf24e13c065ed1fd) Optimized
-  login times
+- [`29dfe1f`](https://github.com/maicol07/flarum-ext-sso/commit/29dfe1f0e5a232d5726db79227ced7e5102d2d37) :pushpin:
+  Updated Flarum version
+- [`278802c`](https://github.com/maicol07/flarum-ext-sso/commit/278802cbebc10043eff758716cbcdcb857ba285a) Silenced error
+  on login form
+- [`9cf664d`](https://github.com/maicol07/flarum-ext-sso/commit/9cf664d0ad1315544f64b05f7abd64655ac981fc) Slug rename
+
+  Plugin slug has been renamed to sso-flarum. Naming conventions from now on:
+    - Files: prefix-flarum-sso-suffix.ext
+    - Options names, ids or function names: prefix_flarum_sso_plugin_suffix
+    - Slugs, text domain and other slug-related strings: sso-flarum with eventually a prefix, suffix or extension
 
 <a name="1.5"></a>
 
 ## [1.5](https://github.com/maicol07/flarum-ext-sso/compare/1.4.6...1.5)
 
 > Released on April 08, 2020
+
+### ✨ Features
+
+- [`a35a3c6`](https://github.com/maicol07/flarum-ext-sso/commit/a35a3c6b181d6e69a4cbddaf3e45a94406f62c53) Addded
+  insecure mode and groups setting
 
 ### Other changes
 
@@ -308,13 +347,8 @@
 - [`d7ca1d1`](https://github.com/maicol07/flarum-ext-sso/commit/d7ca1d12aa8ddf4afe2b3415aae45083187ff4dd) New WordPress
   plugin
 
-### ✨ Features
-
-- [`a35a3c6`](https://github.com/maicol07/flarum-ext-sso/commit/a35a3c6b181d6e69a4cbddaf3e45a94406f62c53) Addded
-  insecure mode and groups setting
 
 <a name="1.4.6"></a>
-
 ## [1.4.6](https://github.com/maicol07/flarum-ext-sso/compare/1.4.5...1.4.6)
 
 > Released on March 09, 2020
@@ -324,8 +358,8 @@
 - [`59be4e6`](https://github.com/maicol07/flarum-ext-sso/commit/59be4e6efdc954a16faed2bddc97a65fa6421131) Allow
   installations on beta12
 
-<a name="1.4.5"></a>
 
+<a name="1.4.5"></a>
 ## [1.4.5](https://github.com/maicol07/flarum-ext-sso/compare/1.4.4...1.4.5)
 
 > Released on February 06, 2020
@@ -337,8 +371,8 @@
 
   Signed-off-by: Maicol <maicolbattistini[@live](https://github.com/live).it>
 
-<a name="1.4.4"></a>
 
+<a name="1.4.4"></a>
 ## [1.4.4](https://github.com/maicol07/flarum-ext-sso/compare/1.4.3...1.4.4)
 
 > Released on February 05, 2020
@@ -352,24 +386,27 @@
 
 <a name="1.4.3"></a>
 
-## [1.4.3](https://github.com/maicol07/flarum-ext-sso/compare/1.4.2...1.4.3)
+## [1.4.3](https://github.com/maicol07/flarum-ext-sso/compare/1.4.1...1.4.3)
 
 > Released on January 20, 2020
 
 
-<a name="1.4.2"></a>
-## [1.4.2](https://github.com/maicol07/flarum-ext-sso/compare/1.4.1...1.4.2)
+<a name="1.4.1"></a>
+
+## [1.4.1](https://github.com/maicol07/flarum-ext-sso/compare/1.4.2...1.4.1)
 
 > Released on January 05, 2020
 
 
-<a name="1.4.1"></a>
-## [1.4.1](https://github.com/maicol07/flarum-ext-sso/compare/1.4.0...1.4.1)
+<a name="1.4.2"></a>
+
+## [1.4.2](https://github.com/maicol07/flarum-ext-sso/compare/1.4.0...1.4.2)
 
 > Released on January 05, 2020
 
 
 <a name="1.4.0"></a>
+
 ## [1.4.0](https://github.com/maicol07/flarum-ext-sso/compare/1.3.2...1.4.0)
 
 > Released on January 05, 2020
