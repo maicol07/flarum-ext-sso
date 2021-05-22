@@ -20,8 +20,10 @@ options:
             - fix
             - fixed
             - revert
+            - rename
             - refactor
             - style
+            - docs
             - build
             - ci
             - chore
@@ -30,7 +32,9 @@ options:
             fix: 🐛 Bug Fixes
             fixed: 🐛 Bug Fixes
             perf: ⚡ Performance Improvements
+            docs: 📝 Docs changes
             refactor: ♻ Code Refactoring
+            rename: 🚚 Renamed
             revert: ⏪ Reverted
             update: 🔄 Updates
             build: 👷 Building scripts changes
