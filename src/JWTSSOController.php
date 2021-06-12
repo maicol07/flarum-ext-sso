@@ -3,14 +3,14 @@
 namespace Maicol07\SSO;
 
 use DateTimeZone;
-use Exception;
 use Flarum\Api\Client;
-use Flarum\Api\Controller\CreateUserController;
+use Flarum\Bus\Dispatcher;
 use Flarum\Http\RememberAccessToken;
 use Flarum\Http\Rememberer;
 use Flarum\Http\SessionAccessToken;
 use Flarum\Http\SessionAuthenticator;
 use Flarum\Settings\SettingsRepositoryInterface;
+use Flarum\User\Command\RegisterUser;
 use Flarum\User\Exception\PermissionDeniedException;
 use Flarum\User\User;
 use Flarum\User\UserRepository;
@@ -18,7 +18,6 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
-use JsonException;
 use Laminas\Diactoros\Response\JsonResponse;
 use Lcobucci\Clock\SystemClock;
 use Lcobucci\JWT\Configuration;
@@ -34,15 +33,14 @@ use Lcobucci\JWT\Validation\RequiredConstraintsViolated;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface;
-use RuntimeException;
 
 class JWTSSOController implements RequestHandlerInterface
 {
     /** @var UserRepository */
     private $users;
 
-    /** @var Client */
-    private $api;
+    /** @var Dispatcher */
+    private $bus;
 
     /** @var string */
     private $site_url;
@@ -64,11 +62,11 @@ class JWTSSOController implements RequestHandlerInterface
      * @param SettingsRepositoryInterface $settings
      */
     public function __construct(
-        Client $api,
-        UserRepository $users,
+        Dispatcher                  $bus,
+        UserRepository              $users,
         SettingsRepositoryInterface $settings
     ) {
-        $this->api = $api;
+        $this->bus = $bus;
         $this->users = $users;
         $this->site_url = resolve('flarum.config')['url'];
         $this->iss = $settings->get('maicol07-sso.jwt_iss');
@@ -159,24 +157,11 @@ class JWTSSOController implements RequestHandlerInterface
             Arr::set($jwt_user, 'attributes.isEmailConfirmed', true);
 
             $actor = $this->users->findOrFail(1);
-            $body = [
-                'data' => Arr::except($jwt_user, 'id')
-            ];
+            $data = Arr::except($jwt_user, 'id');
 
-            try {
-                $response = $this->api->send(CreateUserController::class, $actor, [], $body);
-            } catch (Exception $e) {
-                throw new RuntimeException("Error during signup.");
-            }
-
-            try {
-                $body = json_decode($response->getBody(), false, 512, JSON_THROW_ON_ERROR);
-            } catch (JsonException $e) {
-                throw new RuntimeException("Signup failed.");
-            }
-            $id = $body->data->id;
-            $user = $this->users->findOrFail($id);
-            $user->activate();
+            // User is already activated since the isEmailConfirmed attribute has been set to true
+            $user = $this->bus->dispatch(new RegisterUser($actor, $data));
+            assert($user instanceof User);
         }
 
         $user->changeAvatarPath($avatar);
