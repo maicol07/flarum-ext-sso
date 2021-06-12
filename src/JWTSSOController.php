@@ -3,12 +3,9 @@
 namespace Maicol07\SSO;
 
 use DateTimeZone;
-use Flarum\Api\Client;
 use Flarum\Bus\Dispatcher;
 use Flarum\Http\RememberAccessToken;
-use Flarum\Http\Rememberer;
 use Flarum\Http\SessionAccessToken;
-use Flarum\Http\SessionAuthenticator;
 use Flarum\Settings\SettingsRepositoryInterface;
 use Flarum\User\Command\RegisterUser;
 use Flarum\User\Exception\PermissionDeniedException;
@@ -55,9 +52,7 @@ class JWTSSOController implements RequestHandlerInterface
     private $signer_key;
 
     /**
-     * @param Client $api
-     * @param SessionAuthenticator $authenticator
-     * @param Rememberer $rememberer
+     * @param Dispatcher $bus
      * @param UserRepository $users
      * @param SettingsRepositoryInterface $settings
      */
@@ -65,7 +60,8 @@ class JWTSSOController implements RequestHandlerInterface
         Dispatcher                  $bus,
         UserRepository              $users,
         SettingsRepositoryInterface $settings
-    ) {
+    )
+    {
         $this->bus = $bus;
         $this->users = $users;
         $this->site_url = resolve('flarum.config')['url'];
@@ -177,6 +173,7 @@ class JWTSSOController implements RequestHandlerInterface
 
     private function getToken(User $user, bool $remember = false): string
     {
+        /** @noinspection PhpUnhandledExceptionInspection */
         $token = $remember ? RememberAccessToken::generate($user->id) : SessionAccessToken::generate($user->id);
         $token->save();
 
