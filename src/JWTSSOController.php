@@ -156,7 +156,7 @@ class JWTSSOController implements RequestHandlerInterface
         }
 
         if ($user === null) {
-            Arr::get($jwt_user, 'attributes')['isEmailConfirmed'] = true;
+            Arr::set($jwt_user, 'attributes.isEmailConfirmed', true);
 
             $actor = $this->users->findOrFail(1);
             $body = [
