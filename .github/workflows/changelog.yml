@@ -16,6 +16,6 @@ jobs:
                 with:
                     fetch-depth: 0
                     submodules: recursive
-            -   uses: nwillems/github-changelog-action@master
+            -   uses: nwillems/github-changelog-action@patch-1
                 with:
                     next_version: "1.10.1"
