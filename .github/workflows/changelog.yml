@@ -17,6 +17,9 @@ jobs:
                     fetch-depth: 0
                     submodules: recursive
             -   uses: maicol07/github-changelog-action@patch-1
+            -   uses: oleksiyrudenko/gha-git-credentials@v2-latest
+                with:
+                    token: '${{ secrets.GITHUB_TOKEN }}'
             -   run: "git commit -m \"release: 🔖 Updated changelog\" -a"
             -   name: Push changes
                 uses: ad-m/github-push-action@master
