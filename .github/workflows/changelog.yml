@@ -11,6 +11,6 @@ jobs:
     package:
         runs-on: ubuntu-latest
         steps:
-            -   uses: nuuday/github-changelog-action@v1.0.0
+            -   uses: nuuday/github-changelog-action@master
                 with:
                     next_version: "1.10"
