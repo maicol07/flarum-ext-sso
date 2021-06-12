@@ -11,6 +11,11 @@ jobs:
     package:
         runs-on: ubuntu-latest
         steps:
-            -   uses: maicol07/github-changelog-action@master
+            -   name: Checkout repo
+                uses: actions/checkout@v2
+                with:
+                    fetch-depth: 0
+                    submodules: recursive
+            -   uses: nwillems/github-changelog-action@master
                 with:
                     next_version: "1.10.1"
