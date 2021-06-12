@@ -11,7 +11,7 @@ jobs:
     package:
         runs-on: ubuntu-latest
         steps:
-            -   uses: nuuday/github-changelog-action@master
+            -   uses: nwillems/github-changelog-action@patch-1
                 with:
                     config_dir: chglog/.chglog
                     next_version: "1.10"
