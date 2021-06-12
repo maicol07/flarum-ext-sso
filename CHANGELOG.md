@@ -1,9 +1,13 @@
 # CHANGELOG
 
-<a name="unreleased"></a>
-## Unreleased
+
+<a name="1.10.1"></a>
+## [1.10.1](https://github.com/maicol07/flarum-ext-sso/compare/1.10...1.10.1)
+
+> Released on June 12, 2021
 
 ### Release
+- [`0237e22`](https://github.com/maicol07/flarum-ext-sso/commit/0237e224b66838c4a270f4b8ddaefbeeb9967748) 🔖 Updated changelog
 - [`8107b22`](https://github.com/maicol07/flarum-ext-sso/commit/8107b228ac75316d161fa808cd1817d4a868d87e) 🔖 Updated changelog
 - [`bbf508a`](https://github.com/maicol07/flarum-ext-sso/commit/bbf508af582617033cc27d1d59387fd433de438e) 🔖 Updated changelog
 
