@@ -3,6 +3,9 @@
 <a name="unreleased"></a>
 ## Unreleased
 
+### Release
+- [`bbf508a`](https://github.com/maicol07/flarum-ext-sso/commit/bbf508af582617033cc27d1d59387fd433de438e) 🔖 Updated changelog
+
 ### ⚡ Performance Improvements
 - [`b74c90c`](https://github.com/maicol07/flarum-ext-sso/commit/b74c90cb94c6cf3323614228dcf600f3b1fdf7c4) ⚡ Use dot notation to set array value
 
@@ -14,6 +17,7 @@
 - [`5e84bf4`](https://github.com/maicol07/flarum-ext-sso/commit/5e84bf42ceb3977329d5ded195f316294173d06c) 📝 Fixed PHPDocs
 
 ### 👷 Building scripts changes
+- [`8f3d699`](https://github.com/maicol07/flarum-ext-sso/commit/8f3d69952c5565635eddab00f3a4f4963673ef83) Allow to run changelog action manually to set the next version
 - [`5cb1154`](https://github.com/maicol07/flarum-ext-sso/commit/5cb1154d10ee0a86a4a25225316e1a08cde73de6) Add git credentials
 - [`a10765e`](https://github.com/maicol07/flarum-ext-sso/commit/a10765e7d1900020e21247eff1427d068e52bb81) Add missing commit
 - [`c009c2e`](https://github.com/maicol07/flarum-ext-sso/commit/c009c2e1b8b93099e06f824e376b27d6cb49a569) Add missing token to push back changes
