@@ -4,6 +4,7 @@
 ## Unreleased
 
 ### Release
+- [`8107b22`](https://github.com/maicol07/flarum-ext-sso/commit/8107b228ac75316d161fa808cd1817d4a868d87e) 🔖 Updated changelog
 - [`bbf508a`](https://github.com/maicol07/flarum-ext-sso/commit/bbf508af582617033cc27d1d59387fd433de438e) 🔖 Updated changelog
 
 ### ⚡ Performance Improvements
