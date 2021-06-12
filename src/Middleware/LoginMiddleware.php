@@ -2,6 +2,7 @@
 
 namespace Maicol07\SSO\Middleware;
 
+use Flarum\Foundation\Config;
 use Flarum\Http\RequestUtil;
 use Flarum\Http\SessionAccessToken;
 use Flarum\Http\SessionAuthenticator;
@@ -14,6 +15,19 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class LoginMiddleware implements MiddlewareInterface
 {
+     /**
+     * @var Config
+     */
+    private $config;
+
+    /**
+     * @param Config $config
+     */
+    public function __construct(Config $config)
+    {
+        $this->config = $config;
+    }
+
     final public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $actor = RequestUtil::getActor($request);
@@ -23,7 +37,7 @@ class LoginMiddleware implements MiddlewareInterface
 
         if ($token !== null and $actor->isGuest()) {
             resolve(SessionAuthenticator::class)->logIn($session, $token);
-            return new RedirectResponse($request->getUri());
+            return new RedirectResponse($this->config->url() . $request->getUri()->getPath());
         }
 
         return $handler->handle($request);
