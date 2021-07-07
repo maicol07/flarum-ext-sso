@@ -5,12 +5,21 @@ info:
     repository_url: https://github.com/maicol07/flarum-ext-sso
 options:
     commits:
-    # filters:
-    #   Type:
-    #     - feat
-    #     - fix
-    #     - perf
-    #     - refactor
+        filters:
+            Type:
+                - feat
+                - update
+                - perf
+                - fix
+                - fixed
+                - revert
+                - rename
+                - refactor
+                - style
+                - docs
+                - build
+                - ci
+                - chore
     commit_groups:
         sort_by: Custom
         title_order:
