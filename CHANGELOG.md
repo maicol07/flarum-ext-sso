@@ -1,5 +1,11 @@
 # CHANGELOG
 
+<a name="unreleased"></a>
+## Unreleased
+
+### Other changes
+- [`3e99300`](https://github.com/maicol07/flarum-ext-sso/commit/3e993006fb9e97d839010ffa39d7939f8424a5e9) **meta:** Updated extension icon colors for better contrast
+
 
 <a name="1.10.1"></a>
 ## [1.10.1](https://github.com/maicol07/flarum-ext-sso/compare/1.10...1.10.1)
@@ -7,6 +13,7 @@
 > Released on June 12, 2021
 
 ### Release
+- [`fc1cb3d`](https://github.com/maicol07/flarum-ext-sso/commit/fc1cb3dc06892007fd0af585b8de0e1be1423bec) 🔖 Updated changelog
 - [`0237e22`](https://github.com/maicol07/flarum-ext-sso/commit/0237e224b66838c4a270f4b8ddaefbeeb9967748) 🔖 Updated changelog
 - [`8107b22`](https://github.com/maicol07/flarum-ext-sso/commit/8107b228ac75316d161fa808cd1817d4a868d87e) 🔖 Updated changelog
 - [`bbf508a`](https://github.com/maicol07/flarum-ext-sso/commit/bbf508af582617033cc27d1d59387fd433de438e) 🔖 Updated changelog
