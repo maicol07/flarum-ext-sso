@@ -3,6 +3,9 @@
 <a name="unreleased"></a>
 ## Unreleased
 
+### 👷 CI changes
+- [`086bdea`](https://github.com/maicol07/flarum-ext-sso/commit/086bdeae4e9b61b79857eea269ff2640fd10c088) 👷 Updated changelog generation
+
 ### Other changes
 - [`3e99300`](https://github.com/maicol07/flarum-ext-sso/commit/3e993006fb9e97d839010ffa39d7939f8424a5e9) **meta:** Updated extension icon colors for better contrast
 
@@ -11,12 +14,6 @@
 ## [1.10.1](https://github.com/maicol07/flarum-ext-sso/compare/1.10...1.10.1)
 
 > Released on June 12, 2021
-
-### Release
-- [`fc1cb3d`](https://github.com/maicol07/flarum-ext-sso/commit/fc1cb3dc06892007fd0af585b8de0e1be1423bec) 🔖 Updated changelog
-- [`0237e22`](https://github.com/maicol07/flarum-ext-sso/commit/0237e224b66838c4a270f4b8ddaefbeeb9967748) 🔖 Updated changelog
-- [`8107b22`](https://github.com/maicol07/flarum-ext-sso/commit/8107b228ac75316d161fa808cd1817d4a868d87e) 🔖 Updated changelog
-- [`bbf508a`](https://github.com/maicol07/flarum-ext-sso/commit/bbf508af582617033cc27d1d59387fd433de438e) 🔖 Updated changelog
 
 ### ⚡ Performance Improvements
 - [`b74c90c`](https://github.com/maicol07/flarum-ext-sso/commit/b74c90cb94c6cf3323614228dcf600f3b1fdf7c4) ⚡ Use dot notation to set array value
@@ -60,9 +57,6 @@
 ## [1.10](https://github.com/maicol07/flarum-ext-sso/compare/1.9...1.10)
 
 > Released on May 22, 2021
-
-### Release
-- [`8753ec6`](https://github.com/maicol07/flarum-ext-sso/commit/8753ec64b3f1c779b8e1df44b77ab496205248f2) 🔖 1.10
 
 ### ✨ Features
 - [`5e58a02`](https://github.com/maicol07/flarum-ext-sso/commit/5e58a02a9c7d0d06433c730c8e13ec3672b8e5f3) ✨ Compatibility with Flarum 1.0
