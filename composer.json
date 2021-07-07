@@ -61,7 +61,9 @@
             "title": "SSO (Single Sign On)",
             "category": "feature",
             "icon": {
-                "name": "fas fa-sign-in-alt"
+                "name": "fas fa-sign-in-alt",
+                "color": "#E66A2D",
+                "backgroundColor": "#FFE38F"
             }
         },
         "flagrow": {
