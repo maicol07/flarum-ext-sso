@@ -31,6 +31,11 @@ jobs:
                 with:
                     token: '${{ secrets.GITHUB_TOKEN }}'
             -   run: "git commit -m \"changelog: 🔖 Updated changelog for commit ${{ github.sha }}\" -a"
+                if: ${{ !github.event.inputs.commit_message && !github.event.inputs.next_version }}
+            -   run: "git commit -m \"release: 🔖 ${{ github.event.inputs.next_version }}\" -a"
+                if: ${{ !github.event.inputs.commit_message && github.event.inputs.next_version }}
+            -   run: "git commit -m \"${{ github.event.inputs.commit_message }}\" -a"
+                if: ${{ github.event.inputs.commit_message }}
             -   name: Push changes
                 uses: ad-m/github-push-action@master
                 with:
