@@ -20,6 +20,7 @@
 - [`086bdea`](https://github.com/maicol07/flarum-ext-sso/commit/086bdeae4e9b61b79857eea269ff2640fd10c088) 👷 Updated changelog generation
 
 ### Other changes
+- [`4145636`](https://github.com/maicol07/flarum-ext-sso/commit/41456364e5f6dc6b086eba83bb33beee4268a5fc) **deps:** ⬆️ Upgraded Flarum Webpack config
 - [`3e99300`](https://github.com/maicol07/flarum-ext-sso/commit/3e993006fb9e97d839010ffa39d7939f8424a5e9) **meta:** Updated extension icon colors for better contrast
 
 
