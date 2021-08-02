@@ -27,7 +27,7 @@ app.initializers.add('maicol07-sso', () => {
           return;
         }
 
-        override(LogInModal.prototype, 'oninit', () => {
+        override(LogInModal.prototype, 'oncreate', () => {
           window.location.href = loginUrl;
           throw new Error('Stop execution');
         });
