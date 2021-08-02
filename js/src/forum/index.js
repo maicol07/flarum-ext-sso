@@ -27,15 +27,15 @@ app.initializers.add('maicol07-sso', () => {
 
         const loginUrl = app.forum.attribute('maicol07-sso.login_url');
 
+        override(LogInModal.prototype, 'oninit', () => {
+          window.location.href = loginUrl;
+          throw new Error('Stop execution');
+        });
+
         items.replace('logIn',
           <a href={loginUrl} className="Button Button--link">
             {app.translator.trans('core.forum.header.log_in_link')}
           </a>);
-
-        override(LogInModal.prototype, 'oninit', () => {
-          window.location.href = app.forum.attribute('maicol07-sso.login_url');
-          throw new Error('Stop execution');
-        });
       }
     }
 
