@@ -6,26 +6,26 @@ import LogInModal from 'flarum/forum/components/LogInModal';
 
 app.initializers.add('maicol07-sso', () => {
   /**
-   * Checks whether login URL is set
+   * Returns a setting added by the extension
    *
-   * @returns Boolean
+   * @param {string} slug
+   * @returns {any}
    */
-  function checkSettings(slug) {
-    return Boolean(app.forum.attribute(`maicol07-sso.${slug}`));
+  function setting(slug) {
+    return app.forum.attribute(`maicol07-sso.${slug}`);
   }
 
   // Remove login button if checkbox is selected
   extend(HeaderSecondary.prototype, 'items', (items) => {
-    if (checkSettings('login_url')) {
-      if (app.forum.attribute('maicol07-sso.remove_login_btn') === '1') {
+    const loginUrl = setting('login_url');
+    if (loginUrl) {
+      if (setting('remove_login_btn') === '1') {
         items.remove('logIn');
       } else {
         // Remove login button
         if (!items.has('logIn')) {
           return;
         }
-
-        const loginUrl = app.forum.attribute('maicol07-sso.login_url');
 
         override(LogInModal.prototype, 'oninit', () => {
           window.location.href = loginUrl;
@@ -39,16 +39,15 @@ app.initializers.add('maicol07-sso', () => {
       }
     }
 
-    if (checkSettings('signup_url')) {
-      if (app.forum.attribute('maicol07-sso.remove_signup_btn') === '1') {
+    const signupUrl = setting('signup_url');
+    if (signupUrl) {
+      if (setting('remove_signup_btn') === '1') {
         items.remove('signUp');
       } else {
         // Replace signup button
         if (!items.has('signUp')) {
           return;
         }
-
-        const signupUrl = app.forum.attribute('maicol07-sso.signup_url');
 
         items.replace('signUp',
           <a href={signupUrl} className="Button Button--link">
@@ -59,7 +58,7 @@ app.initializers.add('maicol07-sso', () => {
   });
 
   extend(SettingsPage.prototype, 'accountItems', (items) => {
-    if (!checkSettings('login_url')) {
+    if (!setting('login_url')) {
       return;
     }
 
@@ -67,20 +66,20 @@ app.initializers.add('maicol07-sso', () => {
     items.remove('changeEmail');
     items.remove('changePassword');
 
-    if (!checkSettings('manage_account_url')) {
+    if (!setting('manage_account_url')) {
       return;
     }
     items.add(
       'manageAccount',
-      <a class="Button" href={app.forum.attribute('maicol07-sso.manage_account_url')}
-         target={app.forum.attribute('maicol07-sso.manage_account_btn_open_in_new_tab') === '1' ? '_blank' : ''}>
+      <a class="Button" href={setting('manage_account_url')}
+         target={setting('manage_account_btn_open_in_new_tab') === '1' ? '_blank' : ''}>
         {app.translator.trans('maicol07-sso.forum.manage_account_btn')}
       </a>,
     );
   });
 
   extend(SettingsPage.prototype, 'settingsItems', (items) => {
-    if (checkSettings('manage_account_url')) {
+    if (setting('manage_account_url')) {
       return;
     }
 
