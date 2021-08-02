@@ -8,6 +8,7 @@
 - [`8b70076`](https://github.com/maicol07/flarum-ext-sso/commit/8b70076deea992c7a69ae45a10d49077edaaef77) **code_tools:** ✨ Added Prettier instead of ESLint
 
 ### 🐛 Bug Fixes
+- [`ddb3082`](https://github.com/maicol07/flarum-ext-sso/commit/ddb3082801a6ec486490991d4f87c28e58206077) 🐛 Fixed login modal opening when new discussion button is clicked
 - [`f9cb9f4`](https://github.com/maicol07/flarum-ext-sso/commit/f9cb9f4c957fd0ffb9ee3b2b8ff88b19e3b1cd51) 🐛 Wrong app namespace
 
 ### ♻ Code Refactoring
