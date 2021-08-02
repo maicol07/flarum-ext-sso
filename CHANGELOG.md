@@ -4,12 +4,14 @@
 ## Unreleased
 
 ### ✨ Features
+- [`fd9bc60`](https://github.com/maicol07/flarum-ext-sso/commit/fd9bc60f9eef914f637aecdc4fd6be16c0af4f88) ✨ Added Typescript config to get Flarum typing definitions
 - [`8b70076`](https://github.com/maicol07/flarum-ext-sso/commit/8b70076deea992c7a69ae45a10d49077edaaef77) **code_tools:** ✨ Added Prettier instead of ESLint
 
 ### 🐛 Bug Fixes
 - [`f9cb9f4`](https://github.com/maicol07/flarum-ext-sso/commit/f9cb9f4c957fd0ffb9ee3b2b8ff88b19e3b1cd51) 🐛 Wrong app namespace
 
 ### ♻ Code Refactoring
+- [`edbd507`](https://github.com/maicol07/flarum-ext-sso/commit/edbd507f36832ec95f88eeb83898408e42f804d2) ♻️ Removed old Webpack config
 - [`f17a9a5`](https://github.com/maicol07/flarum-ext-sso/commit/f17a9a5057cb1241f9c56a9118a277ba5526bfa5) ♻️ Removed ESLint comments
 
 ### 👷 CI changes
