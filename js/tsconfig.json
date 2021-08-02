@@ -1,0 +1,21 @@
+{
+    "extends": "flarum-tsconfig",
+    "include": [
+        "src/**/*"
+    ],
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es6",
+        "sourceMap": true,
+        "declarationDir": "./dist-typings",
+        "baseUrl": ".",
+        "paths": {
+            "flarum/*": [
+                "../vendor/flarum/core/js/dist-typings/*"
+            ]
+        }
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}

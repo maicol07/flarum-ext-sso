@@ -5,18 +5,9 @@
     "repository": {
         "url": "https://github.com/maicol07/flarum-ext-sso"
     },
-    "dependencies": {
-
-    },
     "devDependencies": {
-        "@babel/eslint-plugin": "^7",
-        "eslint": "^7",
-        "eslint-config-airbnb": "^18",
-        "eslint-plugin-import": "^2",
-        "eslint-plugin-mithril": "^0",
-        "flarum": "^0.1.0-beta.16",
+        "flarum-tsconfig": "^1",
         "flarum-webpack-config": "^0.1.0-beta.10",
-        "webpack": "^5",
         "webpack-cli": "^4"
     },
     "scripts": {
