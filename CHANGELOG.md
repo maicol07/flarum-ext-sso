@@ -3,6 +3,15 @@
 <a name="unreleased"></a>
 ## Unreleased
 
+### ✨ Features
+- [`8b70076`](https://github.com/maicol07/flarum-ext-sso/commit/8b70076deea992c7a69ae45a10d49077edaaef77) **code_tools:** ✨ Added Prettier instead of ESLint
+
+### 🐛 Bug Fixes
+- [`f9cb9f4`](https://github.com/maicol07/flarum-ext-sso/commit/f9cb9f4c957fd0ffb9ee3b2b8ff88b19e3b1cd51) 🐛 Wrong app namespace
+
+### ♻ Code Refactoring
+- [`f17a9a5`](https://github.com/maicol07/flarum-ext-sso/commit/f17a9a5057cb1241f9c56a9118a277ba5526bfa5) ♻️ Removed ESLint comments
+
 ### 👷 CI changes
 - [`646203c`](https://github.com/maicol07/flarum-ext-sso/commit/646203ce9c6c98d9b9f6c747d82c420e36903c92) 👷 Added conditional commit messages to changelog action
 - [`086bdea`](https://github.com/maicol07/flarum-ext-sso/commit/086bdeae4e9b61b79857eea269ff2640fd10c088) 👷 Updated changelog generation
