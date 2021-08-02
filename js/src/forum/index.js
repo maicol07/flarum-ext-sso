@@ -1,6 +1,6 @@
 /* eslint-disable import/no-unresolved */
 import {extend, override} from 'flarum/common/extend';
-import app from 'flarum/common/app';
+import app from 'flarum/forum/app';
 import HeaderSecondary from 'flarum/forum/components/HeaderSecondary';
 import SettingsPage from 'flarum/forum/components/SettingsPage';
 import LogInModal from 'flarum/forum/components/LogInModal';
