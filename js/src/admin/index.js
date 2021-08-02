@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-unresolved
 import app from 'flarum/admin/app';
 
 app.initializers.add('maicol07-sso', () => {
