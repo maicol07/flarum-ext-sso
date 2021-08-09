@@ -16,6 +16,7 @@
 - [`f9cb9f4`](https://github.com/maicol07/flarum-ext-sso/commit/f9cb9f4c957fd0ffb9ee3b2b8ff88b19e3b1cd51) 🐛 Wrong app namespace
 
 ### ♻ Code Refactoring
+- [`3dce5dc`](https://github.com/maicol07/flarum-ext-sso/commit/3dce5dc3b0d87dff62e7013b6adbe36519551823) Reformatted build action
 - [`edbd507`](https://github.com/maicol07/flarum-ext-sso/commit/edbd507f36832ec95f88eeb83898408e42f804d2) ♻️ Removed old Webpack config
 - [`f17a9a5`](https://github.com/maicol07/flarum-ext-sso/commit/f17a9a5057cb1241f9c56a9118a277ba5526bfa5) ♻️ Removed ESLint comments
 
