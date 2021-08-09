@@ -1,7 +1,10 @@
 # CHANGELOG
 
-<a name="unreleased"></a>
-## Unreleased
+
+<a name="1.10.2"></a>
+## [1.10.2](https://github.com/maicol07/flarum-ext-sso/compare/1.10.1...1.10.2)
+
+> Released on August 09, 2021
 
 ### ✨ Features
 - [`fd9bc60`](https://github.com/maicol07/flarum-ext-sso/commit/fd9bc60f9eef914f637aecdc4fd6be16c0af4f88) ✨ Added Typescript config to get Flarum typing definitions
@@ -24,6 +27,7 @@
 - [`f17a9a5`](https://github.com/maicol07/flarum-ext-sso/commit/f17a9a5057cb1241f9c56a9118a277ba5526bfa5) ♻️ Removed ESLint comments
 
 ### 👷 CI changes
+- [`3233f94`](https://github.com/maicol07/flarum-ext-sso/commit/3233f943c4988562c5ce48c82eb58e2fdee3f7a5) Trigger changelog workflow when JS build has finished
 - [`f244d0f`](https://github.com/maicol07/flarum-ext-sso/commit/f244d0f4d99085740c1ae633a0d1db3aeec3b069) Updated build action
 - [`b8e32e2`](https://github.com/maicol07/flarum-ext-sso/commit/b8e32e23cd3f562af0de63082134504989dadfb6) 👷 Added Flarum Bot to automatically compile JS
 - [`646203c`](https://github.com/maicol07/flarum-ext-sso/commit/646203ce9c6c98d9b9f6c747d82c420e36903c92) 👷 Added conditional commit messages to changelog action
