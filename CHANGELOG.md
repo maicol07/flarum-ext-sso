@@ -21,6 +21,7 @@
 - [`f17a9a5`](https://github.com/maicol07/flarum-ext-sso/commit/f17a9a5057cb1241f9c56a9118a277ba5526bfa5) ♻️ Removed ESLint comments
 
 ### 👷 CI changes
+- [`f244d0f`](https://github.com/maicol07/flarum-ext-sso/commit/f244d0f4d99085740c1ae633a0d1db3aeec3b069) Updated build action
 - [`b8e32e2`](https://github.com/maicol07/flarum-ext-sso/commit/b8e32e23cd3f562af0de63082134504989dadfb6) 👷 Added Flarum Bot to automatically compile JS
 - [`646203c`](https://github.com/maicol07/flarum-ext-sso/commit/646203ce9c6c98d9b9f6c747d82c420e36903c92) 👷 Added conditional commit messages to changelog action
 - [`086bdea`](https://github.com/maicol07/flarum-ext-sso/commit/086bdeae4e9b61b79857eea269ff2640fd10c088) 👷 Updated changelog generation
