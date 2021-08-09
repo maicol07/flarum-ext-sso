@@ -1,11 +1,7 @@
 name: Build changelog
 on:
-    #push:
-    #    branches:
-    #        - master
-    pull_request:
-        branches:
-            - master
+    repository_dispatch:
+        types: [ trigger-changelog-workflow ]
     workflow_dispatch:
         inputs:
             next_version:

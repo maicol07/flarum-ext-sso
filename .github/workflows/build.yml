@@ -11,7 +11,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@master
-      - uses: flarum/action-build@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        -   uses: actions/checkout@master
+        -   uses: flarum/action-build@master
+            env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        -   name: Trigger changelog workflow
+            uses: peter-evans/repository-dispatch@v1
+            with:
+                token: ${{ secrets.GITHUB_TOKEN }}
+                repository: ${{ github.repository }}
+                event-type: trigger-changelog-workflow
+                client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
