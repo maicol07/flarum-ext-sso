@@ -15,44 +15,50 @@ app.initializers.add('maicol07-sso', () => {
     return app.forum.attribute(`maicol07-sso.${slug}`);
   }
 
-  // Remove login button if checkbox is selected
-  extend(HeaderSecondary.prototype, 'items', (items) => {
-    const loginUrl = setting('login_url');
-    if (loginUrl) {
-      if (setting('remove_login_btn') === '1') {
-        items.remove('logIn');
-      } else {
-        // Remove login button
-        if (!items.has('logIn')) {
-          return;
-        }
-
-        override(LogInModal.prototype, 'oncreate', () => {
-          window.location.href = loginUrl;
-          throw new Error('Stop execution');
-        });
-
-        items.replace('logIn',
-          <a href={loginUrl} className="Button Button--link">
-            {app.translator.trans('core.forum.header.log_in_link')}
-          </a>);
+  /**
+   * Returns login and signup props
+   *
+   * @returns {{login: {removeItem: boolean, itemName: string, text: any, url: *}, signup: {removeItem: boolean, itemName: string, text: any, url: *}}}
+   */
+  function getItems() {
+    return {
+      login: {
+        url: setting('login_url'),
+        itemName: 'logIn',
+        removeItem: setting('remove_login_btn') === '1',
+        text: app.translator.trans('core.forum.header.log_in_link')
+      },
+      signup: {
+        url: setting('logout_url'),
+        itemName: 'signUp',
+        removeItem: setting('remove_signup_btn') === '1',
+        text: app.translator.trans('core.forum.header.sign_up_link')
       }
-    }
+    };
+  }
 
-    const signupUrl = setting('signup_url');
-    if (signupUrl) {
-      if (setting('remove_signup_btn') === '1') {
-        items.remove('signUp');
-      } else {
-        // Replace signup button
-        if (!items.has('signUp')) {
-          return;
+  override(LogInModal.prototype, 'oncreate', () => {
+    const items = getItems();
+    window.location.href = items.login.url;
+    throw new Error('Stop execution');
+  });
+
+  extend(HeaderSecondary.prototype, 'items', (buttons) => {
+    const items = getItems();
+    for (const [, props] of Object.entries(items)) {
+      if (props.url) {
+        if (props.removeItem) {
+          buttons.remove(props.itemName);
+        } else {
+          // Remove login button
+          if (!buttons.has(props.itemName)) {
+            return;
+          }
+          buttons.replace(props.itemName,
+            <a href={props.url} className="Button Button--link">
+              {props.text}
+            </a>);
         }
-
-        items.replace('signUp',
-          <a href={signupUrl} className="Button Button--link">
-            {app.translator.trans('core.forum.header.sign_up_link')}
-          </a>);
       }
     }
   });
@@ -88,4 +94,5 @@ app.initializers.add('maicol07-sso', () => {
       items.remove('account');
     }
   });
-});
+})
+;
