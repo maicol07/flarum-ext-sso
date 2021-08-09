@@ -11,6 +11,9 @@
 - [`6fbd7f9`](https://github.com/maicol07/flarum-ext-sso/commit/6fbd7f990dd55f2a74dcd34e82f92521f55a1c65) ⚡ Better frontend settings helper
 
 ### 🐛 Bug Fixes
+- [`3e24b49`](https://github.com/maicol07/flarum-ext-sso/commit/3e24b492adb415f6b6dd1508523421155dedefdf) New Discussion button opening the Login modal
+
+    Also did some major refactor
 - [`41d1f44`](https://github.com/maicol07/flarum-ext-sso/commit/41d1f44b2507a1eacbcb1ea655b9d53af63739c1) 🐛 Fixed login modal opening when new discussion button is clicked
 - [`ddb3082`](https://github.com/maicol07/flarum-ext-sso/commit/ddb3082801a6ec486490991d4f87c28e58206077) 🐛 Fixed login modal opening when new discussion button is clicked
 - [`f9cb9f4`](https://github.com/maicol07/flarum-ext-sso/commit/f9cb9f4c957fd0ffb9ee3b2b8ff88b19e3b1cd51) 🐛 Wrong app namespace
