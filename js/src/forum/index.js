@@ -29,7 +29,7 @@ app.initializers.add('maicol07-sso', () => {
         text: app.translator.trans('core.forum.header.log_in_link')
       },
       signup: {
-        url: setting('logout_url'),
+        url: setting('signup_url'),
         itemName: 'signUp',
         removeItem: setting('remove_signup_btn') === '1',
         text: app.translator.trans('core.forum.header.sign_up_link')
