@@ -1,6 +1,18 @@
 # CHANGELOG
 
 
+<a name="1.10.3"></a>
+## [1.10.3](https://github.com/maicol07/flarum-ext-sso/compare/1.10.2...1.10.3)
+
+> Released on October 21, 2021
+
+### 🐛 Bug Fixes
+- [`5b7afa3`](https://github.com/maicol07/flarum-ext-sso/commit/5b7afa3d0dbd9f57a481942f867a4bcdb3c1fc5c) Unblock other extensions routes
+
+    It was impossible for other extensions, loaded after SSO to register new routes
+- [`ecc0676`](https://github.com/maicol07/flarum-ext-sso/commit/ecc0676dbd3b2d4f6aed7a6a673865c28dd971ee) Signup button points to logout URL
+
+
 <a name="1.10.2"></a>
 ## [1.10.2](https://github.com/maicol07/flarum-ext-sso/compare/1.10.1...1.10.2)
 
