@@ -12,8 +12,6 @@ use Maicol07\SSO\Listener\UpdateUserAvatar;
 use Maicol07\SSO\Middleware\LoginMiddleware;
 use Maicol07\SSO\Middleware\LogoutMiddleware;
 
-$routes = resolve('flarum.forum.routes');
-
 return [
     // Frontend extenders (JS)
     (new Extend\Frontend('forum'))->js(__DIR__ . '/js/dist/forum.js'),
