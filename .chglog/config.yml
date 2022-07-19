@@ -1,8 +1,7 @@
 style: github
 template: CHANGELOG.tpl.md
 info:
-    title: CHANGELOG
-    repository_url: https://github.com/maicol07/flarum-ext-sso
+    title: Changelog
 options:
     commits:
         filters:

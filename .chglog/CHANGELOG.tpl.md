@@ -9,13 +9,13 @@
 ### {{ .Title }}
 {{ range .Commits -}}
 - [`{{ .Hash.Short }}`]({{ $.Info.RepositoryURL }}/commit/{{ .Hash.Long }}) {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{ .Subject }}
-{{ if .Body }}
-{{ indent .Body 4 }}
-{{ end -}}
-{{ end }}
-{{ end -}}
-{{ end -}}
-{{ end -}}
+  {{ if .Body }}
+  {{ indent .Body 4 }}
+  {{ end -}}
+  {{ end }}
+  {{ end -}}
+  {{ end -}}
+  {{ end -}}
 
 {{ range .Versions }}
 <a name="{{ .Tag.Name }}"></a>
@@ -27,33 +27,33 @@
 ### {{ .Title }}
 {{ range .Commits -}}
 - [`{{ .Hash.Short }}`]({{ $.Info.RepositoryURL }}/commit/{{ .Hash.Long }}) {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{ .Subject }}
-{{ if .Body }}
-{{ indent .Body 4 }}
-{{ end -}}
-{{ end }}
-{{ end -}}
+  {{ if .Body }}
+  {{ indent .Body 4 }}
+  {{ end -}}
+  {{ end }}
+  {{ end -}}
 
 {{- if .RevertCommits -}}
 ### ⏪ Reverts
 
 {{ range .RevertCommits -}}
 - [`{{ .Hash.Short }}`]({{ $.Info.RepositoryURL }}/commit/{{ .Hash.Long }}) {{ .Revert.Header }}
-{{ if .Body }}
-{{ indent .Body 4 }}
-{{ end -}}
-{{ end }}
-{{ end -}}
+  {{ if .Body }}
+  {{ indent .Body 4 }}
+  {{ end -}}
+  {{ end }}
+  {{ end -}}
 
 {{- if .MergeCommits -}}
 ### 🔀 Pull Requests
 
 {{ range .MergeCommits -}}
 - [`{{ .Hash.Short }}`]({{ $.Info.RepositoryURL }}/commit/{{ .Hash.Long }}) {{ .Header }}
-{{ if .Body }}
-{{ indent .Body 4 }}
-{{ end -}}
-{{ end }}
-{{ end -}}
+  {{ if .Body }}
+  {{ indent .Body 4 }}
+  {{ end -}}
+  {{ end }}
+  {{ end -}}
 
 {{- if .NoteGroups -}}
 {{ range .NoteGroups -}}

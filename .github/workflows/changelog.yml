@@ -20,7 +20,7 @@ jobs:
                 with:
                     fetch-depth: 0
                     submodules: recursive
-            -   uses: maicol07/github-changelog-action@patch-1
+            -   uses: maicol07/github-changelog-action@master
                 with:
                     next_version: ${{ github.event.inputs.next_version }}
             -   uses: oleksiyrudenko/gha-git-credentials@v2-latest
