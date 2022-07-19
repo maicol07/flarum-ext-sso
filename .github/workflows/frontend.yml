@@ -1,4 +1,4 @@
-name: SSO (Single Sign On) JS
+name: Frontend
 
 on: [ workflow_dispatch, push, pull_request ]
 
@@ -6,8 +6,8 @@ jobs:
   run:
     uses: flarum/framework/.github/workflows/REUSABLE_frontend.yml@main
     with:
-      enable_bundlewatch: false
-      enable_prettier: false
+      enable_bundlewatch: true
+      enable_prettier: true
       enable_typescript: true
 
       frontend_directory: ./js
