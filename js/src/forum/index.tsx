@@ -1,42 +1,41 @@
-import {extend, override} from 'flarum/common/extend';
+import { extend, override } from 'flarum/common/extend';
 import app from 'flarum/forum/app';
 import HeaderSecondary from 'flarum/forum/components/HeaderSecondary';
 import SettingsPage from 'flarum/forum/components/SettingsPage';
 import LogInModal from 'flarum/forum/components/LogInModal';
+import { NestedStringArray } from '@askvortsov/rich-icu-message-formatter';
+
+/**
+ * Returns a setting added by the extension
+ *
+ * @param {string} slug
+ * @returns {any}
+ */
+function setting(slug: string): any {
+  return app.forum.attribute(`maicol07-sso.${slug}`);
+}
+
+/**
+ * Returns login and signup props
+ */
+function getItems(): Record<string, { url: string, itemName: string, removeItem: boolean, text: string | NestedStringArray }> {
+  return {
+    login: {
+      url: setting('login_url'),
+      itemName: 'logIn',
+      removeItem: setting('remove_login_btn') === '1',
+      text: app.translator.trans('core.forum.header.log_in_link'),
+    },
+    signup: {
+      url: setting('signup_url'),
+      itemName: 'signUp',
+      removeItem: setting('remove_signup_btn') === '1',
+      text: app.translator.trans('core.forum.header.sign_up_link'),
+    },
+  };
+}
 
 app.initializers.add('maicol07-sso', () => {
-  /**
-   * Returns a setting added by the extension
-   *
-   * @param {string} slug
-   * @returns {any}
-   */
-  function setting(slug) {
-    return app.forum.attribute(`maicol07-sso.${slug}`);
-  }
-
-  /**
-   * Returns login and signup props
-   *
-   * @returns {{login: {removeItem: boolean, itemName: string, text: any, url: *}, signup: {removeItem: boolean, itemName: string, text: any, url: *}}}
-   */
-  function getItems() {
-    return {
-      login: {
-        url: setting('login_url'),
-        itemName: 'logIn',
-        removeItem: setting('remove_login_btn') === '1',
-        text: app.translator.trans('core.forum.header.log_in_link')
-      },
-      signup: {
-        url: setting('signup_url'),
-        itemName: 'signUp',
-        removeItem: setting('remove_signup_btn') === '1',
-        text: app.translator.trans('core.forum.header.sign_up_link')
-      }
-    };
-  }
-
   override(LogInModal.prototype, 'oncreate', () => {
     const items = getItems();
     window.location.href = items.login.url;
@@ -54,10 +53,12 @@ app.initializers.add('maicol07-sso', () => {
           if (!buttons.has(props.itemName)) {
             return;
           }
-          buttons.replace(props.itemName,
+          buttons.replace(
+            props.itemName,
             <a href={props.url} className="Button Button--link">
               {props.text}
-            </a>);
+            </a>
+          );
         }
       }
     }
@@ -77,10 +78,9 @@ app.initializers.add('maicol07-sso', () => {
     }
     items.add(
       'manageAccount',
-      <a class="Button" href={setting('manage_account_url')}
-         target={setting('manage_account_btn_open_in_new_tab') === '1' ? '_blank' : ''}>
+      <a class="Button" href={setting('manage_account_url')} target={setting('manage_account_btn_open_in_new_tab') === '1' ? '_blank' : ''}>
         {app.translator.trans('maicol07-sso.forum.manage_account_btn')}
-      </a>,
+      </a>
     );
   });
 
@@ -94,5 +94,4 @@ app.initializers.add('maicol07-sso', () => {
       items.remove('account');
     }
   });
-})
-;
+});

@@ -68,6 +68,17 @@
         },
         "flagrow": {
             "discuss": "https://discuss.flarum.org/d/21666-php-and-wordpress-single-sign-on-sso"
+        },
+        "flarum-cli": {
+            "modules": {
+                "admin": true,
+                "githubActions": true,
+                "prettier": true,
+                "typescript": true,
+                "bundlewatch": true,
+                "styleci": true,
+                "editorConfig": true
+            }
         }
     },
     "replace": {
