@@ -40,7 +40,7 @@ app.initializers.add('maicol07-sso', () => {
     })
     .registerSetting(() => (
       <div>
-        <hr/>
+        <hr />
         <h3> {app.translator.trans('maicol07-sso.admin.settings.jwt_section_subtitle')}:</h3>
       </div>
     ))

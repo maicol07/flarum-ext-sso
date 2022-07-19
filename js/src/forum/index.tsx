@@ -18,7 +18,7 @@ function setting(slug: string): any {
 /**
  * Returns login and signup props
  */
-function getItems(): Record<string, { url: string, itemName: string, removeItem: boolean, text: string | NestedStringArray }> {
+function getItems(): Record<string, { url: string; itemName: string; removeItem: boolean; text: string | NestedStringArray }> {
   return {
     login: {
       url: setting('login_url'),
@@ -53,7 +53,7 @@ app.initializers.add('maicol07-sso', () => {
           if (!buttons.has(props.itemName)) {
             return;
           }
-          buttons.replace(
+          buttons.setContent(
             props.itemName,
             <a href={props.url} className="Button Button--link">
               {props.text}
