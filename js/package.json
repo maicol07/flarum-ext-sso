@@ -11,6 +11,7 @@
         "webpack-cli": "^4.0.0"
     },
     "devDependencies": {
+        "bundlewatch": "^0.3.3",
         "flarum-tsconfig": "^1.0.2",
         "prettier": "^2.5.1",
         "@flarum/prettier-config": "^1.0.0",
