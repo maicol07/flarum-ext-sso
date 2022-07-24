@@ -1,4 +1,5 @@
 import app from 'flarum/admin/app';
+import { SettingsPage } from './SettingsPage';
 
 app.initializers.add('maicol07-sso', () => {
   app.extensionData
@@ -64,5 +65,6 @@ app.initializers.add('maicol07-sso', () => {
       setting: 'maicol07-sso.jwt_signer_key',
       label: app.translator.trans('maicol07-sso.admin.settings.jwt_signer_key'),
       type: 'text',
-    });
+    })
+    .registerPage(SettingsPage);
 });
