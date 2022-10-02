@@ -15,14 +15,17 @@ class AddLogoutRedirect
 
     final public function addLogoutRedirect(): void
     {
-        if (isset($_GET['redirect']) and $_GET['redirect'] === 'false') {
+        if (isset($_GET['redirect']) && $_GET['redirect'] === 'false') {
             $url = resolve('flarum.config')['url'];
             header("Location: $url" . $_GET['path']);
             return;
         }
-        $url = $this->settings->get('maicol07-sso.logout_url');
 
-        header('Location: ' . $url);
-        die();
+        if ($this->settings->get('maicol07-sso.provider_mode') !== '1') {
+            $url = $this->settings->get('maicol07-sso.logout_url');
+
+            header('Location: ' . $url);
+            die();
+        }
     }
 }

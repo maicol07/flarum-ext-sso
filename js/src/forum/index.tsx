@@ -36,62 +36,68 @@ function getItems(): Record<string, { url: string; itemName: string; removeItem:
 }
 
 app.initializers.add('maicol07-sso', () => {
-  override(LogInModal.prototype, 'oncreate', () => {
-    const items = getItems();
-    window.location.href = items.login.url;
-    throw new Error('Stop execution');
-  });
+  window.addEventListener('load', () => {
+    if (!setting('provider_mode')) {
+      override(LogInModal.prototype, 'oncreate', () => {
+        const items = getItems();
+        window.location.href = items.login.url;
+        throw new Error('Stop execution');
+      });
 
-  extend(HeaderSecondary.prototype, 'items', (buttons) => {
-    const items = getItems();
-    for (const [, props] of Object.entries(items)) {
-      if (props.url) {
-        if (props.removeItem) {
-          buttons.remove(props.itemName);
-        } else {
-          // Remove login button
-          if (!buttons.has(props.itemName)) {
-            return;
+      extend(HeaderSecondary.prototype, 'items', (buttons) => {
+        const items = getItems();
+        for (const [, props] of Object.entries(items)) {
+          if (props.url) {
+            if (props.removeItem) {
+              buttons.remove(props.itemName);
+            } else {
+              // Remove login button
+              if (!buttons.has(props.itemName)) {
+                return;
+              }
+              buttons.setContent(
+                props.itemName,
+                <a href={props.url} className='Button Button--link'>
+                  {props.text}
+                </a>,
+              );
+            }
           }
-          buttons.setContent(
-            props.itemName,
-            <a href={props.url} className="Button Button--link">
-              {props.text}
-            </a>
-          );
         }
-      }
-    }
-  });
+      });
 
-  extend(SettingsPage.prototype, 'accountItems', (items) => {
-    if (!setting('login_url')) {
-      return;
-    }
+      extend(SettingsPage.prototype, 'accountItems', (items) => {
+        if (!setting('login_url')) {
+          return; // Do not add account items if no login url is set.
+        }
 
-    // Remove change email and password buttons
-    items.remove('changeEmail');
-    items.remove('changePassword');
+        // Remove change email and password buttons
+        items.remove('changeEmail');
+        items.remove('changePassword');
 
-    if (!setting('manage_account_url')) {
-      return;
-    }
-    items.add(
-      'manageAccount',
-      <a class="Button" href={setting('manage_account_url')} target={setting('manage_account_btn_open_in_new_tab') === '1' ? '_blank' : ''}>
-        {app.translator.trans('maicol07-sso.forum.manage_account_btn')}
-      </a>
-    );
-  });
+        if (!setting('manage_account_url')) {
+          return;
+        }
 
-  extend(SettingsPage.prototype, 'settingsItems', (items) => {
-    if (setting('manage_account_url')) {
-      return;
-    }
+        items.add(
+          'manageAccount',
+          <a class='Button' href={setting('manage_account_url')}
+             target={setting('manage_account_btn_open_in_new_tab') === '1' ? '_blank' : ''}>
+            {app.translator.trans('maicol07-sso.forum.manage_account_btn')}
+          </a>,
+        );
+      });
 
-    // Remove account section
-    if (items.has('account') && items.get('account').children.length === 0) {
-      items.remove('account');
+      extend(SettingsPage.prototype, 'settingsItems', (items) => {
+        if (setting('manage_account_url')) {
+          return; // Manage account link is added above
+        }
+
+        // Remove account section
+        if (items.has('account') && items.get('account').children.length === 0) {
+          items.remove('account');
+        }
+      });
     }
   });
 });

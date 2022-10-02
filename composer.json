@@ -40,7 +40,8 @@
     "require": {
         "php": ">=7.3",
         "ext-json": "*",
-        "flarum/core": "^1"
+        "flarum/core": "^1",
+        "maicol07/flarum-sso-plugin": "^3.0.1"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",

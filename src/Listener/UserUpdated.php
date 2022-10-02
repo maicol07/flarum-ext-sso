@@ -7,7 +7,7 @@ use Flarum\User\Event\Saving;
 use Illuminate\Support\Arr;
 use Intervention\Image\ImageManager;
 
-class UpdateUserAvatar
+class UserUpdated
 {
     final public function updateAvatarUrl(Saving $event): void
     {

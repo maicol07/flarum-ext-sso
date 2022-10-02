@@ -1,19 +1,36 @@
 maicol07-sso:
-    admin:
-        settings:
-            title: "Impostazioni SSO"
-            signup_url: "URL registrazione"
-            login_url: "URL accesso"
-            logout_url: "URL disconnessione"
-            remove_login_btn: "Rimuovi il pulsante Accedi"
-            remove_signup_btn: "Rimuovi il pulsante Registrati"
-            manage_account_url: "URL gestione account"
-            manage_account_btn_open_in_new_tab: "Apri la pagina di gestione dell'account in una nuova scheda"
+  admin:
+    settings:
+      title: "Impostazioni SSO"
 
-            # JWT Settings
-            jwt_section_subtitle: Impostazioni relative al componente aggiuntivo JWT
-            jwt_iss: URL dell'emittente
-            jwt_signer_key: Chiave del firmatario
-            jwt_signing_algorithm: Algoritmo firma
+      provider_mode: "Attiva questa opzione per utilizzare la modalità provider (SSO tra istanze di Flarum).
+            Permette alle altre istanze di Flarum di far accedere un utente di questa istanza di Flarum.
+            Questo disattiverà le funzionalità SSO standard con gli altri siti web."
+      client_name: "Nome"
+      client_name_help: "Nome dell'istanza di Flarum"
+      client_url: "URL"
+      client_url_help: "URL dell'istanza di Flarum"
+      client_api_key: "Chiave API"
+      client_api_key_help: "La chiave API della tua istanza di Flarum."
+      client_password_token: "Token password"
+      client_password_token_help: "Un token password casuale da utilizzare per le registrazioni della tua istanza di Flarum."
+      client_verify_ssl: "Verifica SSL"
+      client_verify_ssl_help: "Verifica lo stato SSL della tua istanza di Flarum durante le richieste effettuate ad esso (consigliato)."
+
+      signup_url: "URL registrazione"
+      login_url: "URL accesso"
+      logout_url: "URL disconnessione"
+      remove_login_btn: "Rimuovi il pulsante Accedi"
+      remove_signup_btn: "Rimuovi il pulsante Registrati"
+      manage_account_url: "URL gestione account"
+      manage_account_btn_open_in_new_tab: "Apri la pagina di gestione dell'account in una nuova scheda"
+
+      cookies_prefix: "Prefisso nome cookie"
+
+      # JWT Settings
+      jwt_section_subtitle: Impostazioni relative al componente aggiuntivo JWT
+      jwt_iss: URL dell'emittente
+      jwt_signer_key: Chiave del firmatario
+      jwt_signing_algorithm: Algoritmo firma
     forum:
         manage_account_btn: "Gestisci account"
