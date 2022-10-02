@@ -2,23 +2,22 @@ name: Buid JS
 
 
 on:
-    push:
-        branches:
-            - master
+  push:
+    branches:
+      - master
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-        -   uses: actions/checkout@master
-        -   uses: flarum/action-build@master
-            env:
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        -   name: Trigger changelog workflow
-            uses: peter-evans/repository-dispatch@v1
-            with:
-                token: ${{ secrets.GITHUB_TOKEN }}
-                repository: ${{ github.repository }}
-                event-type: trigger-changelog-workflow
-                client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+      - uses: actions/checkout@master
+      - uses: flarum/action-build@2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          build_script: build # npm run build
+          build_typings_script: build-typings # npm run build-typings
+          package_manager: npm # Use NPM, not Yarn
+          js_path: ./js # JS located in `./js`
+          do_not_commit: false # Commit built JS by default
+          commit_all_dirty: false
