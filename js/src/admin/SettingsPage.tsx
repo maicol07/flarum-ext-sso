@@ -11,9 +11,9 @@ export class SettingsPage extends ExtensionPage {
     const flarumSettings = this.flarumClientSettings(1);
 
     return (
-      <div className='ExtensionPage-settings'>
-        <div className='container'>
-          <div className='Form'>
+      <div className="ExtensionPage-settings">
+        <div className="container">
+          <div className="Form">
             <div>
               {this.buildSettingComponent({
                 type: 'checkbox',
@@ -23,25 +23,25 @@ export class SettingsPage extends ExtensionPage {
                 className: 'maicol07-sso--provider-mode',
               })}
               <div hidden={!this.setting('maicol07-sso.provider_mode')()}>
-                <div className='Form-group'>
+                <div className="Form-group">
                   <table>
                     <thead>
-                    <tr>
-                      {flarumSettings.map((setting) => (
-                        <th key={setting.setting}>
-                          {setting.label}
-                          <br />
-                          <span className='helpText' style={{ fontWeight: 'normal' }}>
+                      <tr>
+                        {flarumSettings.map((setting) => (
+                          <th key={setting.setting}>
+                            {setting.label}
+                            <br />
+                            <span className="helpText" style={{ fontWeight: 'normal' }}>
                               {setting.help}
                             </span>
-                        </th>
-                      ))}
-                    </tr>
+                          </th>
+                        ))}
+                      </tr>
                     </thead>
                     <tbody>{this.clientRows()}</tbody>
                   </table>
                 </div>
-                <Button className='Button' aria-label='Add instance' icon='fa fa-plus' onclick={this.addRow.bind(this)}>
+                <Button className="Button" aria-label="Add instance" icon="fa fa-plus" onclick={this.addRow.bind(this)}>
                   Add Flarum instance
                 </Button>
               </div>
@@ -50,19 +50,18 @@ export class SettingsPage extends ExtensionPage {
             <hr />
 
             <div hidden={this.setting('maicol07-sso.provider_mode')()}>
-              <div
-                className='Form-group'>{this.generalClientSettings().map(this.buildSettingComponent.bind(this))}</div>
+              <div className="Form-group">{this.generalClientSettings().map(this.buildSettingComponent.bind(this))}</div>
               {settings?.map(this.buildSettingComponent.bind(this))}
 
               <hr />
 
-              <div className='Form-group'>
+              <div className="Form-group">
                 <h4>{app.translator.trans('maicol07-sso.admin.settings.jwt_section_subtitle')}</h4>
                 {this.jwtSettings().map(this.buildSettingComponent.bind(this))}
               </div>
             </div>
 
-            <div className='Form-group'>{this.submitButton()}</div>
+            <div className="Form-group">{this.submitButton()}</div>
           </div>
         </div>
       </div>
@@ -91,7 +90,7 @@ export class SettingsPage extends ExtensionPage {
             setting.help = undefined;
             return <td key={setting.setting}>{this.buildSettingComponent(setting)}</td>;
           })}
-        </tr>,
+        </tr>
       );
       i++;
     }

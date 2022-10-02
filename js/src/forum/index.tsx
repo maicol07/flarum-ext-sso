@@ -57,9 +57,9 @@ app.initializers.add('maicol07-sso', () => {
               }
               buttons.setContent(
                 props.itemName,
-                <a href={props.url} className='Button Button--link'>
+                <a href={props.url} className="Button Button--link">
                   {props.text}
-                </a>,
+                </a>
               );
             }
           }
@@ -81,10 +81,9 @@ app.initializers.add('maicol07-sso', () => {
 
         items.add(
           'manageAccount',
-          <a class='Button' href={setting('manage_account_url')}
-             target={setting('manage_account_btn_open_in_new_tab') === '1' ? '_blank' : ''}>
+          <a class="Button" href={setting('manage_account_url')} target={setting('manage_account_btn_open_in_new_tab') === '1' ? '_blank' : ''}>
             {app.translator.trans('maicol07-sso.forum.manage_account_btn')}
-          </a>,
+          </a>
         );
       });
 
