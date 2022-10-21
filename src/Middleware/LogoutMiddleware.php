@@ -2,6 +2,7 @@
 
 namespace Maicol07\SSO\Middleware;
 
+use Flarum\Foundation\Config;
 use Flarum\Http\RequestUtil;
 use Flarum\Settings\SettingsRepositoryInterface;
 use Illuminate\Support\Arr;
@@ -13,11 +14,17 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class LogoutMiddleware implements MiddlewareInterface
 {
+    /**
+     * @var Config
+     */
+    private $config;
+
     /** @var SettingsRepositoryInterface */
     private $settings;
 
-    public function __construct(SettingsRepositoryInterface $settings)
+    public function __construct(Config $config, SettingsRepositoryInterface $settings)
     {
+        $this->config = $config;
         $this->settings = $settings;
     }
 
@@ -32,7 +39,7 @@ class LogoutMiddleware implements MiddlewareInterface
         $prefix = $this->settings->get('maicol07-sso.cookies_prefix', 'flarum');
 
         if (Arr::exists($cookies, "{$prefix}_logout") and !$actor->isGuest() and $path !== $logout_url) {
-            return new RedirectResponse("$logout_url?token=$token&redirect=false&path=$path");
+            return new RedirectResponse($this->config->url()->__toString() . "$logout_url?token=$token&redirect=false&path=$path");
         }
 
         return $handler->handle($request);
