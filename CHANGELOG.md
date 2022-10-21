@@ -1,6 +1,19 @@
 # Changelog
 
 
+<a name="1.11.1"></a>
+## [1.11.1](https://github.com/maicol07/flarum-ext-sso/compare/1.11...1.11.1)
+
+> Released on October 21, 2022
+
+### 🐛 Bug Fixes
+- [`aa58e2b`](https://github.com/maicol07/flarum-ext-sso/commit/aa58e2bf0b1602c510df58b6472f38d9499ecdd1) 🐛 logout middleware redirect
+  
+  ### 🔀 Pull Requests
+
+- [`86e0a09`](https://github.com/maicol07/flarum-ext-sso/commit/86e0a09080c117ccf2d5c03fc564f08989486bec) Merge pull request [#16](https://github.com/maicol07/flarum-ext-sso/issues/16) from ruslanbelziuk/fix_logout_middleware
+  
+  
 <a name="1.11"></a>
 ## [1.11](https://github.com/maicol07/flarum-ext-sso/compare/1.10.3...1.11)
 
