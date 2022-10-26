@@ -1,6 +1,19 @@
 # Changelog
 
 
+<a name="1.11.2"></a>
+## [1.11.2](https://github.com/maicol07/flarum-ext-sso/compare/1.11.1...1.11.2)
+
+> Released on October 26, 2022
+
+### ✨ Features
+- [`8ea8f8f`](https://github.com/maicol07/flarum-ext-sso/commit/8ea8f8fed95b7ffd4a42cca4d2f5027f28eb3f27) ✨ Fix login redirects in embeded mode
+  
+  ### 🔀 Pull Requests
+
+- [`da54638`](https://github.com/maicol07/flarum-ext-sso/commit/da546382d47199b79903f4fe58a249e32ffe4407) Merge pull request [#17](https://github.com/maicol07/flarum-ext-sso/issues/17) from ruslanbelziuk/embed_support
+  
+  
 <a name="1.11.1"></a>
 ## [1.11.1](https://github.com/maicol07/flarum-ext-sso/compare/1.11...1.11.1)
 
