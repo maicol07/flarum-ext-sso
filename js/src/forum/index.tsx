@@ -40,7 +40,7 @@ app.initializers.add('maicol07-sso', () => {
     if (!setting('provider_mode')) {
       override(LogInModal.prototype, 'oncreate', () => {
         const items = getItems();
-        window.location.href = items.login.url;
+        window.top.location.href = items.login.url;
         throw new Error('Stop execution');
       });
 
