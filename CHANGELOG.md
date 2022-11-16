@@ -1,6 +1,15 @@
 # Changelog
 
 
+<a name="1.11.3"></a>
+## [1.11.3](https://github.com/maicol07/flarum-ext-sso/compare/1.11.2...1.11.3)
+
+> Released on November 16, 2022
+
+### 🐛 Bug Fixes
+- [`de71fb1`](https://github.com/maicol07/flarum-ext-sso/commit/de71fb1639a551e78af1aba3ab146281ebfd5add) Re-added missing Logout URL setting
+  
+  
 <a name="1.11.2"></a>
 ## [1.11.2](https://github.com/maicol07/flarum-ext-sso/compare/1.11.1...1.11.2)
 
