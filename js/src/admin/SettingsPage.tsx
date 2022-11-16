@@ -146,6 +146,11 @@ export class SettingsPage extends ExtensionPage {
         type: 'url',
       },
       {
+        setting: 'maicol07-sso.logout_url',
+        label: app.translator.trans('maicol07-sso.admin.settings.logout_url'),
+        type: 'url',
+      },
+      {
         setting: 'maicol07-sso.manage_account_url',
         label: app.translator.trans('maicol07-sso.admin.settings.manage_account_url'),
         type: 'url',
