@@ -1,6 +1,32 @@
 # Changelog
 
 
+<a name="1.11.2"></a>
+## [1.11.2](https://github.com/maicol07/flarum-ext-sso/compare/1.11.1...1.11.2)
+
+> Released on October 26, 2022
+
+### ✨ Features
+- [`8ea8f8f`](https://github.com/maicol07/flarum-ext-sso/commit/8ea8f8fed95b7ffd4a42cca4d2f5027f28eb3f27) ✨ Fix login redirects in embeded mode
+  
+  ### 🔀 Pull Requests
+
+- [`da54638`](https://github.com/maicol07/flarum-ext-sso/commit/da546382d47199b79903f4fe58a249e32ffe4407) Merge pull request [#17](https://github.com/maicol07/flarum-ext-sso/issues/17) from ruslanbelziuk/embed_support
+  
+  
+<a name="1.11.1"></a>
+## [1.11.1](https://github.com/maicol07/flarum-ext-sso/compare/1.11...1.11.1)
+
+> Released on October 21, 2022
+
+### 🐛 Bug Fixes
+- [`aa58e2b`](https://github.com/maicol07/flarum-ext-sso/commit/aa58e2bf0b1602c510df58b6472f38d9499ecdd1) 🐛 logout middleware redirect
+  
+  ### 🔀 Pull Requests
+
+- [`86e0a09`](https://github.com/maicol07/flarum-ext-sso/commit/86e0a09080c117ccf2d5c03fc564f08989486bec) Merge pull request [#16](https://github.com/maicol07/flarum-ext-sso/issues/16) from ruslanbelziuk/fix_logout_middleware
+  
+  
 <a name="1.11"></a>
 ## [1.11](https://github.com/maicol07/flarum-ext-sso/compare/1.10.3...1.11)
 
