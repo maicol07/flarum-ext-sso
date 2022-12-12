@@ -14,7 +14,7 @@ export class SettingsPage extends ExtensionPage {
       <div className="ExtensionPage-settings">
         <div className="container">
           <div className="Form">
-            <div>
+            <div className="Form-group">
               {this.buildSettingComponent({
                 type: 'checkbox',
                 label: 'Provider mode',
@@ -22,7 +22,7 @@ export class SettingsPage extends ExtensionPage {
                 help: app.translator.trans('maicol07-sso.admin.settings.provider_mode'),
                 className: 'maicol07-sso--provider-mode',
               })}
-              <div hidden={!this.setting('maicol07-sso.provider_mode')()}>
+              <div hidden={!this.booleanSetting('provider_mode')}>
                 <div className="Form-group">
                   <table>
                     <thead>
@@ -47,9 +47,8 @@ export class SettingsPage extends ExtensionPage {
               </div>
             </div>
 
-            <hr />
-
-            <div hidden={this.setting('maicol07-sso.provider_mode')()}>
+            <div className="Form-group" hidden={this.booleanSetting('provider_mode')}>
+              <hr />
               <div className="Form-group">{this.generalClientSettings().map(this.buildSettingComponent.bind(this))}</div>
               {settings?.map(this.buildSettingComponent.bind(this))}
 
@@ -187,5 +186,9 @@ export class SettingsPage extends ExtensionPage {
         type: 'text',
       },
     ];
+  }
+
+  booleanSetting(setting: string): boolean {
+    return Boolean(Number(this.setting(`maicol07-sso.${setting}`)()));
   }
 }
