@@ -7,12 +7,18 @@ import { NestedStringArray } from '@askvortsov/rich-icu-message-formatter';
 
 /**
  * Returns a setting added by the extension
- *
- * @param {string} slug
- * @returns {any}
  */
-function setting(slug: string): any {
-  return app.forum.attribute(`maicol07-sso.${slug}`);
+function setting(slug: string, cast?: typeof Boolean | typeof Number): any | boolean | number {
+  let setting = app.forum.attribute(`maicol07-sso.${slug}`);
+
+  if (cast !== undefined) {
+    if (cast === Boolean && isNaN(setting as number)) {
+      setting = Number(setting);
+    }
+    return cast(setting);
+  }
+
+  return setting;
 }
 
 /**
@@ -23,13 +29,13 @@ function getItems(): Record<string, { url: string; itemName: string; removeItem:
     login: {
       url: setting('login_url'),
       itemName: 'logIn',
-      removeItem: setting('remove_login_btn') === '1',
+      removeItem: setting('remove_login_btn', Boolean),
       text: app.translator.trans('core.forum.header.log_in_link'),
     },
     signup: {
       url: setting('signup_url'),
       itemName: 'signUp',
-      removeItem: setting('remove_signup_btn') === '1',
+      removeItem: setting('remove_signup_btn', Boolean),
       text: app.translator.trans('core.forum.header.sign_up_link'),
     },
   };
@@ -37,10 +43,10 @@ function getItems(): Record<string, { url: string; itemName: string; removeItem:
 
 app.initializers.add('maicol07-sso', () => {
   window.addEventListener('load', () => {
-    if (!setting('provider_mode')) {
+    if (!setting('provider_mode', Boolean)) {
       override(LogInModal.prototype, 'oncreate', () => {
         const items = getItems();
-        window.top.location.href = items.login.url;
+        window.location.href = items.login.url;
         throw new Error('Stop execution');
       });
 
@@ -67,7 +73,7 @@ app.initializers.add('maicol07-sso', () => {
       });
 
       extend(SettingsPage.prototype, 'accountItems', (items) => {
-        if (!setting('login_url')) {
+        if (!setting('login_url', Boolean)) {
           return; // Do not add account items if no login url is set.
         }
 
@@ -75,20 +81,20 @@ app.initializers.add('maicol07-sso', () => {
         items.remove('changeEmail');
         items.remove('changePassword');
 
-        if (!setting('manage_account_url')) {
+        if (!setting('manage_account_url', Boolean)) {
           return;
         }
 
         items.add(
           'manageAccount',
-          <a class="Button" href={setting('manage_account_url')} target={setting('manage_account_btn_open_in_new_tab') === '1' ? '_blank' : ''}>
+          <a class="Button" href={setting('manage_account_url')} target={setting('manage_account_btn_open_in_new_tab', Boolean) ? '_blank' : ''}>
             {app.translator.trans('maicol07-sso.forum.manage_account_btn')}
           </a>
         );
       });
 
       extend(SettingsPage.prototype, 'settingsItems', (items) => {
-        if (setting('manage_account_url')) {
+        if (setting('manage_account_url', Boolean)) {
           return; // Manage account link is added above
         }
 
