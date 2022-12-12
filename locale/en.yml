@@ -31,5 +31,5 @@ maicol07-sso:
       jwt_iss: Issuer Domain
       jwt_signer_key: Signer key
       jwt_signing_algorithm: Signing Method
-    forum:
-        manage_account_btn: "Manage account"
+  forum:
+      manage_account_btn: "Manage account"
