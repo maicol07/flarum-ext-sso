@@ -1,6 +1,23 @@
 # Changelog
 
 
+<a name="1.11.4"></a>
+## [1.11.4](https://github.com/maicol07/flarum-ext-sso/compare/1.11.3...1.11.4)
+
+> Released on December 13, 2022
+
+### ⚡ Performance Improvements
+- [`f074256`](https://github.com/maicol07/flarum-ext-sso/commit/f074256583433e5600634fa6fa3f90188d69d6f3) ⚡ Improved responsiveness of settings page
+  
+  ### 🐛 Bug Fixes
+- [`769495a`](https://github.com/maicol07/flarum-ext-sso/commit/769495aeeb47f55352550d7df7af6bfd0b0baaf4) 🐛 Fix initializer not loaded on page refresh
+  - [`2619af0`](https://github.com/maicol07/flarum-ext-sso/commit/2619af0f13b10a7e9c7aa51722fbf34fa845185c) 💬 Fix untraslated button
+  
+  ### Other changes
+- [`168fa9d`](https://github.com/maicol07/flarum-ext-sso/commit/168fa9d8803be47ed05b86f69dc696de2c8ad4a7) Added casting to settings function
+  - [`5b9567c`](https://github.com/maicol07/flarum-ext-sso/commit/5b9567c53fdd60e32ccafcb48e0fc7e77476d806) **deps:** ⬆️ Updated dependencies
+  
+  
 <a name="1.11.3"></a>
 ## [1.11.3](https://github.com/maicol07/flarum-ext-sso/compare/1.11.2...1.11.3)
 
