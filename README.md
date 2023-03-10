@@ -8,27 +8,28 @@ This extension enables Single Sign On (shortly SSO) for Flarum. The workflow is 
 you run Flarum on a subdomain, but you want to use the login mechanism of your main website or SSO system.
 
 ## Installation
-Install via command below or via Bazaar and activate the extension.
-```
-composer require maicol07/flarum-ext-sso
-```
+### Composer
+1. Run the following command in your Flarum directory:
+    ```sh
+    composer require maicol07/flarum-ext-sso
+    ```
+2. Enable the extension in the admin panel.
 
 More detailed instructions are written [here](https://docs.maicol07.it/en/flarum-sso/ext#installation).
 
 ## Upgrading
-Upgrade via command below or via Bazaar.
-```
-composer update maicol07/flarum-ext-sso
-```
+### Composer
+1. Run the following command in your Flarum directory:
+    ```sh
+    composer update maicol07/flarum-ext-sso
+    ```
 
 More detailed instructions are written [here](https://docs.maicol07.it/en/flarum-sso/ext#upgrading).
 
 ## How to use
-
 Check instructions on the [official docs](https://docs.maicol07.it/en/flarum-sso/ext)
 
 ## Links
-
 - [Forum thread](https://discuss.flarum.org/d/21666-php-and-wordpress-single-sign-on-sso)
 - [Extiverse](https://extiverse.com/extension/maicol07/flarum-ext-sso)
 - [Packagist](https://packagist.org/packages/maicol07/flarum-ext-sso)
