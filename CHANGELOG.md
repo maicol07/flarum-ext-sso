@@ -1,6 +1,30 @@
 # Changelog
 
 
+<a name="1.11.5"></a>
+## [1.11.5](https://github.com/maicol07/flarum-ext-sso/compare/1.11.4...1.11.5)
+
+> Released on March 10, 2023
+
+### 🐛 Bug Fixes
+- [`2795bce`](https://github.com/maicol07/flarum-ext-sso/commit/2795bced519c1114f1e308f9e73fe0d228943a44) 🐛 Fix wrong event type when deleting an user
+  
+  ### 📝 Docs changes
+- [`7fd176c`](https://github.com/maicol07/flarum-ext-sso/commit/7fd176c3ff98dba74ea84de9c299be6452b7d02a) 📝 Removed bazaar references
+  
+  ### Other changes
+- [`91a8e68`](https://github.com/maicol07/flarum-ext-sso/commit/91a8e68bcde793d35565d9c625ca24937098464a) 🙈 Added composer.lock in .gitignore
+  - [`f957f86`](https://github.com/maicol07/flarum-ext-sso/commit/f957f86063ee9b687b5916e6fea519b5bea5c273) Added IDE settings
+  - [`d389a1c`](https://github.com/maicol07/flarum-ext-sso/commit/d389a1c5df684b1a55bfba9bbad4d97f4afd6b28) Added composer.lock
+  - [`55baf16`](https://github.com/maicol07/flarum-ext-sso/commit/55baf1640071ebef30ca98b02b3e588be30aadca) **deps:** ⬆️ Upgraded dependencies
+  
+  ### ⏪ Reverts
+
+- [`b109334`](https://github.com/maicol07/flarum-ext-sso/commit/b10933460fe2b438067ad0dd31e342ab615352fe) chore: Added composer.lock
+  
+      This reverts commit d389a1c5df684b1a55bfba9bbad4d97f4afd6b28.
+  
+  
 <a name="1.11.4"></a>
 ## [1.11.4](https://github.com/maicol07/flarum-ext-sso/compare/1.11.3...1.11.4)
 
@@ -466,19 +490,19 @@
   
   
 <a name="1.4.3"></a>
-## [1.4.3](https://github.com/maicol07/flarum-ext-sso/compare/1.4.1...1.4.3)
+## [1.4.3](https://github.com/maicol07/flarum-ext-sso/compare/1.4.2...1.4.3)
 
 > Released on January 20, 2020
 
 
-<a name="1.4.1"></a>
-## [1.4.1](https://github.com/maicol07/flarum-ext-sso/compare/1.4.2...1.4.1)
+<a name="1.4.2"></a>
+## [1.4.2](https://github.com/maicol07/flarum-ext-sso/compare/1.4.1...1.4.2)
 
 > Released on January 05, 2020
 
 
-<a name="1.4.2"></a>
-## [1.4.2](https://github.com/maicol07/flarum-ext-sso/compare/1.4.0...1.4.2)
+<a name="1.4.1"></a>
+## [1.4.1](https://github.com/maicol07/flarum-ext-sso/compare/1.4.0...1.4.1)
 
 > Released on January 05, 2020
 
