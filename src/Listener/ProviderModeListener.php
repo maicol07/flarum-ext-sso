@@ -4,6 +4,7 @@ namespace Maicol07\SSO\Listener;
 
 use Flarum\Foundation\Config;
 use Flarum\Settings\SettingsRepositoryInterface;
+use Flarum\User\Event\Deleted;
 use Flarum\User\Event\LoggedIn;
 use Flarum\User\Event\Saving;
 use Maicol07\SSO\Flarum;
@@ -13,7 +14,9 @@ class ProviderModeListener
     /** @return SettingsRepositoryInterface */
     private $settings;
 
-    /** @var Config $config */
+    /** @var Config $config
+     * @noinspection VirtualTypeCheckInspection
+     */
     private $config;
 
     public function __construct(SettingsRepositoryInterface $settings, Config $config)
@@ -86,7 +89,7 @@ class ProviderModeListener
         }
     }
 
-    final public function deleteUserInClients(Saving $event): void
+    final public function deleteUserInClients(Deleted $event): void
     {
         $user = $event->user;
 
