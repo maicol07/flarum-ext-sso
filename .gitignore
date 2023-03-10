@@ -1,5 +1,6 @@
 js/node_modules
 /.php_cs.cache
+composer.lock
 
 # Created by https://www.toptal.com/developers/gitignore/api/node,composer,phpstorm+iml
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,composer,phpstorm+iml
