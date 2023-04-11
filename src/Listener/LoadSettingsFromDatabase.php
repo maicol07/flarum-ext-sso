@@ -14,7 +14,7 @@ class LoadSettingsFromDatabase
     {
         if ($settings->get('maicol07-sso.disable_login_btn')) {
             $settings->set('maicol07-sso.remove_login_btn', $settings->get('maicol07-sso.disable_login_btn'));
-            $settings->set('maicol07-sso.remove_signup_btn', 'maicol07-sso.disable_signup_btn');
+            $settings->set('maicol07-sso.remove_signup_btn', $settings->get('maicol07-sso.disable_signup_btn'));
             $settings->delete('maicol07-sso.disable_login_btn');
             $settings->delete('maicol07-sso.disable_signup_btn');
         }
