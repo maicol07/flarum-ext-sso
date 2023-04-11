@@ -51,5 +51,6 @@ return [
         ->serializeToForum('maicol07-sso.manage_account_btn_open_in_new_tab', 'maicol07-sso.manage_account_btn_open_in_new_tab')
         ->serializeToForum('maicol07-sso.remove_login_btn', 'maicol07-sso.remove_login_btn')
         ->serializeToForum('maicol07-sso.remove_signup_btn', 'maicol07-sso.remove_signup_btn')
+        ->serializeToForum('maicol07-sso.disable_self_activation', 'maicol07-sso.disable_self_activation')
         ->serializeToForum('maicol07-sso.provider_mode', 'maicol07-sso.provider_mode')
 ];

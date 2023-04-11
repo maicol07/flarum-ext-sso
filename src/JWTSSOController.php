@@ -51,6 +51,9 @@ class JWTSSOController implements RequestHandlerInterface
     /** @var string */
     private $signer_key;
 
+    /** @var bool */
+    private $disable_self_activation;
+
     /**
      * @param Dispatcher $bus
      * @param UserRepository $users
@@ -68,6 +71,7 @@ class JWTSSOController implements RequestHandlerInterface
         $this->iss = $settings->get('maicol07-sso.jwt_iss');
         $this->signing_algorithm = $settings->get('maicol07-sso.jwt_signing_algorithm') ?? 'Sha256';
         $this->signer_key = $settings->get('maicol07-sso.jwt_signer_key');
+        $this->disable_self_activation = $settings->get('maicol07-sso.disable_self_activation');
     }
 
     /**
@@ -150,7 +154,10 @@ class JWTSSOController implements RequestHandlerInterface
         }
 
         if ($user === null) {
-            Arr::set($jwt_user, 'attributes.isEmailConfirmed', true);
+
+            if (!$this->disable_self_activation) { # TODO: Test conditional
+                Arr::set($jwt_user, 'attributes.isEmailConfirmed', true);
+            }
 
             $actor = $this->users->findOrFail(1);
             $data = Arr::except($jwt_user, 'id');

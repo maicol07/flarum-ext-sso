@@ -24,6 +24,7 @@ maicol07-sso:
       remove_signup_btn: "Remove signup button"
       manage_account_url: "Manage account URL"
       manage_account_btn_open_in_new_tab: "Open account management in a new tab"
+      disable_self_activation: "Disable self activation for new users"
       cookies_prefix: "Cookies name prefix"
 
       # JWT Settings

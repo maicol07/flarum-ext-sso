@@ -19,5 +19,10 @@ app.initializers.add('maicol07-sso', () => {
       label: app.translator.trans('maicol07-sso.admin.settings.remove_signup_btn'),
       type: 'boolean',
     })
+    .registerSetting({
+      setting: 'maicol07-sso.disable_self_activation',
+      label: app.translator.trans('maicol07-sso.admin.settings.disable_self_activation'),
+      type: 'boolean',
+    })
     .registerPage(SettingsPage);
 });
