@@ -24,7 +24,7 @@ maicol07-sso:
       remove_signup_btn: "Rimuovi il pulsante Registrati"
       manage_account_url: "URL gestione account"
       manage_account_btn_open_in_new_tab: "Apri la pagina di gestione dell'account in una nuova scheda"
-
+      disable_self_activation: "Disabilita l'attivazione automatica per i nuovi utenti" # TODO: Check translation
       cookies_prefix: "Prefisso nome cookie"
 
       # JWT Settings
