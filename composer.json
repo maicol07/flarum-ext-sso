@@ -41,14 +41,11 @@
         "php": ">=7.3",
         "ext-json": "*",
         "flarum/core": "^1",
-        "maicol07/flarum-sso-plugin": "^3"
-    },
-    "require-dev": {
-        "roave/security-advisories": "dev-latest",
+        "maicol07/flarum-sso-plugin": "^3",
         "lcobucci/jwt": ">=4.1"
     },
-    "suggest": {
-        "lcobucci/jwt": ">=4.1. This is required if you want to use the JWT features that comes with the premium addon"
+    "require-dev": {
+        "roave/security-advisories": "dev-latest"
     },
     "autoload": {
         "psr-4": {
