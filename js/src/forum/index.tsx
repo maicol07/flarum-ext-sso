@@ -48,7 +48,7 @@ app.initializers.add('maicol07-sso', () => {
       if (loginUrl) {
         window.location.href = loginUrl;
       } else {
-        alert('No SSO login url set, please check the settings!');
+        app.alerts.show({ type: 'error' }, app.translator.trans('maicol07-sso.forum.no_login_url_error'));
       }
 
       throw new Error('Stop execution');

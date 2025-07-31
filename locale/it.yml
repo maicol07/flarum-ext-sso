@@ -34,3 +34,4 @@ maicol07-sso:
       jwt_signing_algorithm: Algoritmo firma
   forum:
       manage_account_btn: "Gestisci account"
+      no_login_url_error: "Nessun URL di accesso impostato, controlla le impostazioni SSO!"
