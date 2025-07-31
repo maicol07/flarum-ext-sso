@@ -44,8 +44,13 @@ function getItems(): Record<string, { url: string; itemName: string; removeItem:
 app.initializers.add('maicol07-sso', () => {
   override(LogInModal.prototype, 'oncreate', () => {
     if (!setting('provider_mode', Boolean)) {
-      const items = getItems();
-      window.location.href = items.login.url;
+      const loginUrl = setting('login_url');
+      if (loginUrl) {
+        window.location.href = loginUrl;
+      } else {
+        app.alerts.show({ type: 'error' }, app.translator.trans('maicol07-sso.forum.no_login_url_error'));
+      }
+
       throw new Error('Stop execution');
     }
   });

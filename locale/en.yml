@@ -33,3 +33,4 @@ maicol07-sso:
       jwt_signing_algorithm: Signing Method
   forum:
       manage_account_btn: "Manage account"
+      no_login_url_error: "No login URL set, please check the SSO settings!"
