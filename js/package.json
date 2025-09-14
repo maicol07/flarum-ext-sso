@@ -12,7 +12,6 @@
         "bundlewatch": "^0.4.1",
         "flarum-tsconfig": "^2.0.0",
         "flarum-webpack-config": "^3.0.2",
-        "mithril": "^2.3.3",
         "mithril": "^2.3.7",
         "prettier": "^3.6.2",
         "typescript": "^5.9.2",
