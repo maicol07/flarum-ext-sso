@@ -8,14 +8,13 @@
   "dependencies": {},
   "devDependencies": {
     "@types/mithril": "^2.2.8",
+      "@types/mithril-global": "^2.2.4",
     "@flarum/prettier-config": "^1.0.0",
     "bundlewatch": "^0.4.2",
     "flarum-tsconfig": "^2.0.0",
     "flarum-webpack-config": "^3.0.4",
-    "mithril": "^2.3.8",
     "prettier": "^3.8.3",
     "typescript": "^6.0.3",
-    "typescript-coverage-report": "^1.1.1",
     "webpack": "^5.107.1",
     "webpack-cli": "^7.0.2"
   },
