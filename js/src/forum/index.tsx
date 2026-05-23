@@ -1,7 +1,7 @@
 import { extend, override } from 'flarum/common/extend';
 import app from 'flarum/forum/app';
 import HeaderSecondary from 'flarum/forum/components/HeaderSecondary';
-import { NestedStringArray } from '@askvortsov/rich-icu-message-formatter';
+import Link from 'flarum/common/components/Link';
 
 /**
  * Returns a setting added by the extension
@@ -22,7 +22,7 @@ function setting(slug: string, cast?: typeof Boolean | typeof Number): any | boo
 /**
  * Returns login and signup props
  */
-function getItems(): Record<string, { url: string; itemName: string; removeItem: boolean; text: string | NestedStringArray }> {
+function getItems(): Record<string, { url: string; itemName: string; removeItem: boolean; text: string | any[] }> {
   return {
     login: {
       url: setting('login_url'),
@@ -92,9 +92,14 @@ app.initializers.add('maicol07-sso', () => {
 
     items.add(
       'manageAccount',
-      <a class="Button" href={setting('manage_account_url')} target={setting('manage_account_btn_open_in_new_tab', Boolean) ? '_blank' : ''}>
+      <Link
+        class="Button"
+        external={true}
+        href={setting('manage_account_url')}
+        target={setting('manage_account_btn_open_in_new_tab', Boolean) ? '_blank' : ''}
+      >
         {app.translator.trans('maicol07-sso.forum.manage_account_btn')}
-      </a>
+      </Link>
     );
   });
 
