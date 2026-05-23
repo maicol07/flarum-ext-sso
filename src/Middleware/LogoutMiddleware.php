@@ -14,18 +14,8 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class LogoutMiddleware implements MiddlewareInterface
 {
-    /**
-     * @var Config
-     */
-    private $config;
-
-    /** @var SettingsRepositoryInterface */
-    private $settings;
-
-    public function __construct(Config $config, SettingsRepositoryInterface $settings)
+    public function __construct(private Config $config, private SettingsRepositoryInterface $settings)
     {
-        $this->config = $config;
-        $this->settings = $settings;
     }
 
     final public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface

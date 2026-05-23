@@ -33,12 +33,6 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class JWTSSOController implements RequestHandlerInterface
 {
-    /** @var UserRepository */
-    private $users;
-
-    /** @var Dispatcher */
-    private $bus;
-
     /** @var string */
     private $site_url;
 
@@ -51,19 +45,12 @@ class JWTSSOController implements RequestHandlerInterface
     /** @var string */
     private $signer_key;
 
-    /**
-     * @param Dispatcher $bus
-     * @param UserRepository $users
-     * @param SettingsRepositoryInterface $settings
-     */
     public function __construct(
-        Dispatcher                  $bus,
-        UserRepository              $users,
+        private Dispatcher                  $bus,
+        private UserRepository              $users,
         SettingsRepositoryInterface $settings
     )
     {
-        $this->bus = $bus;
-        $this->users = $users;
         $this->site_url = resolve('flarum.config')['url'];
         $this->iss = $settings->get('maicol07-sso.jwt_iss');
         $this->signing_algorithm = $settings->get('maicol07-sso.jwt_signing_algorithm') ?? 'Sha256';

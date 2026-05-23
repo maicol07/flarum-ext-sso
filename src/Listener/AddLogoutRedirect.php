@@ -6,11 +6,8 @@ use Flarum\Settings\SettingsRepositoryInterface;
 
 class AddLogoutRedirect
 {
-    private $settings;
-
-    public function __construct(SettingsRepositoryInterface $settings)
+    public function __construct(private SettingsRepositoryInterface $settings)
     {
-        $this->settings = $settings;
     }
 
     final public function addLogoutRedirect(): void

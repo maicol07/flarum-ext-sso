@@ -11,18 +11,8 @@ use Maicol07\SSO\Flarum;
 
 class ProviderModeListener
 {
-    /** @return SettingsRepositoryInterface */
-    private $settings;
-
-    /** @var Config $config
-     * @noinspection VirtualTypeCheckInspection
-     */
-    private $config;
-
-    public function __construct(SettingsRepositoryInterface $settings, Config $config)
+    public function __construct(private SettingsRepositoryInterface $settings, private Config $config)
     {
-        $this->settings = $settings;
-        $this->config = $config;
     }
 
     final public function loginClients(LoggedIn $event): void
