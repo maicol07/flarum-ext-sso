@@ -10,7 +10,7 @@ readonly class AddLogoutRedirect
     {
     }
 
-    final public function addLogoutRedirect(): void
+    final public function __invoke(): void
     {
         if (isset($_GET['redirect']) && $_GET['redirect'] === 'false') {
             $url = resolve('flarum.config')['url'];

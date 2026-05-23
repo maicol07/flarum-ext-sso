@@ -6,7 +6,7 @@ use Flarum\User\Event\Registered;
 
 class ActivateUser
 {
-    final public function activateUser(Registered $event): void
+    final public function __invoke(Registered $event): void
     {
         $user = $event->user;
         $user->activate();

@@ -13,7 +13,7 @@ readonly class UserUpdated
         private ImageManager $imageManager
     ) {}
 
-    final public function updateAvatarUrl(Saving $event): void
+    final public function __invoke(Saving $event): void
     {
         $user = $event->user;
         $avatar_url = Arr::get($event->data, 'attributes.avatarUrl');
