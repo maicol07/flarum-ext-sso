@@ -7,13 +7,14 @@ use Flarum\Bus\Dispatcher;
 use Flarum\Http\RememberAccessToken;
 use Flarum\Http\SessionAccessToken;
 use Flarum\Settings\SettingsRepositoryInterface;
-use Flarum\User\Command\RegisterUser;
+use Flarum\User\Event\Registered;
 use Flarum\User\Exception\PermissionDeniedException;
 use Flarum\User\User;
 use Flarum\User\UserRepository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Laminas\Diactoros\Response\JsonResponse;
@@ -99,7 +100,7 @@ class JWTSSOController implements RequestHandlerInterface
         $clock = new SystemClock(new DateTimeZone(date_default_timezone_get()));
 
         // Set validators
-        $config->setValidationConstraints(
+        $config->withValidationConstraints(
             new IssuedBy($this->iss),
             new PermittedFor($this->site_url),
             new LooseValidAt($clock)
@@ -129,13 +130,17 @@ class JWTSSOController implements RequestHandlerInterface
         }
 
         if (!$user instanceof Model) {
-            Arr::set($jwt_user, 'attributes.isEmailConfirmed', true);
-
-            $actor = $this->users->findOrFail(1);
-            $data = Arr::except($jwt_user, 'id');
-
+            $username = Arr::get($jwt_user, 'attributes.username');
             // User is already activated since the isEmailConfirmed attribute has been set to true
-            $user = $this->bus->dispatch(new RegisterUser($actor, $data));
+            $user = new User();
+            $user->username = $username;
+            if ($this->extensions->isEnabled('flarum-nicknames')) {
+                $user->nickname = $username;
+            }
+            $user->email = Arr::get($jwt_user, 'attributes.email');
+            $user->is_email_confirmed = true;
+            $user->joined_at = Carbon::now();
+            $user->raise(new Registered($user));
             assert($user instanceof User);
         }
 

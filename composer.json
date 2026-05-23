@@ -42,7 +42,8 @@
         "ext-json": "*",
         "flarum/core": "^2.0.0-beta",
         "maicol07/flarum-sso-plugin": "^3",
-        "lcobucci/jwt": ">=4.1"
+        "lcobucci/clock": "^3.3",
+        "lcobucci/jwt": "^5.6"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
