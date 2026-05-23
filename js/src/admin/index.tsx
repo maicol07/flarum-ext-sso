@@ -1,5 +1,7 @@
 import app from 'flarum/admin/app';
-import { SettingsPage } from './SettingsPage';
+
+// noinspection JSUnusedGlobalSymbols
+export { default as extend } from './extend';
 
 app.initializers.add('maicol07-sso', () => {
   app.registry
@@ -18,6 +20,5 @@ app.initializers.add('maicol07-sso', () => {
       setting: 'maicol07-sso.remove_signup_btn',
       label: app.translator.trans('maicol07-sso.admin.settings.remove_signup_btn'),
       type: 'boolean',
-    })
-    .registerPage(SettingsPage);
+    });
 });

@@ -5,7 +5,7 @@ import Mithril from 'mithril';
 import { SettingsComponentOptions } from 'flarum/admin/components/AdminPage';
 import Button from 'flarum/common/components/Button';
 
-export class SettingsPage extends ExtensionPage {
+export default class SettingsPage extends ExtensionPage {
   content(vnode: Mithril.VnodeDOM<ExtensionPageAttrs, this>): JSX.Element {
     const settings = app.registry.getSettings(this.extension.id);
 
