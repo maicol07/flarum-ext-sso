@@ -28,8 +28,11 @@ class LoginMiddleware implements MiddlewareInterface
         $session = $request->getAttribute('session');
         $cookies = $request->getCookieParams();
         $prefix = $this->settings->get('maicol07-sso.cookies_prefix', 'flarum');
-        $access_token = SessionAccessToken::findValid(Arr::get($cookies, "{$prefix}_token"));
-        $remember_token = RememberAccessToken::findValid(Arr::get($cookies, "{$prefix}_remember"));
+        $token = Arr::get($cookies, "{$prefix}_token");
+        $remember_token = Arr::get($cookies, "{$prefix}_remember");
+
+        $access_token = $token ? SessionAccessToken::findValid($token) : null;
+        $remember_token = $remember_token ? RememberAccessToken::findValid($remember_token) : null;
 
         $token = $remember_token ?? $access_token;
 
