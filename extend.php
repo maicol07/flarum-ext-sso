@@ -15,6 +15,22 @@ use Maicol07\SSO\Listener\UserUpdated;
 use Maicol07\SSO\Middleware\LoginMiddleware;
 use Maicol07\SSO\Middleware\LogoutMiddleware;
 
+$settings = [
+    'signup_url',
+    'login_url',
+    'logout_url',
+    'manage_account_url',
+    'manage_account_btn_open_in_new_tab',
+    'remove_login_btn',
+    'remove_signup_btn',
+    'provider_mode'
+];
+
+$settingsExtender = new Extend\Settings();
+foreach ($settings as $name) {
+    $settingsExtender->serializeToForum("maicol07-sso.$name", "maicol07-sso.$name");
+}
+
 return [
     // Frontend extenders (JS)
     (new Extend\Frontend('forum'))->js(__DIR__ . '/js/dist/forum.js'),
@@ -43,13 +59,5 @@ return [
     (new Extend\Routes('api'))->get('/sso/jwt', 'maicol07.jwt-auth', JWTSSOController::class),
 
     // Settings
-    (new Extend\Settings())
-        ->serializeToForum('maicol07-sso.signup_url', 'maicol07-sso.signup_url')
-        ->serializeToForum('maicol07-sso.login_url', 'maicol07-sso.login_url')
-        ->serializeToForum('maicol07-sso.logout_url', 'maicol07-sso.logout_url')
-        ->serializeToForum('maicol07-sso.manage_account_url', 'maicol07-sso.manage_account_url')
-        ->serializeToForum('maicol07-sso.manage_account_btn_open_in_new_tab', 'maicol07-sso.manage_account_btn_open_in_new_tab')
-        ->serializeToForum('maicol07-sso.remove_login_btn', 'maicol07-sso.remove_login_btn')
-        ->serializeToForum('maicol07-sso.remove_signup_btn', 'maicol07-sso.remove_signup_btn')
-        ->serializeToForum('maicol07-sso.provider_mode', 'maicol07-sso.provider_mode')
+    $settingsExtender
 ];
