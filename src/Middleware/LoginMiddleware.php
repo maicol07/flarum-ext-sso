@@ -3,6 +3,7 @@
 namespace Maicol07\SSO\Middleware;
 
 use Flarum\Foundation\Config;
+use Flarum\Http\AccessToken;
 use Flarum\Http\RememberAccessToken;
 use Flarum\Http\RequestUtil;
 use Flarum\Http\SessionAccessToken;
@@ -32,7 +33,7 @@ class LoginMiddleware implements MiddlewareInterface
 
         $token = $remember_token ?? $access_token;
 
-        if ($token !== null and $actor->isGuest()) {
+        if ($token instanceof AccessToken && $actor->isGuest()) {
             resolve(SessionAuthenticator::class)->logIn($session, $token);
             return new RedirectResponse($this->config->url()->__toString() . $request->getUri()->getPath());
         }

@@ -11,6 +11,7 @@ use Flarum\User\Command\RegisterUser;
 use Flarum\User\Exception\PermissionDeniedException;
 use Flarum\User\User;
 use Flarum\User\UserRepository;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -33,17 +34,10 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class JWTSSOController implements RequestHandlerInterface
 {
-    /** @var string */
-    private $site_url;
-
-    /** @var string */
-    private $iss;
-
-    /** @var string */
-    private $signing_algorithm;
-
-    /** @var string */
-    private $signer_key;
+    private string $site_url;
+    private string $iss;
+    private string $signing_algorithm;
+    private string $signer_key;
 
     public function __construct(
         private Dispatcher                  $bus,
@@ -58,10 +52,8 @@ class JWTSSOController implements RequestHandlerInterface
     }
 
     /**
-     * @param Request $request
-     * @return ResponseInterface
      *
-     * @throws PermissionDeniedException
+     * @throws PermissionDeniedException|\DateInvalidTimeZoneException
      *
      * @noinspection RegExpRedundantEscape
      */
@@ -136,7 +128,7 @@ class JWTSSOController implements RequestHandlerInterface
             $user = $this->users->findByIdentification($email ?? $username);
         }
 
-        if ($user === null) {
+        if (!$user instanceof Model) {
             Arr::set($jwt_user, 'attributes.isEmailConfirmed', true);
 
             $actor = $this->users->findOrFail(1);
@@ -160,7 +152,6 @@ class JWTSSOController implements RequestHandlerInterface
 
     private function getToken(User $user, bool $remember = false): string
     {
-        /** @noinspection PhpUnhandledExceptionInspection */
         $token = $remember ? RememberAccessToken::generate($user->id) : SessionAccessToken::generate($user->id);
         $token->save();
 

@@ -4,7 +4,7 @@ namespace Maicol07\SSO\Listener;
 
 use Flarum\Settings\SettingsRepositoryInterface;
 
-class AddLogoutRedirect
+readonly class AddLogoutRedirect
 {
     public function __construct(private SettingsRepositoryInterface $settings)
     {

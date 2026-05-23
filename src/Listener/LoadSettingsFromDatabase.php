@@ -7,9 +7,6 @@ use Illuminate\Contracts\Events\Dispatcher;
 
 class LoadSettingsFromDatabase
 {
-    /** @var SettingsRepositoryInterface */
-    //private $settings;
-
     public function __construct(SettingsRepositoryInterface $settings)
     {
         if ($settings->get('maicol07-sso.disable_login_btn')) {

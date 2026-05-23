@@ -9,11 +9,12 @@ use Flarum\User\Event\LoggedIn;
 use Flarum\User\Event\Saving;
 use Maicol07\SSO\Flarum;
 
-class ProviderModeListener
+readonly class ProviderModeListener
 {
-    public function __construct(private SettingsRepositoryInterface $settings, private Config $config)
-    {
-    }
+    public function __construct(
+        private SettingsRepositoryInterface $settings,
+        private Config $config
+    ) {}
 
     final public function loginClients(LoggedIn $event): void
     {
@@ -35,6 +36,7 @@ class ProviderModeListener
 
     /**
      * @return array<Flarum>
+     * @param array<string, bool> $options
      */
     private function getClients(array $options = []): array
     {

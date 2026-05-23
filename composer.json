@@ -45,7 +45,8 @@
         "lcobucci/jwt": ">=4.1"
     },
     "require-dev": {
-        "roave/security-advisories": "dev-latest"
+        "roave/security-advisories": "dev-latest",
+        "rector/rector": "^2.4"
     },
     "autoload": {
         "psr-4": {
