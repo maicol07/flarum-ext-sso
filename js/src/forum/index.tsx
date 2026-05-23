@@ -1,8 +1,6 @@
 import { extend, override } from 'flarum/common/extend';
 import app from 'flarum/forum/app';
 import HeaderSecondary from 'flarum/forum/components/HeaderSecondary';
-import SettingsPage from 'flarum/forum/components/SettingsPage';
-import LogInModal from 'flarum/forum/components/LogInModal';
 import { NestedStringArray } from '@askvortsov/rich-icu-message-formatter';
 
 /**
@@ -42,7 +40,7 @@ function getItems(): Record<string, { url: string; itemName: string; removeItem:
 }
 
 app.initializers.add('maicol07-sso', () => {
-  override(LogInModal.prototype, 'oncreate', () => {
+  override('flarum/forum/components/LogInModal', 'oncreate', () => {
     if (!setting('provider_mode', Boolean)) {
       const loginUrl = setting('login_url');
       if (loginUrl) {
@@ -79,7 +77,7 @@ app.initializers.add('maicol07-sso', () => {
     }
   });
 
-  extend(SettingsPage.prototype, 'accountItems', (items) => {
+  extend('flarum/forum/components/SettingsPage', 'accountItems', (items) => {
     if (setting('provider_mode', Boolean) || !setting('login_url')) {
       return; // Do not add account items if no login url is set.
     }
@@ -100,7 +98,7 @@ app.initializers.add('maicol07-sso', () => {
     );
   });
 
-  extend(SettingsPage.prototype, 'settingsItems', (items) => {
+  extend('flarum/forum/components/SettingsPage', 'settingsItems', (items) => {
     if (setting('manage_account_url', Boolean) || setting('provider_mode', Boolean)) {
       return; // Manage account link is added above
     }
