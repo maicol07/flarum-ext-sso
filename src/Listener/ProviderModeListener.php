@@ -6,6 +6,7 @@ use Flarum\Foundation\Config;
 use Flarum\Settings\SettingsRepositoryInterface;
 use Flarum\User\Event\Deleted;
 use Flarum\User\Event\LoggedIn;
+use Flarum\User\Event\LoggedOut;
 use Flarum\User\Event\Saving;
 use Maicol07\SSO\Flarum;
 
@@ -15,6 +16,14 @@ readonly class ProviderModeListener
         private SettingsRepositoryInterface $settings,
         private Config $config
     ) {}
+
+    public function subscribe(mixed $events): void
+    {
+        $events->listen(LoggedIn::class, [$this, 'loginClients']);
+        $events->listen(Saving::class, [$this, 'updateUserInClients']);
+        $events->listen(Deleted::class, [$this, 'deleteUserInClients']);
+        $events->listen(LoggedOut::class, [$this, 'logoutUserInClients']);
+    }
 
     final public function loginClients(LoggedIn $event): void
     {

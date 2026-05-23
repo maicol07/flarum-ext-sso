@@ -41,13 +41,10 @@ return [
 
     // Events
     (new Extend\Event())
-        ->listen(Registered::class, [ActivateUser::class, 'activateUser'])
-        ->listen(LoggedOut::class, [AddLogoutRedirect::class, 'addLogoutRedirect'])
-        ->listen(Saving::class, [UserUpdated::class, 'updateAvatarUrl'])
-        ->listen(Saving::class, [ProviderModeListener::class, 'updateUserInClients'])
-        ->listen(LoggedIn::class, [ProviderModeListener::class, 'loginClients'])
-        ->listen(Deleted::class, [ProviderModeListener::class, 'deleteUserInClients'])
-        ->listen(LoggedOut::class, [ProviderModeListener::class, 'logoutUserInClients'])
+        ->listen(Registered::class, ActivateUser::class)
+        ->listen(LoggedOut::class, AddLogoutRedirect::class)
+        ->listen(Saving::class, UserUpdated::class)
+        ->subscribe(ProviderModeListener::class)
         ->subscribe(LoadSettingsFromDatabase::class),
 
     // Middleware
