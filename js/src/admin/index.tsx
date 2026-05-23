@@ -2,7 +2,7 @@ import app from 'flarum/admin/app';
 import { SettingsPage } from './SettingsPage';
 
 app.initializers.add('maicol07-sso', () => {
-  app.extensionData
+  app.registry
     .for('maicol07-sso')
     .registerSetting({
       setting: 'maicol07-sso.manage_account_btn_open_in_new_tab',

@@ -1,3 +1,4 @@
+import Form from 'flarum/common/components/Form';
 import ExtensionPage, { ExtensionPageAttrs } from 'flarum/admin/components/ExtensionPage';
 import app from 'flarum/admin/app';
 import Mithril from 'mithril';
@@ -6,14 +7,14 @@ import Button from 'flarum/common/components/Button';
 
 export class SettingsPage extends ExtensionPage {
   content(vnode: Mithril.VnodeDOM<ExtensionPageAttrs, this>): JSX.Element {
-    const settings = app.extensionData.getSettings(this.extension.id);
+    const settings = app.registry.getSettings(this.extension.id);
 
     const flarumSettings = this.flarumClientSettings(1);
 
     return (
       <div className="ExtensionPage-settings">
         <div className="container">
-          <div className="Form">
+          <Form>
             <div className="Form-group">
               {this.buildSettingComponent({
                 type: 'checkbox',
@@ -31,7 +32,12 @@ export class SettingsPage extends ExtensionPage {
                           <th key={setting.setting}>
                             {setting.label}
                             <br />
-                            <span className="helpText" style={{ fontWeight: 'normal' }}>
+                            <span
+                              className="helpText"
+                              style={{
+                                fontWeight: 'normal',
+                              }}
+                            >
                               {setting.help}
                             </span>
                           </th>
@@ -46,22 +52,18 @@ export class SettingsPage extends ExtensionPage {
                 </Button>
               </div>
             </div>
-
             <div className="Form-group" hidden={this.booleanSetting('provider_mode')}>
               <hr />
               <div className="Form-group">{this.generalClientSettings().map(this.buildSettingComponent.bind(this))}</div>
               {settings?.map(this.buildSettingComponent.bind(this))}
-
               <hr />
-
               <div className="Form-group">
                 <h4>{app.translator.trans('maicol07-sso.admin.settings.jwt_section_subtitle')}</h4>
                 {this.jwtSettings().map(this.buildSettingComponent.bind(this))}
               </div>
             </div>
-
             <div className="Form-group">{this.submitButton()}</div>
-          </div>
+          </Form>
         </div>
       </div>
     );
