@@ -99,7 +99,7 @@ class JWTSSOController implements RequestHandlerInterface
         $clock = new SystemClock(new DateTimeZone(date_default_timezone_get()));
 
         // Set validators
-        $config->withValidationConstraints(
+        $config = $config->withValidationConstraints(
             new IssuedBy($this->iss),
             new PermittedFor($this->site_url),
             new LooseValidAt($clock)
