@@ -38,7 +38,7 @@
         }
     ],
     "require": {
-        "php": "^8.2",
+        "php": "^8.3",
         "ext-json": "*",
         "flarum/core": "^2.0.0-beta",
         "maicol07/flarum-sso-plugin": "^3",

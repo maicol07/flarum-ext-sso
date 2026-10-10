@@ -1,10 +1,10 @@
 <?php
 
 use Rector\Config\RectorConfig;
-use Rector\ValueObject\PhpVersion;
 
 return RectorConfig::configure()
     ->withPaths(['src', 'extend.php'])
+    ->withPhpSets(php83: true)
     ->withPreparedSets(
         deadCode: true,
         typeDeclarations: true,
@@ -13,5 +13,4 @@ return RectorConfig::configure()
         instanceOf: true,
         earlyReturn: true,
         carbon: true
-    )
-    ->withPhpVersion(PhpVersion::PHP_85);
+    );
