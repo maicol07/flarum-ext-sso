@@ -3,7 +3,7 @@
 namespace Maicol07\SSO;
 
 use DateTimeZone;
-use Flarum\Bus\Dispatcher;
+use Flarum\Extension\ExtensionManager;
 use Flarum\Http\RememberAccessToken;
 use Flarum\Http\SessionAccessToken;
 use Flarum\Settings\SettingsRepositoryInterface;
@@ -42,6 +42,7 @@ class JWTSSOController implements RequestHandlerInterface
 
     public function __construct(
         private readonly UserRepository              $users,
+        private readonly ExtensionManager            $extensions,
         SettingsRepositoryInterface $settings
     )
     {
