@@ -104,9 +104,6 @@
       <path value="$PROJECT_DIR$/vendor/s9e/regexp-builder" />
       <path value="$PROJECT_DIR$/vendor/s9e/sweetdom" />
       <path value="$PROJECT_DIR$/vendor/s9e/text-formatter" />
-      <path value="$PROJECT_DIR$/vendor/sycho/codecs-base64vlq" />
-      <path value="$PROJECT_DIR$/vendor/sycho/errors" />
-      <path value="$PROJECT_DIR$/vendor/sycho/sourcemap" />
       <path value="$PROJECT_DIR$/vendor/symfony/config" />
       <path value="$PROJECT_DIR$/vendor/symfony/console" />
       <path value="$PROJECT_DIR$/vendor/symfony/css-selector" />
@@ -140,7 +137,6 @@
       <path value="$PROJECT_DIR$/vendor/nunomaduro/termwind" />
       <path value="$PROJECT_DIR$/vendor/asispts/http-accept" />
       <path value="$PROJECT_DIR$/vendor/fakerphp/faker" />
-      <path value="$PROJECT_DIR$/vendor/fortawesome/font-awesome" />
       <path value="$PROJECT_DIR$/vendor/nyholm/psr7" />
       <path value="$PROJECT_DIR$/vendor/league/flysystem-local" />
       <path value="$PROJECT_DIR$/vendor/league/flysystem-memory" />
@@ -160,12 +156,21 @@
       <path value="$PROJECT_DIR$/vendor/phpstan/phpstan" />
       <path value="$PROJECT_DIR$/vendor/rector/rector" />
       <path value="$PROJECT_DIR$/vendor/lcobucci/clock" />
+      <path value="$PROJECT_DIR$/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/vendor/axy/codecs-base64vlq" />
+      <path value="$PROJECT_DIR$/vendor/axy/errors" />
+      <path value="$PROJECT_DIR$/vendor/axy/sourcemap" />
+      <path value="$PROJECT_DIR$/vendor/psy/psysh" />
+      <path value="$PROJECT_DIR$/vendor/bitworking/mimeparse" />
+      <path value="$PROJECT_DIR$/vendor/flarum/font-awesome" />
+      <path value="$PROJECT_DIR$/vendor/symfony/var-dumper" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.3" />
   <component name="PhpStan">
     <PhpStan_settings>
       <phpstan_by_interpreter asDefaultInterpreter="true" interpreter_id="a979d89f-1311-43d6-8cb2-fba99bfbad54" timeout="60000" />
+      <PhpStanConfiguration tool_path="$PROJECT_DIR$/vendor/bin/phpstan" />
     </PhpStan_settings>
   </component>
   <component name="PhpStanOptionsConfiguration">
