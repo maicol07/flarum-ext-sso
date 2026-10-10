@@ -35,14 +35,13 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class JWTSSOController implements RequestHandlerInterface
 {
-    private string $site_url;
-    private string $iss;
-    private string $signing_algorithm;
-    private string $signer_key;
+    private readonly string $site_url;
+    private readonly string $iss;
+    private readonly string $signing_algorithm;
+    private readonly string $signer_key;
 
     public function __construct(
-        private Dispatcher                  $bus,
-        private UserRepository              $users,
+        private readonly UserRepository              $users,
         SettingsRepositoryInterface $settings
     )
     {
@@ -117,13 +116,13 @@ class JWTSSOController implements RequestHandlerInterface
         // remove any sizing params
         $avatar = Arr::get($jwt_user, 'attributes.avatarUrl');
         $param = '?sz=';
-        if (strpos($avatar, $param)) {
-            $avatar = substr($avatar, 0, strpos($avatar, $param));
+        if (strpos((string) $avatar, $param)) {
+            $avatar = substr((string) $avatar, 0, strpos((string) $avatar, $param));
         }
 
         try {
             $user = $this->users->findOrFail(Arr::get($jwt_user, 'id'));
-        } catch (ModelNotFoundException $e) {
+        } catch (ModelNotFoundException) {
             $email = Arr::get($jwt_user, 'attributes.email');
             $username = Arr::get($jwt_user, 'attributes.username');
             $user = $this->users->findByIdentification($email ?? $username);

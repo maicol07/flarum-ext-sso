@@ -19,10 +19,10 @@ readonly class ProviderModeListener
 
     public function subscribe(mixed $events): void
     {
-        $events->listen(LoggedIn::class, [$this, 'loginClients']);
-        $events->listen(Saving::class, [$this, 'updateUserInClients']);
-        $events->listen(Deleted::class, [$this, 'deleteUserInClients']);
-        $events->listen(LoggedOut::class, [$this, 'logoutUserInClients']);
+        $events->listen(LoggedIn::class, $this->loginClients(...));
+        $events->listen(Saving::class, $this->updateUserInClients(...));
+        $events->listen(Deleted::class, $this->deleteUserInClients(...));
+        $events->listen(LoggedOut::class, $this->logoutUserInClients(...));
     }
 
     final public function loginClients(LoggedIn $event): void
@@ -54,7 +54,7 @@ readonly class ProviderModeListener
             $flarumUrl = $this->config->url();
             for ($i = 1; ($clientUrl = $this->settings->get("maicol07-sso.client{$i}_url")) !== null; $i++) {
                 $rootDomain = (string)$flarumUrl;
-                $clientUrlHost = parse_url($clientUrl, PHP_URL_HOST);
+                $clientUrlHost = parse_url((string) $clientUrl, PHP_URL_HOST);
                 $clientUrlDomain = substr($clientUrlHost, strpos($clientUrlHost, '.') + 1);
                 $flarumUrlDomain = substr($rootDomain, strpos($rootDomain, '.') + 1);
                 if ($flarumUrlDomain === $clientUrlDomain && $flarumUrl->getHost() !== $clientUrlHost) {

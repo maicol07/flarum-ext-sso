@@ -18,7 +18,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class LoginMiddleware implements MiddlewareInterface
 {
-    public function __construct(private Config $config, private SettingsRepositoryInterface $settings)
+    public function __construct(private readonly Config $config, private readonly SettingsRepositoryInterface $settings)
     {
     }
 
