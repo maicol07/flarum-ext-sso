@@ -1,0 +1,80 @@
+# git-cliff configuration: https://git-cliff.org/docs/configuration
+# On each published release CI writes the release notes and commits CHANGELOG.md (see AGENTS.md).
+
+[changelog]
+header = """
+# Changelog
+
+"""
+body = """
+{% set repo = "https://github.com/" ~ remote.github.owner ~ "/" ~ remote.github.repo %}\
+{% if version %}\
+    <a name="{{ version }}"></a>
+    ## {% if previous.version %}[{{ version }}]({{ repo }}/compare/{{ previous.version }}...{{ version }}){% else %}{{ version }}{% endif %}
+
+    > Released on {{ timestamp | date(format="%B %d, %Y") }}
+{% else %}\
+    <a name="unreleased"></a>
+    ## Unreleased
+{% endif %}\
+{% for group, commits in commits | group_by(attribute="group") %}
+    ### {{ group | striptags | trim }}
+
+    {% for commit in commits %}\
+        {% set subject = commit.message | split(pat="\n") | first | upper_first %}\
+        {% if not commit.body %}\
+          - [`{{ commit.id | truncate(length=7, end="") }}`]({{ repo }}/commit/{{ commit.id }}) \
+            {% if commit.scope %}**{{ commit.scope }}:** {% endif %}{{ subject }}
+        {% else %}\
+          {# Markdown is not rendered inside <summary>, hence the HTML #}\
+          - <details><summary>\
+            <a href="{{ repo }}/commit/{{ commit.id }}"><code>{{ commit.id | truncate(length=7, end="") }}</code></a> \
+            {% if commit.scope %}<b>{{ commit.scope }}:</b> {% endif %}{{ subject | escape }}</summary>
+
+          {% for line in commit.body | trim | split(pat="\n") %}\
+            {{ "  >" }}{% if line %} {{ line }}{% endif %}
+          {% endfor %}
+          {{ "  " }}</details>
+        {% endif %}\
+    {% endfor %}\
+{% endfor %}\
+{% set breaking = commits | filter(attribute="breaking", value=true) %}\
+{% if breaking %}
+    ### 💥 Breaking changes
+
+    {% for commit in breaking %}\
+        - {{ commit.breaking_description }}
+    {% endfor %}\
+{% endif %}\n
+"""
+trim = true
+
+[git]
+conventional_commits = true
+filter_unconventional = false
+split_commits = false
+commit_preprocessors = [
+  # Older commits put the gitmoji before the type: "✨ feat: x" -> "feat: ✨ x"
+  { pattern = '^([^\p{L}\p{N}\s]+)\s*(\w+(?:\([^)]*\))?!?:\s*)', replace = "${2}${1} " },
+]
+# Group order follows the <!-- n --> prefix, stripped when rendered.
+commit_parsers = [
+  { message = "^feat", group = "<!-- 00 -->✨ Features" },
+  { message = "^fix", group = "<!-- 01 -->🐛 Bug Fixes" },
+  { message = "^perf", group = "<!-- 02 -->⚡ Performance Improvements" },
+  { message = "^(ui|style)", group = "<!-- 03 -->💄 UI & Style" },
+  { message = "^i18n", group = "<!-- 04 -->🌐 Translations" },
+  { message = "^refactor", group = "<!-- 05 -->♻️ Code Refactoring" },
+  { message = '^docs\(changelog\)', skip = true },
+  { message = "^docs", group = "<!-- 06 -->📝 Docs changes" },
+  { message = "^test", group = "<!-- 07 -->✅ Tests" },
+  { message = "^build", group = "<!-- 08 -->👷 Building scripts changes" },
+  { message = "^ci", group = "<!-- 09 -->👷 CI changes" },
+  { message = "^chore", group = "<!-- 10 -->Other changes" },
+  { message = "^Revert", group = "<!-- 11 -->⏪ Reverts" },
+  { message = "^Merge pull request", group = "<!-- 12 -->🔀 Pull Requests" },
+]
+# Drops what no parser matched (e.g. plain merge commits).
+filter_commits = true
+tag_pattern = "[0-9].*"
+sort_commits = "oldest"
