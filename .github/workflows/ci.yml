@@ -47,6 +47,13 @@ jobs:
     secrets:
       bundlewatch_github_token: ${{ secrets.BUNDLEWATCH_GITHUB_TOKEN }}
 
+  # Quality: failing on the current code, so not in release.needs until fixed (1 file to refactor)
+  rector:
+    uses: maicol07/actions/.github/workflows/php.yml@v1
+    with:
+      php_version: '8.5'
+      run: vendor/bin/rector process --dry-run --no-progress-bar
+
   release:
     needs: [security, backend, frontend]
     if: github.event_name == 'push'
