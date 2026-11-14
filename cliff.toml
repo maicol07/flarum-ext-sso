@@ -70,6 +70,8 @@ commit_parsers = [
   { message = "^test", group = "<!-- 07 -->✅ Tests" },
   { message = "^build", group = "<!-- 08 -->👷 Building scripts changes" },
   { message = "^ci", group = "<!-- 09 -->👷 CI changes" },
+  # The release PR's own commit: its content is the changelog itself.
+  { message = '^chore\(release\)', skip = true },
   { message = "^chore", group = "<!-- 10 -->Other changes" },
   { message = "^Revert", group = "<!-- 11 -->⏪ Reverts" },
   { message = "^Merge pull request", group = "<!-- 12 -->🔀 Pull Requests" },
