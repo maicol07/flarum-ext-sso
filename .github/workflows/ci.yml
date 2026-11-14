@@ -1,0 +1,62 @@
+name: CI
+# Shared pipeline of maicol07/actions: checks on PRs and master, then on master the release PR and,
+# once it is merged, the GitHub Release (Packagist updates through its webhook). A job is
+# overridden by replacing its `uses:` with its own (same job name, so `needs` keeps working).
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  # Never cancel a release half done on master.
+  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
+
+permissions:
+  contents: read
+
+jobs:
+  security:
+    uses: maicol07/actions/.github/workflows/security.yml@v1
+
+  commit_lint:
+    uses: maicol07/actions/.github/workflows/commit-lint.yml@v1
+
+  # Flarum's own extension checks.
+  backend:
+    uses: flarum/framework/.github/workflows/REUSABLE_backend.yml@2.x
+    with:
+      enable_backend_testing: false
+      backend_directory: .
+
+  frontend:
+    uses: flarum/framework/.github/workflows/REUSABLE_frontend.yml@2.x
+    # On a push to master it commits the built js/dist.
+    permissions:
+      contents: write
+    with:
+      enable_bundlewatch: true
+      enable_prettier: true
+      enable_typescript: false
+      frontend_directory: ./js
+      backend_directory: .
+      js_package_manager: npm
+      main_git_branch: master
+    secrets:
+      bundlewatch_github_token: ${{ secrets.BUNDLEWATCH_GITHUB_TOKEN }}
+
+  release:
+    needs: [security, backend, frontend]
+    if: github.event_name == 'push'
+    uses: maicol07/actions/.github/workflows/release.yml@v1
+    permissions:
+      contents: write
+      pull-requests: write
+    with:
+      # The older 2-part tags keep their changelog section.
+      tag_pattern: '^[0-9]+\.[0-9]+(\.[0-9]+)?$'
+      # git-cliff cannot bump a 2-part tag: bump from the x.y.z ones only (the latest 2-part
+      # release needs its x.y.0 alias tag).
+      next_version: git cliff "$CLIFF_CONFIG" ${range:+"$range"} --tag-pattern '^[0-9]+\.[0-9]+\.[0-9]+$' --bumped-version
