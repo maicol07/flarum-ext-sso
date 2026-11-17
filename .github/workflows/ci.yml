@@ -62,7 +62,7 @@ jobs:
 
   release:
     needs: [security, backend, frontend]
-    if: github.event_name == 'push' && !failure() && !cancelled()
+    if: github.event_name == 'push' && !cancelled() && !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled')
     uses: maicol07/actions/.github/workflows/release.yml@v2
     permissions:
       contents: write
