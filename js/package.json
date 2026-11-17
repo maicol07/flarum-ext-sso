@@ -7,16 +7,16 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@types/mithril": "^2.2.8",
+    "@types/mithril": "^2.2.9",
       "@types/mithril-global": "^2.2.4",
     "@flarum/prettier-config": "^1.0.0",
-    "bundlewatch": "^0.4.2",
+    "bundlewatch": "^1.2.0",
     "flarum-tsconfig": "^2.0.0",
-    "flarum-webpack-config": "^3.0.4",
-    "prettier": "^3.8.3",
-    "typescript": "^6.0.3",
-    "webpack": "^5.107.1",
-    "webpack-cli": "^7.0.2"
+    "flarum-webpack-config": "^3.1.0",
+    "prettier": "^3.10.1",
+    "typescript": "^7.0.2",
+    "webpack": "^5.112.2",
+    "webpack-cli": "^7.3.1"
   },
   "scripts": {
     "build": "webpack --mode production --progress",
