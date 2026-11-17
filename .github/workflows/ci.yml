@@ -19,19 +19,25 @@ permissions:
 
 jobs:
   security:
-    uses: maicol07/actions/.github/workflows/security.yml@v1
+    uses: maicol07/actions/.github/workflows/security.yml@v2
 
   commit_lint:
-    uses: maicol07/actions/.github/workflows/commit-lint.yml@v1
+    uses: maicol07/actions/.github/workflows/commit-lint.yml@v2
 
   # Flarum's own extension checks.
   backend:
+    # Not on the release PR nor on its merge, like the shared checks of maicol07/actions@v2.
+    if: &checks >-
+      github.head_ref != 'release/next' && !(github.event_name == 'push' && (
+        startsWith(github.event.head_commit.message, 'chore(release):') ||
+        (startsWith(github.event.head_commit.message, 'Merge pull request') && contains(github.event.head_commit.message, '/release/next'))))
     uses: flarum/framework/.github/workflows/REUSABLE_backend.yml@2.x
     with:
       enable_backend_testing: false
       backend_directory: .
 
   frontend:
+    if: *checks
     uses: flarum/framework/.github/workflows/REUSABLE_frontend.yml@2.x
     # On a push to master it commits the built js/dist.
     permissions:
@@ -49,15 +55,15 @@ jobs:
 
   # Quality: failing on the current code, so not in release.needs until fixed (1 file to refactor)
   rector:
-    uses: maicol07/actions/.github/workflows/php.yml@v1
+    uses: maicol07/actions/.github/workflows/php.yml@v2
     with:
       php_version: '8.5'
       run: vendor/bin/rector process --dry-run --no-progress-bar
 
   release:
     needs: [security, backend, frontend]
-    if: github.event_name == 'push'
-    uses: maicol07/actions/.github/workflows/release.yml@v1
+    if: github.event_name == 'push' && !failure() && !cancelled()
+    uses: maicol07/actions/.github/workflows/release.yml@v2
     permissions:
       contents: write
       pull-requests: write
